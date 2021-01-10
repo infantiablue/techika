@@ -1,6 +1,7 @@
 module.exports = {
 	title: "Truong Phan Blog",
 	description: "My awesome portfolio blog",
+	head: [["link", { rel: "icon", type: "image/png", sizes: "32x32", href: "/favicon.png" }]],
 	themeConfig: {
 		nav: [
 			{ text: "Home", link: "/" },
