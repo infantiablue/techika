@@ -1,18 +1,19 @@
 module.exports = {
-	title: "Truong Phan Blog",
+	title: "Truong Phan",
 	description: "My awesome portfolio blog",
 	head: [["link", { rel: "icon", type: "image/png", sizes: "32x32", href: "/favicon.png" }]],
 	themeConfig: {
 		nav: [
 			{ text: "Home", link: "/" },
 			{ text: "Blog", link: "/blog/" },
+			{ text: "Projects", link: "/projects" },
 		],
 	},
 	plugins: [
 		[
 			"@vuepress/google-analytics",
 			{
-				ga: "G-LV7MVE919H",
+				ga: "UA-545029-29",
 			},
 		],
 	],

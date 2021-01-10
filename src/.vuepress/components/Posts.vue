@@ -2,10 +2,12 @@
 	<div class="post-container">
 		<div v-for="page in pages">
 			<div class="post-card">
-				<img class="article-image" src="https://picsum.photos/300" />
+				<!-- <img class="article-image" src="https://picsum.photos/300" /> -->
 				<div class="page-detail">
 					<router-link :to="page.path">
-						<div class="page-title">{{ page.title }}</div>
+						<div class="page-title">
+							{{ page.title }}
+						</div>
 					</router-link>
 					<div class="page-description">{{ page.frontmatter.description }}</div>
 					<div class="page-author">Author: {{ page.frontmatter.author }}</div>
@@ -32,18 +34,22 @@ export default {
 </script>
 <style scoped>
 .post-container {
-	display: flex;
-	flex-wrap: wrap;
+	display: block;
+	/* flex-wrap: wrap; */
 	width: 100%;
 }
+.page-title {
+	font-size: 1.2rem;
+}
+
 .post-card {
-	width: 600px;
-	height: 150px;
+	/* width: 600px;
+	height: 150px; */
 	margin: 10px;
-	border: 1px solid #ccc;
+	border: 1px solid cadetblue;
 	border-radius: 3px;
 	padding: 10px;
-	display: flex;
+	/* display: flex; */
 	align-items: center;
 }
 .article-image {
@@ -52,7 +58,8 @@ export default {
 }
 .description {
 	width: 100%;
-	display: flex;
+	color: dimgrey;
+	/* display: flex; */
 	justify-content: center;
 }
 </style>
