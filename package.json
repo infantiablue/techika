@@ -11,9 +11,11 @@
   "author": "Truong Phan",
   "license": "MIT",
   "devDependencies": {
+    "@kawarimidoll/vuepress-plugin-tailwind": "^2.0.0",
     "@vuepress/plugin-google-analytics": "^1.8.0",
     "eslint": "^7.17.0",
     "eslint-plugin-vue": "^7.4.1",
+    "tailwindcss": "^2.0.2",
     "vuepress": "^1.8.0"
   }
 }

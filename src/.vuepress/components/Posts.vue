@@ -1,15 +1,15 @@
 <template>
-	<div class="post-container">
+	<div class="container mx-auto">
 		<div v-for="page in pages">
-			<div class="post-card">
-				<!-- <img class="article-image" src="https://picsum.photos/300" /> -->
-				<div class="page-detail">
+			<div class="w-auto p-0 mb-3">
+				<img class="w-auto px-0 py-0" :src="page.frontmatter.cover" alt="" />
+				<div class="page-detail px-2 py-2">
 					<router-link :to="page.path">
 						<div class="page-title">
-							{{ page.title }}
+							<h2 class="text-3xl font-sans">{{ page.title }}</h2>
 						</div>
 					</router-link>
-					<div class="page-description">{{ page.frontmatter.description }}</div>
+					<div class="page-description text-gray-500">{{ page.frontmatter.description }}</div>
 					<div class="page-author">Author: {{ page.frontmatter.author }}</div>
 				</div>
 			</div>

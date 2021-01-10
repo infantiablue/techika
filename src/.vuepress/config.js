@@ -9,12 +9,5 @@ module.exports = {
 			{ text: "Projects", link: "/projects" },
 		],
 	},
-	plugins: [
-		[
-			"@vuepress/google-analytics",
-			{
-				ga: "UA-545029-29",
-			},
-		],
-	],
+	plugins: ["@kawarimidoll/tailwind", ["@vuepress/google-analytics", { ga: "UA-545029-29" }]],
 };
