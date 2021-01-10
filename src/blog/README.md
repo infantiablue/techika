@@ -1,0 +1,3 @@
+# Recent Posts
+
+<posts />
