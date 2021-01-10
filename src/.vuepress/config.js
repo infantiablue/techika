@@ -7,4 +7,12 @@ module.exports = {
 			{ text: "Blog", link: "/blog/" },
 		],
 	},
+	plugins: [
+		[
+			"@vuepress/google-analytics",
+			{
+				ga: "G-LV7MVE919H",
+			},
+		],
+	],
 };
