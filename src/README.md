@@ -4,7 +4,7 @@ heroImage: https://picsum.photos/id/24/1920/300?grayscale
 heroText: Hi, I am Truong Phan. Welcome to my blog!
 tagline: null
 actionText: null
-actionLink: /projects
+actionLink: null
 features:
   - title: Developer 🧑‍💻
     details: For now, I am learning web development as a hobby with expertise in Javascript, Vue.js and Python.

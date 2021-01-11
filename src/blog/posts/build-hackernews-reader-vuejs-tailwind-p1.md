@@ -4,6 +4,7 @@ description: Step by step to build the HackerNews Reader using, Vue 3, Vite 2, V
 author: Truong Phan
 type: article
 cover: https://dev-to-uploads.s3.amazonaws.com/i/xfnecytgg7kp0uxmm7f4.png
+date: 2021-01-09
 tags:
   - vuepress
   - vuejs
@@ -77,11 +78,71 @@ Then create a new file `main.css` in `src/assets/css`:
 
 Then, we need to fetch the data from HackerNews to VueX store first. In the snippet below, I also set up the axios instance, so that we can re-use it later. The API from HackerNews to get top stories only return the IDs, so that we need to fetch each individual item after receiving the arrays.
 
-{% gist https://gist.github.com/infantiablue/56d0f3906629b479db8d31e6cb84a230 file=index.js %}
+```javascript
+import { createStore } from "vuex";
+import axios from "axios";
+
+const api = axios.create({
+  baseURL: "https://hacker-news.firebaseio.com/v0/",
+});
+
+export default createStore({
+  state: {
+    items: [],
+  },
+  mutations: {
+    loadItems(state, item) {
+      state.items.push(item);
+    },
+  },
+  actions: {
+    loadLatestTopItems(context) {
+      api
+        .get('topstories.json?print=pretty&limitToFirst=10&orderBy="$key"')
+        .then((res) => {
+          res.data.forEach((id) => {
+            api.get(`item/${id}.json?print=pretty`).then((res) => {
+              context.commit("loadItems", res.data);
+            });
+          });
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    },
+  },
+});
+
+```
 
 Next, we create a new component at `components/Stories.vue` as below:
 
-{% gist https://gist.github.com/infantiablue/38249ba7e2d66b459c0867167645b76f file=Stories.vue %}
+```javascript
+<template>
+  <div v-if="items.length">
+    <div class="rounded-md bg-blue-50 px-3 py-1 my-1 h-auto" v-for="item in items" :key="item.id">
+      <div class="flex flex-wrap">
+        <a class="flex-auto font-sans text-black" target="blank" :href="item.url">{{ item.title }}</a>
+        <div class="text-sm font-medium text-gray-500">{{ item.time }}</div>
+        <div class="w-full flex-nonefont-semibold text-yellow-500 mt-2">{{ item.by }}</div>
+      </div>
+    </div>
+  </div>
+  <div v-else>
+    <svg class="text-red-500 animate-spin -ml-1 mr-3 h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+      <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+      <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+    </svg>
+  </div>
+</template>
+<script>
+export default {
+  name: "Stories",
+  props: {
+    items: Array,
+  },
+</script>
+```
 
 Then add VueX to the main.js
 
@@ -97,7 +158,38 @@ app.mount("#app");
 
 Finally, we edit `App.vue`
 
-{% gist https://gist.github.com/infantiablue/2f34fcedc8078d1c79833a09731e3cd2 file=App.vue %}
+```javascript
+<template>
+  <div class="container mx-auto px-4 text-left py-10">
+    <div class="flex">
+      <div class="flex-auto">
+        <h1 class="text-red-500 text-3xl">Latest</h1>
+        <Stories :items="items"></Stories>
+      </div>
+      <div class="flex-auto"></div>
+    </div>
+  </div>
+</template>
+
+<script>
+import { mapState } from "vuex";
+import Stories from "./components/Stories.vue";
+export default {
+  name: "app",
+  components: { Stories },
+  data() {
+    return {};
+  },
+  computed: {
+    ...mapState(["items"]),
+  },
+  created() {
+    this.$store.dispatch("loadLatestTopItems");
+  },
+};
+</script>
+
+```
 
 Open the `http://localhost:3000` and voilà.
 
@@ -138,5 +230,3 @@ Resources:
 * [Vuex@Next](https://next.vuex.vuejs.org/)
 * [Official Hacker News API](https://github.com/HackerNews/API)
 * [Tailwind CSS](https://tailwindcss.com/)
-
-*The post is also published on [Medium](https://infantiablue.medium.com/hackernews-reader-with-vue-3-vite-2-and-vuex-4-part-1-247315ceb06a).*

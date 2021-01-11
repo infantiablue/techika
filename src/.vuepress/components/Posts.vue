@@ -4,13 +4,16 @@
 			<div class="w-auto p-0 mb-3">
 				<router-link :to="page.path"><img class="w-auto px-0 py-0" :src="page.frontmatter.cover" alt=""/></router-link>
 				<div class="page-detail px-2 py-2">
-					<router-link :to="page.path">
-						<div class="page-title">
-							<h2 class="text-3xl font-sans">{{ page.title }}</h2>
+					<div class="page-title">
+						<h2 class="text-3xl font-sans">
+							<router-link :to="page.path">{{ page.title }}</router-link>
+						</h2>
+						<div class="flex flex-row py-1">
+							<div class="text-sm text-gray-500 mr-2" v-if="page.frontmatter.date">📅 {{ new Date(Date.parse(page.frontmatter.date)).toDateString() }}</div>
+							<div class="text-sm text-gray-500 mr-2" v-if="page.frontmatter.author">✍️ {{ page.frontmatter.author }}</div>
 						</div>
-					</router-link>
-					<div class="page-description text-gray-500">{{ page.frontmatter.description }}</div>
-					<!-- <div class="page-author">Author: {{ page.frontmatter.author }}</div> -->
+					</div>
+					<div class="page-description text-gray-600">{{ page.frontmatter.description }}</div>
 				</div>
 			</div>
 		</div>
@@ -34,22 +37,13 @@ export default {
 </script>
 <style scoped>
 .post-container {
-	display: block;
-	/* flex-wrap: wrap; */
 	width: 100%;
 }
-.page-title {
-	font-size: 1.2rem;
-}
-
 .post-card {
-	/* width: 600px;
-	height: 150px; */
 	margin: 10px;
 	border: 1px solid cadetblue;
 	border-radius: 3px;
 	padding: 10px;
-	/* display: flex; */
 	align-items: center;
 }
 .article-image {
@@ -59,7 +53,6 @@ export default {
 .description {
 	width: 100%;
 	color: dimgrey;
-	/* display: flex; */
 	justify-content: center;
 }
 </style>

@@ -1,5 +1,8 @@
 @tailwind base;
 @layer base {
+  html,body{
+    background-color: #e9ecef;
+  }
   h1 {
     @apply text-3xl;
   }
@@ -10,12 +13,14 @@
     @apply text-xl;
   }
   a {
-    @apply text-blue-400;
+    color: #2a9d8f;
+  }
+  a:hover{
+    color: #f4a261;
   }
   li{
     @apply list-inside;
   }
-
 }
 
 @tailwind components;
@@ -24,29 +29,40 @@
   header{
     @apply mb-2;
   }
+  .navbar {
+    @apply bg-gray-300 bg-opacity-70;
+  }
+  .navbar .links{
+    @apply bg-gray-300 bg-opacity-0;
+  }
   .logo{
     @apply w-12 h-auto rounded-full;
   }
   .site-name{
-    display: none
+    @apply hidden;
   }
 }
 .theme-container.homepage {
+  #main-title {
+    @apply leading-tight p-1;
+  }
   .hero {
     img {
-      object-fit: cover;
-      width: 100%;
-      margin: 0;
-      height: 300px;
+      @apply object-cover w-full m-0 h-60;
     }
   }
   .home {
-    max-width: 100%;
-    padding: 0;
+    @apply max-w-max p-0;
+    .feature{
+      h2{
+        color: #f4a261;
+      }
+    }   
+    @css {
+    .features {
+      @apply w-full mx-auto p-1 md:w-10/12;
+    }
+  }   
   }
-  .features {
-    width: 75%;
-    margin: auto;
-    padding: 0.5rem 1rem;
-  }
+
 }

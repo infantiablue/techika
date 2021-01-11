@@ -3,7 +3,7 @@ title: My Projects
 ---
 # [Convertca](https://convertca.com) <Badge text="Open Source" vertical="middle"/>
 
-I was learning Web Dev and hope to be a front end web developer soon, and I believe the best way is to practice. Then I made this project with some technology which could be quite complicated for such a simple site, but I can learn a lot from that. The site basically let you convert any youtube video less than 10 mins to MP3/ACC files, save it to DropBox, basic profile with history. It has been published on [Reddit](https://www.reddit.com/r/Python/comments/k003t6/a_complete_web_app_to_convert_youtube_videos_to/) community.
+I was learning Web Dev and believe the best way is to practice. Then I made this project with some technology which could be over-engineeredfor such a simple site, but I can learn a lot from that. The site basically let you convert any youtube video less than 10 mins to MP3/ACC files, save it to DropBox, basic profile with history. It has been published on [Reddit](https://www.reddit.com/r/Python/comments/k003t6/a_complete_web_app_to_convert_youtube_videos_to/) community.
 
 Here are some tech tools have been used:
 
