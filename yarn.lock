@@ -1166,7 +1166,7 @@
   dependencies:
     "@vuepress/shared-utils" "1.8.0"
 
-"@vuepress/plugin-search@1.8.0":
+"@vuepress/plugin-search@1.8.0", "@vuepress/plugin-search@^1.8.0":
   version "1.8.0"
   resolved "https://registry.yarnpkg.com/@vuepress/plugin-search/-/plugin-search-1.8.0.tgz#d10cc04cff7467829b2e2e896b7e72a5ebc27ce1"
   integrity sha512-LlOCPg7JJ3I9WEpiBU8vCEFp6I5sa3OBu6SFHk+uK9iyKHwJYdRs4VK9x+igG40Rt/OIDRDo3c9SbLX/E/kqeA==

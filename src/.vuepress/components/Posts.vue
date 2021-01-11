@@ -2,7 +2,7 @@
 	<div class="container mx-auto">
 		<div v-for="page in pages">
 			<div class="w-auto p-0 mb-3">
-				<img class="w-auto px-0 py-0" :src="page.frontmatter.cover" alt="" />
+				<router-link :to="page.path"><img class="w-auto px-0 py-0" :src="page.frontmatter.cover" alt=""/></router-link>
 				<div class="page-detail px-2 py-2">
 					<router-link :to="page.path">
 						<div class="page-title">
@@ -10,7 +10,7 @@
 						</div>
 					</router-link>
 					<div class="page-description text-gray-500">{{ page.frontmatter.description }}</div>
-					<div class="page-author">Author: {{ page.frontmatter.author }}</div>
+					<!-- <div class="page-author">Author: {{ page.frontmatter.author }}</div> -->
 				</div>
 			</div>
 		</div>

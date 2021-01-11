@@ -3,6 +3,7 @@ module.exports = {
 	description: "My awesome portfolio blog",
 	head: [["link", { rel: "icon", type: "image/png", sizes: "32x32", href: "/favicon.png" }]],
 	themeConfig: {
+		logo: "/img/avatar.jpg",
 		lastUpdated: "Last Updated",
 		nav: [
 			{ text: "Home", link: "/" },
@@ -11,6 +12,7 @@ module.exports = {
 		],
 	},
 	plugins: [
+		["@vuepress/search", { searchMaxSuggestions: 10 }],
 		[
 			"@vuepress/last-updated",
 			{
