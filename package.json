@@ -4,18 +4,18 @@
     "build": "vuepress build src"
   },
   "name": "techika",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "The personal site of Truong Phan",
-  "main": "index.js",
   "repository": "https://github.com/infantiablue/techika",
   "author": "Truong Phan",
   "license": "MIT",
   "devDependencies": {
+    "timeago.js": "^4.0.2",
     "@kawarimidoll/vuepress-plugin-tailwind": "^2.0.0",
     "@vuepress/plugin-google-analytics": "^1.8.0",
     "eslint": "^7.17.0",
     "eslint-plugin-vue": "^7.4.1",
     "tailwindcss": "^2.0.2",
     "vuepress": "^1.8.0"
-  }
+  },
 }
