@@ -1,7 +1,10 @@
 module.exports = {
 	title: "Truong Phan",
 	description: "My awesome portfolio blog",
-	head: [["link", { rel: "icon", type: "image/png", sizes: "32x32", href: "/favicon.png" }]],
+	head: [
+		["meta", { name: "viewport", content: "width=device-width, maximum-scale=5" }],
+		["link", { rel: "icon", type: "image/png", sizes: "32x32", href: "/favicon.png" }],
+	],
 	themeConfig: {
 		logo: "/img/avatar.jpg",
 		lastUpdated: "Last Updated",
