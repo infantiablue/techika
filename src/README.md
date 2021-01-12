@@ -1,6 +1,6 @@
 ---
 home: true
-heroImage: https://picsum.photos/id/24/1920/300?grayscale
+heroImage: https://picsum.photos/id/20/1920/300
 heroText: Hi, I am Truong Phan. Welcome to my blog!
 tagline: null
 actionText: null

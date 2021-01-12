@@ -2,7 +2,7 @@
 	<div class="container mx-auto">
 		<div v-for="page in pages">
 			<div class="w-auto p-0 mb-3">
-				<router-link :to="page.path"><img class="w-auto px-0 py-0" :src="page.frontmatter.cover" alt=""/></router-link>
+				<router-link :to="page.path" v-if="page.frontmatter.image"><img class="w-auto px-0 py-0" :src="page.frontmatter.image" alt=""/></router-link>
 				<div class="page-detail px-2 py-2">
 					<div class="page-title">
 						<h2 class="text-3xl font-sans">

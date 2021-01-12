@@ -1,4 +1,5 @@
 module.exports = {
+	evergreen: true,
 	title: "Truong Phan",
 	description: "My awesome portfolio blog",
 	head: [
@@ -6,6 +7,10 @@ module.exports = {
 		["link", { rel: "icon", type: "image/png", sizes: "32x32", href: "/favicon.png" }],
 	],
 	themeConfig: {
+		author: {
+			name: "Truong Phan",
+			twitter: "infantiablue",
+		},
 		logo: "/img/avatar.jpg",
 		lastUpdated: "Last Updated",
 		nav: [
@@ -15,7 +20,22 @@ module.exports = {
 		],
 	},
 	plugins: [
+		"@kawarimidoll/tailwind",
 		["@vuepress/search", { searchMaxSuggestions: 10 }],
+		["@vuepress/google-analytics", { ga: "UA-545029-29" }],
+		[
+			"@vuepress/blog",
+			{
+				directories: [
+					{
+						id: "post",
+						dirname: "blog/posts",
+						path: "/posts/",
+					},
+				],
+			},
+		],
+
 		[
 			"@vuepress/last-updated",
 			{
@@ -25,7 +45,21 @@ module.exports = {
 				},
 			},
 		],
-		"@kawarimidoll/tailwind",
-		["@vuepress/google-analytics", { ga: "UA-545029-29" }],
+		[
+			"seo",
+			{
+				siteTitle: (_, $site) => $site.title,
+				title: ($page) => $page.title,
+				description: ($page) => $page.frontmatter.description,
+				author: (_, $site) => $site.themeConfig.author,
+				tags: ($page) => $page.frontmatter.tags,
+				// twitterCard: (_) => "summary_large_image",
+				type: ($page) => (["articles", "posts", "blog"].some((folder) => $page.regularPath.startsWith("/" + folder)) ? "article" : "website"),
+				url: (_, $site, path) => ($site.themeConfig.domain || "") + path,
+				image: ($page, $site) => $page.frontmatter.image && (($site.themeConfig.domain && !$page.frontmatter.image.startsWith("http")) || "") + $page.frontmatter.image,
+				publishedAt: ($page) => $page.frontmatter.date && new Date($page.frontmatter.date),
+				modifiedAt: ($page) => $page.lastUpdated && new Date($page.lastUpdated),
+			},
+		],
 	],
 };
