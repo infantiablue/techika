@@ -1,6 +1,6 @@
 ---
 home: true
-heroImage: /img/header.jpg
+heroImage: /assets/img/header.jpg
 heroText: Hi, I am Truong Phan. Welcome to my space.
 tagline: null
 actionText: null

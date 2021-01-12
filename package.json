@@ -19,6 +19,7 @@
     "tailwindcss": "^2.0.2",
     "timeago.js": "^4.0.2",
     "vuepress": "^1.8.0",
-    "vuepress-plugin-seo": "^0.1.4"
+    "vuepress-plugin-seo": "^0.1.4",
+    "webpack-bundle-analyzer": "^4.3.0"
   }
 }
