@@ -25,18 +25,19 @@
 
 @tailwind components;
 @tailwind utilities;
+
 .theme-container{
   header{
     @apply mb-2;
+    .logo{
+      @apply p-0 rounded-full;
+    }
   }
   .navbar {
     @apply bg-gray-300 bg-opacity-70;
   }
   .navbar .links{
     @apply bg-gray-300 bg-opacity-0;
-  }
-  .logo{
-    @apply w-12 h-auto rounded-full;
   }
   .site-name{
     @apply hidden;
@@ -52,12 +53,7 @@
     }
   }
   .home {
-    @apply max-w-max p-0;
-    .feature{
-      h2{
-        color: #f4a261;
-      }
-    }   
+    @apply max-w-max p-0; 
     @css {
     .features {
       @apply w-full mx-auto p-1 md:w-10/12;

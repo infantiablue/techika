@@ -11,7 +11,7 @@ module.exports = {
 			name: "Truong Phan",
 			twitter: "infantiablue",
 		},
-		logo: "/img/avatar.jpg",
+		logo: "/img/avatar_sm.png",
 		lastUpdated: "Last Updated",
 		nav: [
 			{ text: "Home", link: "/" },
