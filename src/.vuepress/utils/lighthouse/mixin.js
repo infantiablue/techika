@@ -1,13 +1,6 @@
-<template>
-	<Navbar />
-</template>
-
-<script>
-import Navbar from "@parent-theme/components/Navbar.vue";
 export default {
-	components: { Navbar },
-	mounted() {
-		console.log("mounted");
+	mounted() {},
+	updated() {
 		let logo = document.querySelector(".logo");
 		logo.height = logo.width = "48";
 		let hero = document.querySelector(".hero > img");
@@ -17,4 +10,3 @@ export default {
 		}
 	},
 };
-</script>

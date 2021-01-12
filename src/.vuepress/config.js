@@ -1,7 +1,7 @@
 module.exports = {
 	evergreen: true,
-	title: "Truong Phan",
-	description: "My awesome portfolio blog",
+	title: "Truong Phan's Personal Blog",
+	description: "My awesome personal site about web development and hobbies",
 	head: [
 		["meta", { name: "viewport", content: "width=device-width, maximum-scale=5" }],
 		["link", { rel: "icon", type: "image/png", sizes: "32x32", href: "/favicon.png" }],
@@ -20,6 +20,7 @@ module.exports = {
 		],
 	},
 	plugins: [
+		[require("./utils/lighthouse/index.js")],
 		"@kawarimidoll/tailwind",
 		["@vuepress/search", { searchMaxSuggestions: 10 }],
 		["@vuepress/google-analytics", { ga: "UA-545029-29" }],
@@ -35,7 +36,6 @@ module.exports = {
 				],
 			},
 		],
-
 		[
 			"@vuepress/last-updated",
 			{

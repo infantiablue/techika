@@ -27,18 +27,16 @@
 @tailwind utilities;
 
 .theme-container{
-  header{
-    @apply mb-2;
-    .logo{
-      @apply p-0 rounded-full;
-    }
-  }
   .navbar {
     @apply bg-gray-300 bg-opacity-70;
+    border: none;
   }
   .navbar .links{
     @apply bg-gray-300 bg-opacity-0;
   }
+  .logo{
+    @apply w-auto h-auto p-0 rounded-full;
+  }  
   .site-name{
     @apply hidden;
   }
@@ -49,16 +47,18 @@
   }
   .hero {
     img {
-      @apply object-cover w-full m-0 h-52;
+      @apply object-cover w-full m-0;
     }
   }
   .home {
     @apply max-w-max p-0; 
     @css {
     .features {
-      @apply w-full mx-auto p-1 md:w-10/12;
+      @apply w-full mx-auto p-1 md:w-11/12;
     }
-  }   
+    }   
   }
-
+  .feature{
+    @apply px-2 flex-1 ;
+  }
 }
