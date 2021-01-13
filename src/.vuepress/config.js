@@ -11,6 +11,9 @@ module.exports = {
 	alias: {
 		styles: path.resolve(__dirname, "./styles"),
 	},
+	postcss: {
+		plugins: [require("autoprefixer"), require("tailwindcss")("./tailwind.config.js")],
+	},
 	themeConfig: {
 		search: false,
 		author: {
@@ -28,7 +31,6 @@ module.exports = {
 	},
 	plugins: [
 		[require("./utils/lighthouse/index.js")],
-		"@kawarimidoll/tailwind",
 		// ["@vuepress/search", { searchMaxSuggestions: 10 }],
 		["@vuepress/google-analytics", { ga: "UA-545029-29" }],
 		[
@@ -69,7 +71,4 @@ module.exports = {
 			},
 		],
 	],
-	postcss: {
-		plugins: [require("postcss-import"), require("postcss-nested"), require("postcss-color-function")],
-	},
 };
