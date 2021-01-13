@@ -5,6 +5,10 @@ class TailwindExtractor {
 	}
 }
 module.exports = {
+	colors: {
+		primary: "#2a9d8f",
+		secondary: "#1d3557",
+	},
 	purge: {
 		layers: ["components"],
 		content: [path.join(__dirname, "..", "components", "*.vue"), path.join(__dirname, "..", "theme", "components", "*.vue"), path.join(__dirname, "..", "theme", "layouts", "*.vue"), path.join(__dirname, "..", "theme", "templates", "*.html")],

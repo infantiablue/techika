@@ -12,6 +12,7 @@ module.exports = {
 		styles: path.resolve(__dirname, "./styles"),
 	},
 	themeConfig: {
+		search: false,
 		author: {
 			name: "Truong Phan",
 			twitter: "infantiablue",
@@ -22,12 +23,13 @@ module.exports = {
 			{ text: "Home", link: "/" },
 			{ text: "Blog", link: "/blog/" },
 			{ text: "Projects", link: "/projects" },
+			{ text: "Contact", link: "/contact" },
 		],
 	},
 	plugins: [
 		[require("./utils/lighthouse/index.js")],
 		"@kawarimidoll/tailwind",
-		["@vuepress/search", { searchMaxSuggestions: 10 }],
+		// ["@vuepress/search", { searchMaxSuggestions: 10 }],
 		["@vuepress/google-analytics", { ga: "UA-545029-29" }],
 		[
 			"@vuepress/blog",
