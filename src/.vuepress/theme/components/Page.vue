@@ -1,5 +1,5 @@
 <template>
-	<main class="container mx-auto pb-8 w-full md:w-10/12 lg:w-8/12 xl:w-6/12 pt-20">
+	<main class="container mx-auto pt-20 pb-8 w-full md:w-10/12 lg:w-8/12 xl:w-6/12">
 		<slot name="top" />
 		<div class="w-full px-2">
 			<h1 class="text-gray-900 font-serif" v-if="$page.title">{{ $page.title }}</h1>

@@ -1,3 +1,5 @@
+const path = require("path");
+
 module.exports = {
 	evergreen: true,
 	title: "Truong Phan's Personal Blog",
@@ -6,6 +8,9 @@ module.exports = {
 		["meta", { name: "viewport", content: "width=device-width, maximum-scale=5" }],
 		["link", { rel: "icon", type: "image/png", sizes: "32x32", href: "/favicon.png" }],
 	],
+	alias: {
+		styles: path.resolve(__dirname, "./styles"),
+	},
 	themeConfig: {
 		author: {
 			name: "Truong Phan",
@@ -62,4 +67,7 @@ module.exports = {
 			},
 		],
 	],
+	postcss: {
+		plugins: [require("postcss-import"), require("postcss-nested"), require("postcss-color-function")],
+	},
 };
