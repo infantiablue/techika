@@ -3,20 +3,20 @@
   html,body{
     @apply bg-white;
   }
-  h1 {
+  h1{
     @apply text-3xl;
   }
-  h2 {
+  h2{
     @apply text-2xl;
   }
-  h3 {
+  h3{
     @apply text-xl;
   }
-  a {
-    color: #2a9d8f;
+  a{
+    @apply text-secondary;
   }
   a:hover{
-    color: #f4a261;
+    @apply text-highlight;
   }
   li{
     @apply list-inside;
@@ -55,12 +55,13 @@
   .home {
     @apply max-w-max p-0; 
     @css {
-    .features {
-      @apply w-full mx-auto p-1 md:w-11/12;
-    }
-    }   
+      .features {
+        @apply w-full mx-auto p-1 md:w-11/12;
+      }
+    }  
+    .feature{
+      @apply px-2 flex-1 ;
+    } 
   }
-  .feature{
-    @apply px-2 flex-1 ;
-  }
+
 }

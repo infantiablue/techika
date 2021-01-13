@@ -14,6 +14,7 @@ This section is made to express my appreciations to creators of digital assests,
 ## Graphics
 
 - Photo by [Adrian](Adrian) on [Unsplash](https://unsplash.com/)
+- SVG Icons from [Simple Icons](https://simpleicons.org/)
 
 <style lang="stylus" scoped>
 li

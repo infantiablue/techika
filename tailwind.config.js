@@ -5,10 +5,6 @@ class TailwindExtractor {
 	}
 }
 module.exports = {
-	colors: {
-		primary: "#2a9d8f",
-		secondary: "#1d3557",
-	},
 	purge: {
 		layers: ["components"],
 		content: [path.join(__dirname, "..", "components", "*.vue"), path.join(__dirname, "..", "theme", "components", "*.vue"), path.join(__dirname, "..", "theme", "layouts", "*.vue"), path.join(__dirname, "..", "theme", "templates", "*.html")],
@@ -24,7 +20,13 @@ module.exports = {
 	},
 	darkMode: false, // or 'media' or 'class'
 	theme: {
-		extend: {},
+		extend: {
+			colors: {
+				primary: "#1d3557",
+				secondary: "#2a9d8f",
+				highlight: "#f4a261",
+			},
+		},
 	},
 	variants: {
 		extend: {},
