@@ -26,7 +26,7 @@ module.exports = {
 			{ text: "Home", link: "/" },
 			{ text: "Blog", link: "/blog/" },
 			{ text: "Projects", link: "/projects" },
-			{ text: "Contact", link: "/contact" },
+			// { text: "Contact", link: "/contact" },
 		],
 	},
 	plugins: [
