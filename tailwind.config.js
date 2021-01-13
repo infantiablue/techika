@@ -2,7 +2,7 @@ const path = require("path");
 
 module.exports = {
 	purge: {
-		layers: ["components"],
+		layers: ["base", "components"],
 		content: [path.join(__dirname, "..", "components", "*.vue"), path.join(__dirname, "..", "theme", "components", "*.vue"), path.join(__dirname, "..", "theme", "layouts", "*.vue"), path.join(__dirname, "..", "theme", "templates", "*.html")],
 		whitelist: ["html", "body", "main"],
 		defaultExtractor(content) {
