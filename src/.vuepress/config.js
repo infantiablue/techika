@@ -2,7 +2,7 @@ const path = require("path");
 
 module.exports = {
 	evergreen: true,
-	title: "Truong Phan's Personal Blog",
+	title: "Truong Phan",
 	description: "My awesome personal site about web development and hobbies",
 	head: [
 		["meta", { name: "viewport", content: "width=device-width, maximum-scale=5" }],
