@@ -29,8 +29,9 @@ export default {
 	mounted() {
 		this.$site.pages.forEach((page) => {
 			if (page.frontmatter.type === "article") {
-				this.pages.push(page);
+				this.pages.unshift(page);
 			}
+			// this.pages = this.pages.reverse();
 		});
 	},
 };
