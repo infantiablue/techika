@@ -4,7 +4,7 @@ description: Comprehensive and short explanations about main concepts of the Jav
 author: Truong Phan
 type: article
 image: /media/simple-notes-javascript/banner.jpg
-date: 2021-14-09
+date: 2021-01-14
 tags:
   - javascript
   - callback queue
