@@ -1,17 +1,17 @@
 <template>
-	<div class="container mx-auto">
+	<div>
 		<div v-for="page in pages">
 			<div class="w-auto p-0 mb-3">
-				<router-link :to="page.path" v-if="page.frontmatter.image"><img class="w-auto px-0 py-0" :src="page.frontmatter.image" alt=""/></router-link>
 				<div class="page-detail px-2 py-2">
 					<div class="page-title">
 						<h2 class="text-3xl font-sans">
 							<router-link :to="page.path">{{ page.title }}</router-link>
 						</h2>
 						<div class="flex flex-row py-1">
-							<div class="text-sm text-gray-500 mr-2" v-if="page.frontmatter.date">📅 {{ new Date(Date.parse(page.frontmatter.date)).toDateString() }}</div>
-							<div class="text-sm text-gray-500 mr-2" v-if="page.frontmatter.author">✍️ {{ page.frontmatter.author }}</div>
+							<div class="text-sm mr-2" v-if="page.frontmatter.date">📅 {{ new Date(Date.parse(page.frontmatter.date)).toDateString() }}</div>
+							<div class="text-sm mr-2" v-if="page.frontmatter.author">✍️ {{ page.frontmatter.author }}</div>
 						</div>
+						<router-link :to="page.path" v-if="page.frontmatter.image"><img class="w-auto px-0 py-0" :src="page.frontmatter.image" alt=""/></router-link>
 					</div>
 					<div class="page-description text-gray-600">{{ page.frontmatter.description }}</div>
 				</div>

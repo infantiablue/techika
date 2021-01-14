@@ -4,13 +4,13 @@
     @apply bg-white;
   }
   h1{
-    @apply text-3xl;
+    @apply text-3xl py-2 font-semibold;
   }
   h2{
-    @apply text-2xl;
+    @apply text-2xl py-2 font-semibold;
   }
-  h3{
-    @apply text-xl;
+  h3 {
+    @apply text-xl py-2 font-semibold;
   }
   a{
     @apply text-secondary;
@@ -19,7 +19,7 @@
     @apply text-highlight;
   }
   li{
-    @apply list-inside;
+    @apply list-inside list-disc;
   }
 }
 @tailwind components;
@@ -31,7 +31,7 @@
     border: none;
   }
   .navbar .links{
-    @apply bg-gray-300 bg-opacity-0;
+    @apply bg-gray-300 bg-opacity-0 pr-12;
   }
   .logo{
     @apply p-0 rounded-full;
@@ -39,7 +39,15 @@
   .site-name{
     @apply hidden;
   }
+  #content{
+    @apply text-primary;
+    blockquote{
+      @apply my-4 py-4 px-2 text-gray-800 font-serif text-xl text-center;
+    }
+  }
+
 }
+
 .theme-container.homepage {
   #main-title {
     @apply leading-tight py-1 my-1;
