@@ -3,7 +3,7 @@ title: The simple notes about what is Javascript and how it works, from legacy t
 description: Comprehensive and short explanations about main concepts of the Javascript language
 author: Truong Phan
 type: article
-image: /media/simple-notes-javascript/banner.jpg
+image: https://techika.com/media/simple-notes-javascript/banner.jpg
 date: 2021-01-14
 tags:
   - javascript
