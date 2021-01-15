@@ -10,7 +10,7 @@ tags:
   - callback queue
   - event loop
 ---
-Javascript is one of the most language for web development nowadays. It has a complicated history with many subsets which could make beginners misunderstood the core concept behind this powerful language, and I am one of them. As the result, I decide to research and try to comprehend the fundamentals before go deeper with advanced tools sucha as frameworks or libraries. This post is more like my personal notes, which have been documented from [many sources](#credits) to have a clear and concise overview about Javascript.
+Javascript is one of the most language for web development nowadays. It has a complicated history with many subsets which could make beginners misunderstood the core concept behind this powerful language, and I am one of them. As the result, I decide to research and try to comprehend the fundamentals before go deeper with advanced tools such as frameworks or libraries. This post is more like my personal notes, which have been documented from [many sources](#credits) to have a clear and concise overview about Javascript.
 
 ## The History
 
@@ -41,7 +41,7 @@ console.log(null      || "not defined") // "not defined"
 
 ## The Engine
 
-The first JavaScript engines were mere interpreters, but all relevant modern engines use just-in-time compilation for improved performance. It runs inside a hosting environment, which for most developers is the typical web browser or Node.js. For instance, the V8 is one of the most popular Javascript engine, which powers Google Chrome and Node.js. There are anothers such as Charka (Microsoft Edge), Spider Monkey (Firefox) ...
+The first JavaScript engines were mere interpreters, but all relevant modern engines use just-in-time compilation for improved performance. It runs inside a hosting environment, which for most developers is the typical web browser or Node.js. For instance, the V8 is one of the most popular Javascript engine, which powers Google Chrome and Node.js. There are the other ones such as Charka (Microsoft Edge), Spider Monkey (Firefox) ...
 
 A regular javascript engine consists of two main components:
 

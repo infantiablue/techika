@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<div v-for="page in pages">
+		<div v-for="page in pages" :key="page.frontmatter.date">
 			<div class="w-auto p-0 mb-3">
 				<div class="page-detail px-2 py-2">
 					<div class="page-title">
@@ -29,31 +29,30 @@ export default {
 	mounted() {
 		this.$site.pages.forEach((page) => {
 			if (page.frontmatter.type === "article") {
-				this.pages.unshift(page);
+				console.log(page);
+				this.pages.push(page);
 			}
-			// this.pages = this.pages.reverse();
 		});
 	},
 };
 </script>
-<style scoped>
-.post-container {
-	width: 100%;
-}
-.post-card {
-	margin: 10px;
-	border: 1px solid cadetblue;
-	border-radius: 3px;
-	padding: 10px;
-	align-items: center;
-}
-.article-image {
-	height: 100%;
-	padding-right: 15px;
-}
-.description {
-	width: 100%;
-	color: dimgrey;
-	justify-content: center;
-}
+<style lang="stylus" scoped>
+.post-container
+	width 100%
+
+.post-card
+	margin 10px
+	border 1px solid cadetblue
+	border-radius 3px
+	padding 10px
+	align-items center
+
+.article-image
+	height 100%
+	padding-right 15px
+
+.description
+	width 100%
+	color dimgrey
+	justify-content center
 </style>
