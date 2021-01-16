@@ -32,6 +32,9 @@ The project has been developed to experiment with Vue 3 and Vite. To make it sim
 h2{
   border-bottom:none;
 }
+li{
+  list-style-type: none;
+}
 li::before {
   content: "✅ ";
 }

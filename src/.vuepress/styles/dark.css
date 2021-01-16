@@ -24,7 +24,7 @@ a.nav-link {
 }
 
 .nav-links .router-link-active {
-	@apply dark:text-yellow-500 !important;
+	@apply dark:text-pink-400 !important;
 }
 
 .sidebar {
@@ -32,7 +32,7 @@ a.nav-link {
 }
 
 .feature h2 {
-	@apply dark:text-blue-300 !important;
+	@apply dark:text-yellow-300 !important;
 }
 
 .feature p {
