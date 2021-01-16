@@ -16,7 +16,7 @@ h1#main-title {
 }
 
 .theme-container .navbar {
-	@apply dark:bg-gray-600;
+	@apply dark:bg-gray-600 !important;
 }
 
 a.nav-link {
