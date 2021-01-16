@@ -3,12 +3,12 @@
 		<slot name="top" />
 		<div class="w-full px-6">
 			<h1 class="font-serif text-left pb-6" v-if="$page.title">{{ $page.title }}</h1>
-			<div class="flex py-1 dark:text-green-400">
+			<div class="flex py-2 dark:text-green-400">
 				<div class="text-sm mr-2" v-if="$page.frontmatter.date">📅 {{ new Date(Date.parse($page.frontmatter.date)).toDateString() }}</div>
 				<div class="text-sm mr-2" v-if="$page.frontmatter.author">✍️ {{ $page.frontmatter.author }}</div>
 			</div>
 			<div class="my-2" v-if="$page.frontmatter.image"><img :src="$page.frontmatter.image" :alt="$page.title" width="1024" height="195" /></div>
-			<Content class="text-justify break-words dark:text-white" />
+			<Content class="text-justify break-words text-lg font-normal dark:text-gray-50" />
 		</div>
 		<PageEdit />
 		<PageNav v-bind="{ sidebarItems }" />

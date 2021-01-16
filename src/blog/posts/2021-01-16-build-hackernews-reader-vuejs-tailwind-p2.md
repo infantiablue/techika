@@ -1,11 +1,12 @@
 ---
-title: Build the HackerNews Reader with VueJS 3 — Part 2, with Dark mode supported
-description: Step by step, with detailed explanations, to build the HackerNews Reader using Vue 3, Vite 2, VueX 4 & Tailwind, with the implementation of dark mode.
+title: Build the HackerNews Reader with VueJS 3 — Part 2, with Dark mode implemented
+description: Step by step, with detailed explanations, to build the HackerNews Reader using Vue 3, Vite 2, VueX 4 & Tailwind, with the implementation of dark mode and more.
 author: Truong Phan
 type: article
 image: /media/vhnews-tutorials-p2/banner.jpg
 date: 2021-01-16
 tags:
+  - tutorial
   - vuepress
   - vuejs
   - taildwind
@@ -14,13 +15,13 @@ tags:
   - api
   - darkmode
 ---
-After building a very basic Single Page Application (SPA) from the first article, today we gonna continue to enhance the application. Our goals in this article are:
+After building a very basic Single Page Application (SPA) from [the first tutorial with VueJS 3](http://localhost:8080/2021/01/09/build-hackernews-reader-vuejs-tailwind-p1/), today we gonna continue to enhance the application. Our goals in this article are:
 
-- Fetch more kinds of items from HackerNews (previously, the site just received only top stories) with a proper mini navigation.
-- Add Dark Mode feature
-- Use localStorage to save user preferences: the last selected sections, and the theme mode
-
-We use the current [release](https://github.com/infantiablue/vhnews/releases/tag/0.1) from Github to continue development. Look at the HackerNews homepage, we can see it has other sections such as *new, jobs , asks ...* and go through the [official API](https://github.com/HackerNews/API), all of them are supported through REST APIs. Here are URL endpoints:
+- *Fetch more kinds of items from HackerNews (previously, the site just received only ***top*** stories) with a proper mini navigation.*
+- *Nowadays, dark mode is a first-class feature for any application, so we will equip it for our application either.*
+- *Implement `localStorage` to save user preferences: the last selected topic, and dark/light mode*
+  
+We use the current [release](https://github.com/infantiablue/vhnews/releases/tag/0.1) from Github to continue development. Look at the HackerNews homepage, we can see it has other topics such as *new, jobs , asks ...* and go through the [official API](https://github.com/HackerNews/API), all of them are supported through REST APIs. Here are URL endpoints:
 
 ![The official HackerNews screenshit](../../.vuepress/public/media/vhnews-tutorials-p2/hnews_screenshot.png)
 
@@ -49,7 +50,7 @@ data() {
   };
 ```
 
-With this desing of data, we can customize such as icons, color ... for the topic navigation with ease. Then, we generate the navigation bar by using `v-for`
+With this design of data structure, we can customize such as icons, color ... for the topic navigation with ease. Then, we generate the navigation bar by using `v-for`
 
 ```html
 <div class="flex items-baseline">
@@ -63,7 +64,7 @@ With this desing of data, we can customize such as icons, color ... for the topi
 
 The `$event` param would be used to manipulate css class later. And, I must say, the Tailwind CSS framework is so powerful, especially in this kind of scenario, I don't need to hard code other css class, just use built in class utilites to decorate the elements.
 
-Nest step, we need functions to make UI wokrs, we gonna implement a method to load each topic when user click on. It's just a simple function to `dispatch` the `fetchItems` action from Vuex store with a param (we will modify it later). Also, we need a mechanism to highlight the active topic, by adding & removing a text color class from tailwind.
+Nest step, we need functions to make the user interface wokrs, we gonna implement a method to load each topic when user click on. It's just a simple function to `dispatch` the `fetchItems` action from Vuex store with a param (we will modify it later). Also, we need a mechanism to highlight the active topic, by adding & removing a text color class from tailwind.
 
 ```javascript
 methods: {
@@ -78,7 +79,7 @@ methods: {
 },
 ```
 
-Now, for the Vuex Store action, we will rename and modify the function `loadLatestTopItems` in `store/index.js` as below:
+Now, for the Vuex Store action, we will rename function `loadLatestTopItems` in `store/index.js` to `fetchItems` and modify it as below:
 
 ```javascript
 fetchItems(context, type = "top") {
@@ -98,7 +99,7 @@ fetchItems(context, type = "top") {
 },
 ```
 
-The new function take the type params (with default is `top`) and then pass diretly to the API url endpoint by using the template literal feature. Now, run the command `yarn dev` and open `http://localhost:3000` to check if everything works. It should wokrs properly, however the problem is when you load the page first time, the `active` topic is not highlight, we need a solution for this.
+The new function take the type params (with default is `top`) and then pass diretly to the API url endpoint by using the template literal feature of modern javascript. Now, run the command `yarn dev` and open `http://localhost:3000` to check if everything works. It should wokrs properly, however the problem is when you load the page first time, the `active` topic is not highlight, we need a solution for this.
 
 ```javascript
 created() {
@@ -109,7 +110,7 @@ mounted() {
 },
 ```
 
-The code is easy to understand, we load top stories by using the defined method `loadStories` when the component is `created` but at this stage of the Vue instance lifecyle, the DOM is not ready yet, so we need to put the next chunk of code to the `mounted` event, in order to highlight the top stories topic.
+The code is easy to understand, we load top stories by using the defined method `loadStories` when the component is `created` but at this stage of the Vue instance lifecyle, the DOM is not ready yet, so we need to put the next chunk of code to the `mounted` event, in order to highlight the top stories topic when the user load the page.
 
 ![Active Topic](../../.vuepress/public/media/vhnews-tutorials-p2/topic-highlight.png)
 
@@ -136,7 +137,7 @@ Then, we are going to implement `dark` class to our applications. Firstly we mak
 @tailwind utilities;
 ```
 
-In this step, the color is totally up to your taste, the full source code is availabel on Github for your references. In order to save users' preferences, `localStorage` is an execellent choice for a SPA app like this. From MDN, *"The read-only localStorage property allows you to access a Storage object for the Document's origin; the stored data is saved across browser sessions. localStorage is similar to sessionStorage, except that while data stored in localStorage has no expiration time"* The function `toggleDarkMode` below is written base on it. The function will accept a parameter to set the intended theme (which we can use when initializing the application) or toggle it.
+In this step, the color is totally up to your taste, the full source code is available on Github for your references. In order to save users' preferences, `localStorage` is an execellent choice for a SPA app like this. From MDN, *"The read-only localStorage property allows you to access a Storage object for the Document's origin; the stored data is saved across browser sessions. localStorage is similar to sessionStorage, except that while data stored in localStorage has no expiration time"* The function `toggleDarkMode` below is written base on it. The function will accept a parameter to set the intended theme (which we can use when initializing the application) or toggle it.
 
 ```javascript
 toggleDarkMode(theme, evt) {
@@ -162,7 +163,7 @@ toggleDarkMode(theme, evt) {
 },
 ```
 
-We inject an icon (I just make use of the emoj for the quick implementation) for user to switch theme in the `template` section of the file `App.vue`
+We inject an icon (I just use of the emoj for the quick design) for user to switch theme in the `template` section of the file `App.vue`
 
 ```html
 <div class="theme-switch-wrapper">

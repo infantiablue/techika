@@ -1,7 +1,7 @@
 @tailwind base;
 @layer base {
   html,body{
-    @apply bg-gray-50 h-full max-h-full;  
+    @apply bg-gray-50 h-full max-h-full antialiased;  
   }
   h1{
     @apply text-3xl py-2 font-semibold;
@@ -12,6 +12,9 @@
   h3 {
     @apply text-xl py-2 font-semibold;
   } 
+  p{
+    @apply py-2 leading-8;
+  }
   @css{
     a {
       @apply text-secondary hover:text-highlight;
@@ -20,13 +23,16 @@
   li{
     @apply list-inside list-disc;
   }
+  code{
+    @apply text-gray-400 font-mono px-1;
+  }
 }
 @tailwind components;
 @tailwind utilities;
 
 .theme-container{
   .navbar {
-    @apply bg-gray-300 bg-opacity-70 ;
+    @apply bg-gray-300;
     border: none;
   }
   .navbar .links{
@@ -44,12 +50,11 @@
       @apply my-4 py-4 px-2 text-gray-800 font-serif text-xl text-center;
     }
   }
-
 }
 
 .theme-container.homepage {
   #main-title {
-    @apply leading-tight py-1 my-1;
+    @apply leading-tight pt-10 pb-0 my-0 border-0;
   }
   .hero {
     @apply pt-14;
@@ -61,11 +66,15 @@
     @apply max-w-max p-0; 
     @css {
       .features {
-        @apply w-full mx-auto p-1 md:w-11/12;
+        @apply w-full mx-auto py-6 mt-6 md:w-11/12 border-t-0 !important;
       }
     }  
     .feature{
       @apply px-2 flex-1 ;
     } 
+    .footer{
+      @apply border-t-0 !important;  
+    }    
   }
+
 }

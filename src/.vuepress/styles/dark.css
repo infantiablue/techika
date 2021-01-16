@@ -4,15 +4,19 @@ body {
 }
 
 a {
-	@apply dark:text-pink-500 dark:hover:text-indigo-500;
+	@apply dark:text-pink-500 dark:hover:text-indigo-500 !important;
 }
 
 #app {
 	@apply dark:bg-gray-900 dark:text-white;
 }
 
-.navbar {
-	@apply dark:bg-gray-400 bg-opacity-30 !important;
+h1#main-title {
+	@apply dark:text-green-400 !important;
+}
+
+.theme-container .navbar {
+	@apply dark:bg-gray-600;
 }
 
 a.nav-link {
@@ -23,8 +27,12 @@ a.nav-link {
 	@apply dark:text-yellow-500 !important;
 }
 
+.sidebar {
+	@apply dark:bg-gray-700;
+}
+
 .feature h2 {
-	@apply dark:text-green-400 !important;
+	@apply dark:text-blue-300 !important;
 }
 
 .feature p {

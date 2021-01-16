@@ -6,6 +6,7 @@ type: article
 image: /media/vhnews-tutorials/banner.jpg
 date: 2021-01-09
 tags:
+  - tutorial
   - vuepress
   - vuejs
   - taildwind
@@ -223,7 +224,7 @@ Reload the page to check the result
 ![The time is readable](https://dev-to-uploads.s3.amazonaws.com/i/8hprv3fgzjvq24gjufp7.png)
 
 The final source code is on [Github repo](https://github.com/infantiablue/vhnews).
-In the next article, we will implement advanced features of Vue components to render them dynamically. I would appreciate to receive any feedback from you guys
+In the next article, we will implement advanced features of Vue components to render them dynamically. I would appreciate to receive any feedback from you guys.
 
 Resources:
 

@@ -7,7 +7,7 @@
 						<h2 class="text-3xl font-sans">
 							<router-link :to="page.path">{{ page.title }}</router-link>
 						</h2>
-						<div class="flex flex-row py-1 dark:text-green-400">
+						<div class="flex flex-row py-2 dark:text-green-400">
 							<div class="text-sm mr-2" v-if="page.frontmatter.date">📅 {{ new Date(Date.parse(page.frontmatter.date)).toDateString() }}</div>
 							<div class="text-sm mr-2" v-if="page.frontmatter.author">✍️ {{ page.frontmatter.author }}</div>
 						</div>
