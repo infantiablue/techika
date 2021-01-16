@@ -1,7 +1,7 @@
 @tailwind base;
 @layer base {
   html,body{
-    @apply bg-white;
+    @apply bg-white h-full max-h-full;
   }
   h1{
     @apply text-3xl py-2 font-semibold;
@@ -11,12 +11,11 @@
   }
   h3 {
     @apply text-xl py-2 font-semibold;
-  }
-  a{
-    @apply text-secondary;
-  }
-  a:hover{
-    @apply text-highlight;
+  } 
+  @css{
+    a {
+      @apply text-secondary hover:text-highlight;
+    }    
   }
   li{
     @apply list-inside list-disc;
@@ -24,7 +23,9 @@
 }
 @tailwind components;
 @tailwind utilities;
-
+#app {
+	@apply bg-gray-50 ;
+}
 .theme-container{
   .navbar {
     @apply bg-gray-300 bg-opacity-70 ;

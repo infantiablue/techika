@@ -7,13 +7,13 @@
 						<h2 class="text-3xl font-sans">
 							<router-link :to="page.path">{{ page.title }}</router-link>
 						</h2>
-						<div class="flex flex-row py-1">
+						<div class="flex flex-row py-1 dark:text-green-400">
 							<div class="text-sm mr-2" v-if="page.frontmatter.date">📅 {{ new Date(Date.parse(page.frontmatter.date)).toDateString() }}</div>
 							<div class="text-sm mr-2" v-if="page.frontmatter.author">✍️ {{ page.frontmatter.author }}</div>
 						</div>
 						<router-link :to="page.path" v-if="page.frontmatter.image"><img class="w-auto px-0 py-0" :src="page.frontmatter.image" alt=""/></router-link>
 					</div>
-					<div class="page-description text-gray-600">{{ page.frontmatter.description }}</div>
+					<div class="page-description text-gray-600 dark:text-white">{{ page.frontmatter.description }}</div>
 				</div>
 			</div>
 		</div>
@@ -29,8 +29,14 @@ export default {
 	mounted() {
 		this.$site.pages.forEach((page) => {
 			if (page.frontmatter.type === "article") {
-				console.log(page);
 				this.pages.push(page);
+				this.pages.sort((a, b) => {
+					let aTime = new Date(a.frontmatter.date).getTime();
+					let bTime = new Date(b.frontmatter.date).getTime();
+					if (aTime > bTime) return -1;
+					if (aTime < bTime) return 1;
+					return 0;
+				});
 			}
 		});
 	},

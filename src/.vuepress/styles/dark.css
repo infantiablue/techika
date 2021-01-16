@@ -1,0 +1,40 @@
+html,
+body {
+	@apply dark:bg-gray-900 dark:text-white;
+}
+
+a {
+	@apply dark:text-pink-500 dark:hover:text-indigo-500;
+}
+
+#app {
+	@apply dark:bg-gray-900 dark:text-white;
+}
+
+.navbar {
+	@apply dark:bg-gray-400 bg-opacity-30 !important;
+}
+
+a.nav-link {
+	@apply dark:text-green-400 dark:hover:text-pink-400 !important;
+}
+
+.nav-links .router-link-active {
+	@apply dark:text-yellow-500 !important;
+}
+
+.feature h2 {
+	@apply dark:text-green-400 !important;
+}
+
+.feature p {
+	@apply dark:text-white !important;
+}
+
+.footer {
+	@apply dark:text-white !important;
+}
+
+.prefix {
+	@apply dark:text-indigo-400 !important;
+}

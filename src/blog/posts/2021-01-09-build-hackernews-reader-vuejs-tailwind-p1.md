@@ -1,6 +1,6 @@
 ---
 title: Build the HackerNews Reader with VueJS 3 — Part 1
-description: Step by step to build the HackerNews Reader using Vue 3, Vite 2, VueX 4 & Tailwind
+description: Step by step to build the HackerNews Reader using Vue 3, Vite 2, VueX 4 & Tailwind CSS framework.
 author: Truong Phan
 type: article
 image: /media/vhnews-tutorials/banner.jpg
@@ -14,7 +14,7 @@ tags:
   - api
 ---
 
-VueJS is raising as one of the most popular front end framework, compared with React (supported by Facebook) and Angular (from Google). Recently, it has been updated to version 3 with many new exciting features. In this post, we will explore the combination with VueX (state management) to handle 3rd party API. To make it simple for the learning purpose, our goal is just to receive the top articles from Hacker News and load it from the client side.
+VueJS is rising as one of the most popular front end framework, compared with React (supported by Facebook) and Angular (from Google). Recently, it has been updated to version 3 with many new exciting features. In this post, we will explore the combination with VueX (state management) to handle 3rd party API. To make it simple for the learning purpose, our goal is just to receive the top articles from Hacker News and load it from the client side.
 
 > You can try the online [demo](https://vhnews.netlify.app/)
 
