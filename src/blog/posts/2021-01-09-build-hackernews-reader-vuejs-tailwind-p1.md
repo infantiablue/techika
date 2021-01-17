@@ -17,7 +17,7 @@ tags:
 
 VueJS is rising as one of the most popular front end framework, compared with React (supported by Facebook) and Angular (from Google). Recently, it has been updated to version 3 with many new exciting features. In this post, we will explore the combination with VueX (state management) to handle 3rd party API. To make it simple for the learning purpose, our goal is just to receive the top articles from Hacker News and load it from the client side.
 
-> You can try the online [demo](https://vhnews.netlify.app/)
+> You can try the online [demo](https://hnews.techika.com/)
 
 First of all we use Vite to scaffold the project. You may wonder why I don’t use the official Vue CLI tool. The reason is Vite is really fast, and in this case I just want to make a quick demonstration. Vue CLI, in other hand, is built on top of the powerful and popular Webpack , will bring you an amazing plugin ecosystem (and it’s compatible with Vue 2). So, now we use yarn (you can use npm instead, just a personal favor, although I prefer the speed of yarn) to create our new web app (requires Node.js version >=12.0.0.)
 

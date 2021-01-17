@@ -22,7 +22,7 @@ Here are some tech tools have been used:
 
 ---
 
-# [HackerNews Reader](http://vhnews.netlify.app/) <Badge text="Open Source" vertical="middle"/> <Badge text="WIP" type="warning" vertical="middle"/>
+# [HackerNews Reader](https://hnews.techika.com/) <Badge text="Open Source" vertical="middle"/> <Badge text="WIP" type="warning" vertical="middle"/>
 
 The project has been developed to experiment with Vue 3 and Vite. To make it simple for the learning purpose, the goal is just to receive the top articles from Hacker News and load it from the client side. It has been published on [Medium](https://infantiablue.medium.com/hackernews-reader-with-vue-3-vite-2-and-vuex-4-part-1-247315ceb06a) as tutorials.
 <br/><br/>
