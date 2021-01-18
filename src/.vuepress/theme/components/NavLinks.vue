@@ -1,12 +1,11 @@
 <template>
 	<nav v-if="userLinks.length || repoLink" class="nav-links">
 		<!-- user links -->
-		<span ref="toggleDark" class="darkmode h-6 w-6 pb-6 pl-1 flex items-center justify-center cursor-pointer bg-gray-600 dark:bg-blue-600 rounded-full" @click="toggleDarkMode">🌙</span>
 		<div v-for="item in userLinks" :key="item.link" class="nav-item">
 			<DropdownLink v-if="item.type === 'links'" :item="item" />
 			<NavLink v-else :item="item" />
 		</div>
-
+		<span ref="toggleDark" class="darkmode ml-2 h-6 w-6 pb-6 pl-1 flex items-center justify-center cursor-pointer bg-gray-600 dark:bg-blue-600 rounded-full" @click="toggleDarkMode">🌙</span>
 		<!-- repo link -->
 		<a v-if="repoLink" :href="repoLink" class="repo-link" target="_blank" rel="noopener noreferrer">
 			{{ repoLabel }}

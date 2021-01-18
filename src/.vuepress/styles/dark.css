@@ -38,7 +38,7 @@ a.nav-link {
 }
 
 .feature p {
-	@apply dark:text-white !important;
+	@apply dark:text-gray-50 !important;
 }
 
 .footer {
