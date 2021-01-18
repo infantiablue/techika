@@ -26,8 +26,10 @@ export default {
 		NavLink,
 		DropdownLink,
 	},
-	mounted() {
+	created() {
 		if (!("theme" in localStorage)) localStorage.theme = "dark";
+	},
+	mounted() {
 		this.toggleDarkMode(localStorage.theme);
 	},
 
