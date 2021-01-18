@@ -27,7 +27,7 @@ export default {
 		DropdownLink,
 	},
 	beforeMount() {
-		if (!("theme" in localStorage)) localStorage.theme = "dark";
+		if (!("theme" in localStorage)) localStorage.theme = "light";
 	},
 	mounted() {
 		this.toggleDarkMode(localStorage.theme);
