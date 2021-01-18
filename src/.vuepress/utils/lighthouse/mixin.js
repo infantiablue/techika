@@ -1,5 +1,4 @@
 export default {
-	mounted() {},
 	updated() {
 		let hero = document.querySelector(".hero > img");
 		if (hero) {
