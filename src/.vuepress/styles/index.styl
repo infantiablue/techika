@@ -32,8 +32,11 @@
 
 .theme-container{
   .navbar {
-    @apply bg-gray-300;
+    @apply bg-gray-300 bg-opacity-0;
     border: none;
+  }
+  .sidebar-button{
+    @apply bg-gray-200 pr-7 pb-7 rounded-md;
   }
   .navbar .links{
     @apply bg-gray-300 bg-opacity-0 pr-12;
@@ -52,9 +55,15 @@
   }
 }
 
+.sidebar-open{
+  .darkmode{
+  @apply bg-transparent;  
+  }
+}
+
 .theme-container.homepage {
   #main-title {
-    @apply leading-tight pt-10 pb-0 my-0 border-0;
+    @apply leading-tight pt-10 pb-0 my-0 border-0 text-4xl font-serif;
   }
   .hero {
     @apply pt-14;

@@ -196,8 +196,8 @@ mounted() {
 },
 ```
 
-The the application will loaded the last topic, browsed by user or the selected theme for the next session. The completed working code is pushed on the [Github repo](https://github.com/infantiablue/vhnews) and the live demo of [the HackerNews reader with Dark mode enabled](https://hnews.techika.com/) is still updated to the latest version.
+The application will load the last topic, browsed by the user or the selected theme for the next session. The completed working code is pushed on the [Github repo](https://github.com/infantiablue/vhnews) and the live demo of [the HackerNews reader with Dark mode enabled](https://hnews.techika.com/) is still updated to the latest version.
 
 ## Conclusion
 
-In summary, in this tutorial, we've learnt more basic implementations from Vue 3 framework, dark mode support from Tailwind CSS and usage of `localStorage` from Javascript. In the upcoming tutorials, we will go through more advanced concepts of Vue 3 such as plugins, mixin  & composition API ... Any feedback would be much appreciated. 
+In summary, we've learned more basic implementations from the Vue 3 framework, dark mode support from Tailwind CSS, and usage of `localStorage` from Javascript. In the upcoming tutorials, we will go through more advanced concepts of Vue 3 such as plugins, mixin & composition API … Any feedback would be much appreciated.
