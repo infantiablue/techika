@@ -4,5 +4,7 @@ export default ({
 	router, // the router instance for the app
 	siteData, // site metadata
 }) => {
+	//set up dark theme
 	require("./styles/dark.css");
+	if (!("theme" in localStorage)) localStorage.theme = "dark";
 };

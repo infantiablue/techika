@@ -26,13 +26,9 @@ export default {
 		NavLink,
 		DropdownLink,
 	},
-	beforeMount() {
-		if (!("theme" in localStorage)) localStorage.theme = "light";
-	},
 	mounted() {
 		this.toggleDarkMode(localStorage.theme);
 	},
-
 	computed: {
 		userNav() {
 			return this.$themeLocaleConfig.nav || this.$site.themeConfig.nav || [];
