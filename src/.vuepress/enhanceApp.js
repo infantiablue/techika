@@ -6,9 +6,9 @@ export default ({
 }) => {
 	//set up dark theme
 	require("./styles/dark.css");
-	if (!("theme" in localStorage)) localStorage.theme = "dark";
-	options.created = function() {
-		let htmlElm = document.querySelector("html");
-		localStorage.theme === "light" ? htmlElm.classList.remove("dark") : htmlElm.classList.add("dark");
-	};
+	// if (!("theme" in localStorage)) localStorage.theme = "light";
+	// options.created = function() {
+	// 	let htmlElm = document.querySelector("html");
+	// 	localStorage.theme === "dark" ? htmlElm.classList.add("dark") : htmlElm.classList.remove("dark");
+	// };
 };

@@ -1,6 +1,6 @@
 html,
 body {
-	@apply bg-gray-50 h-full max-h-full antialiased dark:bg-gray-900 dark:text-white !important;
+	@apply bg-gray-50 dark:bg-gray-900 dark:text-white !important;
 }
 
 a {
