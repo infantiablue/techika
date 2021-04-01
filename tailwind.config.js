@@ -17,6 +17,7 @@ module.exports = {
 				highlight: "#f4a261",
 				gray: colors.coolGray,
 				blue: colors.lightBlue,
+				green: colors.emerald,
 				red: colors.rose,
 				pink: colors.fuchsia,
 			},
