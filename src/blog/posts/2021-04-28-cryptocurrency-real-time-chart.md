@@ -11,10 +11,10 @@ tags:
   - useeffect
   - plotly
 ---
-Recently, I've made a small investment in ETH cryptocurrency via a local exchange market. I would like to check my investment in my spare time and make a call to buy more or sell. Unfortunately, the exchange market doesn't provide me a chart, but they just have simple APIs to keep tracking of the portfolio balance, and currently ask and bid price by local currency. As the result, it is quite annoyed to keep tracking the trend. So I decided to write a simple price chart for my personal use (I've combined some APIs from the local exchange to included more statistics for my private application). Turns out, making this chart project is more interesting than I expected, and I totally got satisfied when see it's running in real-time.
-To begin, I've done some researches to find a solution to provide data for this mini-project. There are some outstanding packages, such as [yfinance](https://github.com/ranaroussi/yfinance) by Ran Aroussi. I've made some prototypes but, this solution needs a back-end server running and I really don't want to maintain one more server for such a tiny application like this. Fortunately, [CoinGecko has provided a wonderful set of APIs for free](https://www.coingecko.com/en/api)
+Recently, I've made a small investment in ETH cryptocurrency via a local exchange market. I would like to check my investment in my spare time and make a call to buy more or sell. Unfortunately, the exchange market doesn't provide me a chart, but they just have simple APIs to keep tracking of the portfolio balance, and currently ask and bid price by local currency. As the result, it is quite annoyed to keep tracking the trend. Finally, I decided to write a basic price chart for my personal use (I've combined some APIs from the local exchange to included more statistics for my private application). Turns out, making this chart project is more interesting than I expected, and I totally got satisfied when see it's running in real-time.
+To begin, I've done some researches to find a solution to provide data for this mini-project. There are some outstanding packages, such as yfinance by Ran Aroussi. I've made some prototypes but, this solution needs a back-end server running and I really don't want to maintain one more server for such a tiny application like this. Fortunately, CoinGecko has provided a wonderful set of APIs for free.
 
-Let start.
+Let start or you can take a look at the [live demo](https://techika-cryptocurrency-chart.netlify.app/) here.
 
 Firstly, I used my favorite bundle tooling Vite to scaffold the project, with react template. You may use create-react-app for your own taste.
 
