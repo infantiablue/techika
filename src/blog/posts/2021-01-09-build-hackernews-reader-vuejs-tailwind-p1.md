@@ -195,7 +195,7 @@ export default {
 
 Open the `http://localhost:3000` and voilà.
 
-![Top stories from Hacker News(https://dev-to-uploads.s3.amazonaws.com/i/hvhu4g5gnpfii0os2xwk.png)
+![Top stories from Hacker News](https://dev-to-uploads.s3.amazonaws.com/i/hvhu4g5gnpfii0os2xwk.png)
 
 Hmm, I forgot the time, we need to make it more readable, instead of a string of numbers. I gonna use the `timeago.jspackage` to manipulate.
 
