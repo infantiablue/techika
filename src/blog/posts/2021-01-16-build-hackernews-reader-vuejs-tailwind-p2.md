@@ -25,7 +25,7 @@ After building a very basic Single Page Application (SPA) from [the first tutori
 
 We use the current [release](https://github.com/infantiablue/vhnews/releases/tag/0.1) from Github to continue development. Look at the HackerNews homepage, we can see it has other topics such as *new, jobs , asks ...* and go through the [official API](https://github.com/HackerNews/API), all of them are supported through REST APIs. Here are screenshots from the official site & URL endpoints:
 
-![The official HackerNews screenshit](../../.vuepress/public/media/vhnews-tutorials-p2/hnews_screenshot.png)
+![The official HackerNews screenshot](../../.vuepress/public/media/vhnews-tutorials-p2/hnews_screenshot.png)
 
 ```html
 https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty
