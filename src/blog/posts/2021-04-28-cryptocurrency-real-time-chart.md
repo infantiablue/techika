@@ -37,6 +37,7 @@ Below is the current directory structure.
 Then, open the browser and enter `http://localhost:3000` and you will see the demo page from Vite. Now, we change the index.html file to included third-party libraries and Bootstrap CSS framework for UI.
 
 ```html
+
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -83,6 +84,7 @@ The response will supply us with prices, market capital, and total trading volum
 As the tiny scope of this project, I just gonna use Fetch API with a wrapper for handling errors I wrote for previous projects. I created a new file utils.js in the src folder.
 
 ```javascript
+
 const callAPI = async (url) => {
 	let response = await fetch(url, {
 		headers: {
@@ -103,6 +105,7 @@ export default callAPI;
 Then, I wrote a function in `App.jsx` that make a request to get data and processing into the data dictionary as below for upcoming steps:
 
 ```javascript
+
 const fetchData = async () => {
   let data = { index: [], price: [], volumes: [] };
   let result = await callAPI("https://api.coingecko.com/api/v3/coins/ethereum/market_chart?vs_currency=usd&days=1&interval=1m");
@@ -118,6 +121,7 @@ const fetchData = async () => {
 Another function to initialize the chart, using API from Plotly.js, and the above `data` as input. You may want to take a look at its [official document](https://plotly.com/javascript/) to explore more features. Basically, in the chunk of code below, I pass the data object to draw 2 line charts, one is for prices and one is for trading volumes with the x-axis is time series.
 
 ```javascript
+
 const initChart = (data) => {
 		let trace_price = {
 			name: "Price ($)",
@@ -178,6 +182,7 @@ const initChart = (data) => {
 Next, `useEffect` and `useState` gonna be used to set up the data and calculate the latest price of ETH.
 
 ```javascript
+
 const [latestPrice, setLatestPrice] = useState(0);
 
 useEffect(() => {
@@ -192,6 +197,7 @@ In fact, the empty array, which was passed to `useEffect` is not a good design p
 Now, assembly everything, we have a complete `App.jsx` file as beblow.
 
 ```javascript
+
 import React, { useState, useEffect } from "react";
 import callAPI from "./utils";
 
@@ -293,54 +299,56 @@ Okay, to be honest, it's not a kind of real-time emit as WebSocket or Server-Sen
 To implement this procedure, we need a custom function to update the chart from Plotly.js like this.
 
 ```javascript
-	const updateChart = (data) => {
-		let trace_price = {
-			x: [data.index.map((t) => new Date(t))],
-			y: [data.price],
-		};
-		let trace_volumes = {
-			x: [data.index.map((t) => new Date(t))],
-			y: [data.volumes],
-		};
 
-		Plotly.update("chart", trace_price, {}, 0);
-		Plotly.update("chart", trace_volumes, {}, 1);
+const updateChart = (data) => {
+	let trace_price = {
+		x: [data.index.map((t) => new Date(t))],
+		y: [data.price],
 	};
+	let trace_volumes = {
+		x: [data.index.map((t) => new Date(t))],
+		y: [data.volumes],
+	};
+
+	Plotly.update("chart", trace_price, {}, 0);
+	Plotly.update("chart", trace_volumes, {}, 1);
+};
 ```
 
 Then, we add interval time to `useEffect`
 
 ```javascript
+
+useEffect(() => {
+	fetchData().then((chartData) => {
+		initChart(chartData);
+		setLatestPrice(parseFloat(chartData.price[chartData.price.length - 1]).toFixed(2));
+	});
+	const timerID = setInterval(() => {
+		fetchData().then((chartData) => {
+			updateChart(chartData);
+			setLatestPrice(parseFloat(chartData.price[chartData.price.length - 1]).toFixed(2));
+		});
+	}, 1000 * 60);
+	return () => {
+		clearInterval(timerID);
+	};
+}, []);
 	useEffect(() => {
+	fetchData().then((chartData) => {
+		initChart(chartData);
+		setLatestPrice(parseFloat(chartData.price[chartData.price.length - 1]).toFixed(2));
+	});
+	const timerID = setInterval(() => {
 		fetchData().then((chartData) => {
-			initChart(chartData);
+			updateChart(chartData);
 			setLatestPrice(parseFloat(chartData.price[chartData.price.length - 1]).toFixed(2));
 		});
-		const timerID = setInterval(() => {
-			fetchData().then((chartData) => {
-				updateChart(chartData);
-				setLatestPrice(parseFloat(chartData.price[chartData.price.length - 1]).toFixed(2));
-			});
-		}, 1000 * 60);
-		return () => {
-			clearInterval(timerID);
-		};
-	}, []);
-  	useEffect(() => {
-		fetchData().then((chartData) => {
-			initChart(chartData);
-			setLatestPrice(parseFloat(chartData.price[chartData.price.length - 1]).toFixed(2));
-		});
-		const timerID = setInterval(() => {
-			fetchData().then((chartData) => {
-				updateChart(chartData);
-				setLatestPrice(parseFloat(chartData.price[chartData.price.length - 1]).toFixed(2));
-			});
-		}, 1000 * 60);
-		return () => {
-			clearInterval(timerID);
-		};
-	}, []);
+	}, 1000 * 60);
+	return () => {
+		clearInterval(timerID);
+	};
+}, []);
 
 ```
 

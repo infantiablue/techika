@@ -23,6 +23,7 @@ In 1997, JavaScript has been adopted rapidly, it’s obvious that the language w
 ECMA-262 had three revisions from 1997 to 1999, but nearly 10 years later, version 4 was abandoned due to disagreements on the direction of the language and features. Many of modern features, such as generators, iterators, and destructuring assignments, arrow function, classes ...  have been included in more recent ECMAScript specifications. The latest edition is 11th, officially known as ECMAScript 2020, was published in June 2020. One of the features of ECMAScript 2020 is the nullish coalescing operator, `??`, returns its right-hand side operand when its left-hand side is `null` or `undefined`. This contrasts with the `||` operator, which uses the right value if left-hand side is falsy
 
 ```javascript
+
 console.log(true  ?? "not defined") // true
 console.log(false ?? "not defined") // false
 console.log(undefined ?? "not defined") // "not defined"
@@ -30,8 +31,8 @@ console.log(null      ?? "not defined") // "not defined"
 ```
 
 ```javascript
-//Compared with the OR operator ||
 
+//Compared with the OR operator ||
 console.log(true  || "not defined") // true
 console.log(false || "not defined") // "not defined"
 
@@ -59,6 +60,7 @@ There are APIs in the browser or Node.js that have been used by almost any Javas
 Finally, you may hear about **event loop** *which is responsible for executing the code, collecting and processing events, and executing queued sub-tasks* and the **callback queue** which is responsible for sending functions to the track for processing in the event loop, it follows the queue data structure to maintain the correct sequence. Take a look at the example below to understand how callback works.
 
 ```javascript
+
 // Callback Function Example
 function greet(name, myFunction) {
   console.log("Hello World");

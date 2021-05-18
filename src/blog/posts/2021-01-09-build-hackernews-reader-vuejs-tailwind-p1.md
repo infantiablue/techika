@@ -54,6 +54,7 @@ npx tailwindcss init -p
 From the official guide: “In your tailwind.config.js file, configure the purge option with the paths to all of your pages and components so Tailwind can tree-shake unused styles in production builds.”
 
 ```javascript
+
 module.exports = {
     purge: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
     darkMode: false, // or 'media' or 'class'
@@ -70,6 +71,7 @@ module.exports = {
 Then create a new file `main.css` in `src/assets/css`:
 
 ```css
+
 /* ./src/assets/css/main.css */
 
 /*! @import */
@@ -81,6 +83,7 @@ Then create a new file `main.css` in `src/assets/css`:
 Then, we need to fetch the data from HackerNews to VueX store first. In the snippet below, I also set up the axios instance, so that we can re-use it later. The API from HackerNews to get top stories only return the IDs, so that we need to fetch each individual item after receiving the arrays.
 
 ```javascript
+
 import { createStore } from "vuex";
 import axios from "axios";
 
@@ -120,6 +123,7 @@ export default createStore({
 Next, we create a new component at `components/Stories.vue` as below:
 
 ```javascript
+
 <template>
   <div v-if="items.length">
     <div class="rounded-md bg-blue-50 px-3 py-1 my-1 h-auto" v-for="item in items" :key="item.id">
@@ -149,6 +153,7 @@ export default {
 Then add VueX to the main.js
 
 ```javascript
+
 import { createApp } from "vue";
 import App from "./App.vue";
 import store from "./store";
@@ -161,6 +166,7 @@ app.mount("#app");
 Finally, we edit `App.vue`
 
 ```javascript
+
 <template>
   <div class="container mx-auto px-4 text-left py-10">
     <div class="flex">
@@ -206,6 +212,7 @@ yarn add timeago.js
 Then, we add a new method in `components/Stories.vue`:
 
 ```javascript
+
 methods: {
   parseTime(t) {
     return timeago.format(t * 1000);

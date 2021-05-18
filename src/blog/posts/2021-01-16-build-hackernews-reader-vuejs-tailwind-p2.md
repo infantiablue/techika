@@ -28,6 +28,7 @@ We use the current [release](https://github.com/infantiablue/vhnews/releases/tag
 ![The official HackerNews screenshot](../../.vuepress/public/media/vhnews-tutorials-p2/hnews_screenshot.png)
 
 ```html
+
 https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty
 https://hacker-news.firebaseio.com/v0/beststories.json?print=pretty
 https://hacker-news.firebaseio.com/v0/newstories.json?print=pretty
@@ -39,6 +40,7 @@ https://hacker-news.firebaseio.com/v0/jobstories.json?print=pretty
 When examining the URL endpoints, there is a pattern, which we can make use for our app: `${topic}stories`. Let's implement in the user interface. Firstly, we add a property to Vue app in `App.vue` fille, an array with topics, and their titles:
 
 ```javascript
+
 data() {
   return {
     topics: [
@@ -56,6 +58,7 @@ data() {
 With this design of data structure, we can customize such as icons, color ... for the topic navigation with ease. Then, we generate the navigation bar by using `v-for`
 
 ```html
+
 <div class="flex items-baseline">
   <div class="flex text-blue-500 text-xl">
     <span class="tab mr-2 cursor-pointer font-serif" v-for="topic in topics" :key="topic.key" @click="loadStories(topic.key, $event)>{{ topic.title }}</span>
@@ -72,6 +75,7 @@ The `$event` param would be used to manipulate css class later. And, I must say,
 Nest step, we need functions to make the user interface works, we gonna implement a method to load each topic when user click on. It's just a simple function to `dispatch` the `fetchItems` action from Vuex store with a param (we will modify it later). Also, we need a mechanism to highlight the active topic, by adding & removing a text color class from tailwind.
 
 ```javascript
+
 methods: {
   loadStories(topic, evt) {
     this.$store.dispatch("fetchItems", topic);
@@ -87,6 +91,7 @@ methods: {
 Now, for the Vuex Store action, we will rename function `loadLatestTopItems` in `store/index.js` to `fetchItems` and modify it as below:
 
 ```javascript
+
 fetchItems(context, type = "top") {
   context.commit("clearItems");
   api
@@ -107,6 +112,7 @@ fetchItems(context, type = "top") {
 The new function take the type params (with default is `top`) and then pass directly to the API url endpoint by using the template literal feature of modern javascript. Now, run the command `yarn dev` and open `http://localhost:3000` to check if everything works. It should work properly, however the problem is when you load the page first time, the active topic is not highlight, we need a solution for this.
 
 ```javascript
+
 created() {
   this.loadStories("top");
 },
@@ -126,6 +132,7 @@ Okay, the interesting part, implement dark mode for our application. Fortunately
 Then, we are going to implement `dark` class to our applications. Firstly we make some fundamentals class in the `main.css` file in `src/assets/css`.
 
 ```css
+
 /*! @import */
 @tailwind base;
 @layer base {
@@ -147,6 +154,7 @@ Then, we are going to implement `dark` class to our applications. Firstly we mak
 In this step, the color is totally up to your taste, the full source code is available on Github for your references. In order to save users' preferences, `localStorage` is an reasonable choice for a SPA app like this. From MDN, *"The read-only localStorage property allows you to access a Storage object for the Document's origin; the stored data is saved across browser sessions. localStorage is similar to sessionStorage, except that while data stored in localStorage has no expiration time"* The function `toggleDarkMode` below is written base on it. The function will accept a parameter to set the intended theme (which we can use when initializing the application) or toggle it.
 
 ```javascript
+
 toggleDarkMode(theme, evt) {
   let htmlElm = document.querySelector("html");
   const setLight = () => {
@@ -173,6 +181,7 @@ toggleDarkMode(theme, evt) {
 We inject an icon (I just use of the emoji for the quick design) for user to switch theme in the `template` section of the file `App.vue`
 
 ```html
+
 <div class="theme-switch-wrapper">
   <span ref="toggleDark" class="h-6 w-6 flex items-center justify-center cursor-pointer bg-blue-500 dark:bg-green-500 rounded-full" @click="toggleDarkMode">☀️</span>
 </div>
@@ -185,6 +194,7 @@ And check it out.
 Finally, we set up init variables when initializing the application, to load users' preferences.
 
 ```javascript
+
 created() {
   if (!("topic" in localStorage)) localStorage.topic = "top";
   this.loadStories(localStorage.topic);
