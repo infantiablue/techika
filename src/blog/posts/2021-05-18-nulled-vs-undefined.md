@@ -1,6 +1,6 @@
 ---
-title: Pair of concepts may confuse you in Javascript: Number.isNaN() and isNaN()
-description: Expainations of concepts which are easy to be misunderstood in Javascriptm Number.isNan and is NaN functions
+title: Pair of concepts may confuse you in Javascript ":" Number.isNaN() and isNaN()
+description: Expainations of concepts which are easy to be misunderstood in Javascript, Number.isNan() and is NaN() functions
 author: Truong Phan
 type: article
 image: 
