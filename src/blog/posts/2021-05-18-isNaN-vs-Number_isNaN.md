@@ -8,15 +8,13 @@ date: 2021-05-19
 tags:
   - javascript
 ---
-With a long history of development (and chaos) JS has some messy legacy which can't be removed to keep the consitency but only improved by new features/functions. This leads to confusing for developers. This serie is written as notes for myself and others to comprehend these concepts and avoid bugs in development.
+With a long history of development (and chaos), JS has some messy legacy that can't be removed to keep the consistency but only improved by new features/functions. This leads to confusion for developers. This series is written as notes for myself and others to comprehend these concepts and avoid bugs in development.
 
-## `Number.isNaN()` and `isNaN()`
+## What is `NaN`?
 
-### What is `NaN`?
+`NaN` is shorthand for *Not A Number*, specified in The IEEE Standard for Floating-Point Arithmetic (IEEE 754-2008) for floating-point arithmetic established in 1985. In Javascript context, it is a "*property of the global object. In other words, it is a variable in global scope.*". It has below characteristics:
 
-`NaN` is shorthand for *Not A Number*, specified in The IEEE Standard for Floating-Point Arithmetic (IEEE 754-2008) for floating-point arithmetic established in 1985. In Javascript context, it is a "*property of the global object. In other words, it is a variable in global scope.*". It has below charactersitics:
-
-* It is considered a `Number` data type
+* It is considered a `Number` type
 * Equalivent to `Number.NaN`
 * `NaN` is the only value in JavaScript which is not equal to itself.
 * It's falsy
@@ -33,9 +31,9 @@ a = NaN;
 a ? true : false //false
 ```
 
-### `isNaN()`
+## `isNaN()`
 
-As you can see `NaN` even can not compared to itself, so how we can detect if an varaible is a `NaN`, before ES6 we can use function `isNaN()`, yet considered the following examples.
+As you can see `NaN` even can not be compared to itself, so how we can detect if a variable is a `NaN`, before ES6 we can use the function `isNaN()`, yet considered the following examples.
 
 ```javascript
 
@@ -49,11 +47,11 @@ isNaN('12abcd') // true
 ```
 
 To understand this behavior, we need to understand how it works properly.
-According from MDN: "*When the argument to the isNaN function is not of type Number, the value is first **coerced to a `Number`**. The resulting value is then tested to determine whether it is `NaN`*"
+According to [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/isNaN): "*When the argument to the isNaN function is not of type Number, the value is first **coerced to a `Number`**. The resulting value is then tested to determine whether it is `NaN`*"
 
-Then, many people agure that its behavior for non-numeric arguments has been confusing and may cause unexpected result. As the result, the new function was introduced in ECMAScript 2015 (ES6) to solve this problem.
+Then, many people argue that its behavior for non-numeric arguments has been confusing and may cause unexpected results. As the result, the new function was introduced in ECMAScript 2015 (ES6) to solve this problem.
 
-### `Number.isNaN()`
+## `Number.isNaN()`
 
 It is a static function from the primitive wrapper object - Number. The most important feature of the function is that it **doesn't force converting the argument to a number**. Because `NaN` is the only value in JavaScript that is not equal to itself, Number.isNaN() has been claimed it is necessary.
 
@@ -73,6 +71,6 @@ Number.isNaN('12abcd') // false
 
 ```
 
-### Conclusion
+## Conclusion
 
-In my oppinion, `isNaN()` may mot be bug as many people thought but it should be considered when you want to focus on the detection of value. The thing is that we need to comprehend its mechanism that it will try to convert arguments to `Number`. For reliability we should implement `Number.isNaN()` when we want to make sure its argument is `Number` for the comparision.
+From my personal point of view, `isNaN()` may not be a bug as many people thought but it could be considered when you want to focus on the detection of value. The thing is that we need to comprehend its mechanism that it will try to convert arguments to `Number`. For reliability, we should implement `Number.isNaN()` when we want to make sure its argument is `Number` for the comparison.
