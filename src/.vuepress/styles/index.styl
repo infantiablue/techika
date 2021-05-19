@@ -1,7 +1,7 @@
 @tailwind base;
 @layer base {
   html{
-    @apply  h-full max-h-full antialiased; 
+    @apply h-full max-h-full font-mono subpixel-antialiased;
   }
   h1{
     @apply text-3xl py-2 font-semibold;
@@ -52,6 +52,10 @@
     blockquote{
       @apply my-4 py-4 px-2 text-gray-800 font-serif text-xl text-center;
     }
+  }
+  .page{
+    line-height: 1.5;
+    letter-spacing: 0.01em;
   }
 }
 
