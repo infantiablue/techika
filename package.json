@@ -28,5 +28,7 @@
     "vuepress-plugin-seo": "^0.1.4",
     "webpack-bundle-analyzer": "^4.3.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@tailwindcss/forms": "^0.3.2"
+  }
 }

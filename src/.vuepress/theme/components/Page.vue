@@ -19,6 +19,27 @@
 		<PageEdit />
 		<PageNav v-bind="{ sidebarItems }" />
 		<slot name="bottom" />
+		<div id="revue-embed">
+			<form
+				action="https://www.getrevue.co/profile/techika/add_subscriber"
+				class="bg-highlight p-5 rounded-md my-5"
+				method="post"
+				id="revue-form"
+				name="revue-form"
+				target="_blank"
+			>
+				<h3 class="text-blue-900">Lastest article right to your inbox.Once per month.</h3>
+				<div class="flex gap-4">
+					<div class="revue-form-group">
+						<label for="member_email">Email</label>
+						<input class="revue-form-field" placeholder="Your email address..." type="email" name="member[email]" id="member_email" />
+					</div>
+					<div class="revue-form-actions">
+						<input type="submit" class="bg-green-600 text-white p-2 rounded-md" value="Subscribe" name="member[subscribe]" id="member_submit" />
+					</div>
+				</div>
+			</form>
+		</div>
 		<div class="text-center">© 2021 Made with 🧡</div>
 	</div>
 </template>

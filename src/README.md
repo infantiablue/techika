@@ -29,8 +29,8 @@ pageClass: homepage
   </div>
 </div>
 <div class="page mx-auto p-0">
-<div class="features">
-  <Headlines/>
+  <div class="features">
+    <Headlines/>
   </div>
 </div>
 <style scoped>
