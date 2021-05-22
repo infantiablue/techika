@@ -28,8 +28,10 @@ pageClass: homepage
     <p>When not coding, reading or writing, I usually run for short distance, my goal is to complete a full marathon race before 40. <a href="https://www.strava.com/athletes/20200906">Join me on Strava.</a></p>
   </div>
 </div>
-<div class="page container mx-auto p-0">
+<div class="page mx-auto p-0">
+<div class="features">
   <Headlines/>
+  </div>
 </div>
 <style scoped>
 .feature p{

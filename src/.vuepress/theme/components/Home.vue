@@ -85,7 +85,6 @@ export default {
       background-color $accentColor
       padding 0.8rem 1.6rem
       border-radius 4px
-      transition background-color .1s ease
       box-sizing border-box
       border-bottom 1px solid darken($accentColor, 10%)
       &:hover
@@ -111,6 +110,7 @@ export default {
       color lighten($textColor, 10%)
     p
       color lighten($textColor, 25%)
+      padding-right: 1rem
   .footer
     padding 2.5rem
     border-top 1px solid $borderColor
