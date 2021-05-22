@@ -4,7 +4,7 @@
 			<div class="w-auto p-0 mb-3">
 				<div class="page-detail px-2 py-2">
 					<div class="page-title">
-						<h2 class="text-3xl text-left">
+						<h2 class="text-2xl text-left font-bold">
 							<router-link :to="page.path">{{ page.title }}</router-link>
 						</h2>
 						<div class="flex flex-row py-2 dark:text-green-400">
