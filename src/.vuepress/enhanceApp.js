@@ -11,4 +11,8 @@ export default ({
 	// 	let htmlElm = document.querySelector("html");
 	// 	localStorage.theme === "dark" ? htmlElm.classList.add("dark") : htmlElm.classList.remove("dark");
 	// };
+	window.addEventListener("scroll", () => {
+		let header = document.querySelector("header");
+		window.scrollY > 60 ? (header.style.backgroundColor = "rgba(170, 170, 170, 0.8)") : (header.style.backgroundColor = "");
+	});
 };

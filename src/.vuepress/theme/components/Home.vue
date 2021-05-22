@@ -15,14 +15,12 @@
 				<NavLink class="action-button" :item="actionLink" />
 			</p>
 		</header>
-
 		<div v-if="data.features && data.features.length" class="features">
 			<div v-for="(feature, index) in data.features" :key="index" class="feature">
 				<h2>{{ feature.title }}</h2>
 				<p v-html="feature.details"></p>
 			</div>
 		</div>
-
 		<Content class="theme-default-content custom" />
 		<!-- <div class="page container mx-auto p-0 w-full">
 			<Content class="text-justify break-words text-lg font-normal dark:text-gray-50" />
@@ -105,7 +103,7 @@ export default {
     max-width 30%
     h2
       font-size 1.4rem
-      font-weight 500
+      font-weight 600
       border-bottom none
       padding-bottom 0
       color lighten($textColor, 10%)

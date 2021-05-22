@@ -1,19 +1,11 @@
 <template>
 	<div>
-		<h2>The Latest</h2>
+		<h3 class="text-2xl uppercase">The Latest</h3>
 		<div v-for="page in pages" :key="page.frontmatter.date">
-			<div class="w-auto p-0 mb-1">
-				<div class="page-detail py-1">
-					<div class="page-title">
-						<h4 class="text-left font-bold">
-							<router-link :to="page.path">{{ page.title }}</router-link>
-						</h4>
-						<div class="flex flex-row py-2 dark:text-green-400">
-							<div class="text-sm mr-2" v-if="page.frontmatter.date">📅 {{ new Date(Date.parse(page.frontmatter.date)).toDateString() }}</div>
-						</div>
-					</div>
-				</div>
-			</div>
+			<hr class="my-2" />
+			<h4 class="text-left font-bold text-lg">
+				<router-link :to="page.path">{{ page.title }}</router-link>
+			</h4>
 		</div>
 	</div>
 </template>

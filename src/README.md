@@ -5,11 +5,9 @@ heroText: Hi, I am Truong Phan. Welcome to my space.
 tagline: null
 actionText: null
 actionLink: null
-footer: © 2021 Made with 🧡
+footer: © 2021 Made with 🧡 by me.
 pageClass: homepage
 ---
-#
-
 <div class="features">
   <div class="feature">
     <h2>Developer 🧑‍💻</h2>
@@ -28,13 +26,17 @@ pageClass: homepage
     <p>When not coding, reading or writing, I usually run for short distance, my goal is to complete a full marathon race before 40. <a href="https://www.strava.com/athletes/20200906">Join me on Strava.</a></p>
   </div>
 </div>
-<div class="page mx-auto p-0">
+<div class="page mx-auto px-2">
   <div class="features">
     <Headlines/>
   </div>
 </div>
 <style scoped>
 .feature p{
-  padding-right: 0.8rem !important
+  padding-right: 0.8rem !important;
+}
+.feature h2{
+  text-transform: uppercase;
+  font-size: 1.4rem !important;
 }
 </style>

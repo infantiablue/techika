@@ -19,7 +19,7 @@
 		<PageEdit />
 		<PageNav v-bind="{ sidebarItems }" />
 		<slot name="bottom" />
-		<div id="revue-embed">
+		<div id="revue-embed" class="p-4">
 			<form
 				action="https://www.getrevue.co/profile/techika/add_subscriber"
 				class="bg-highlight p-5 rounded-md my-5"
@@ -28,10 +28,10 @@
 				name="revue-form"
 				target="_blank"
 			>
-				<h3 class="text-blue-900">Lastest article right to your inbox.Once per month.</h3>
-				<div class="flex gap-4">
+				<h3 class="text-blue-900">Latest articles right to your inbox. Once per month.</h3>
+				<div class="flex gap-4 items-end flex-wrap">
 					<div class="revue-form-group">
-						<label for="member_email">Email</label>
+						<!-- <label for="member_email">Email</label> -->
 						<input class="revue-form-field" placeholder="Your email address..." type="email" name="member[email]" id="member_email" />
 					</div>
 					<div class="revue-form-actions">
