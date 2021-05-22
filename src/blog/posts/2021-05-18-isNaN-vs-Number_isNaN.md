@@ -66,7 +66,7 @@ Number.isNaN('NaN');      // false
 Number.isNaN(undefined);  // false
 Number.isNaN({});         // false
 Number.isNaN('Techika.com');   // false
-Number.isNaN(''); // true
+Number.isNaN(''); // false
 Number.isNaN('12abcd') // false
 
 ```
@@ -74,3 +74,15 @@ Number.isNaN('12abcd') // false
 ## Conclusion
 
 From my personal point of view, `isNaN()` may not be a bug as many people thought but it could be considered when you want to focus on the detection of value. The thing is that we need to comprehend its mechanism that it will try to convert arguments to `Number`. For reliability, we should implement `Number.isNaN()` when we want to make sure its argument is `Number` for the comparison.
+
+## P/S
+
+As the article has been [discussed actively on Reddit](https://www.reddit.com/r/javascript/comments/nhgy7g/pair_of_concepts_may_confuse_you_in_javascript/), and there is a discussion about Polyfill, so here is a quick and short Polyfill for `Number.isNaN()` in case you want to support ES5 and previous versions.
+
+```javascript
+if (!Number.isNaN) {
+  Number.isNaN = function(n) {
+    return n !== n;
+  };
+}
+```
