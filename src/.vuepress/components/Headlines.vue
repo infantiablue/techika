@@ -1,7 +1,6 @@
 <template>
 	<div>
-		<h3 class="text-2xl uppercase">The Latest</h3>
-		<div v-for="page in pages" :key="page.frontmatter.date">
+		<div class="p-1 pl-2" v-for="page in pages" :key="page.frontmatter.date">
 			<hr class="my-2" />
 			<h4 class="text-left font-bold text-lg">
 				<router-link :to="page.path">{{ page.title }}</router-link>

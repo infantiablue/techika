@@ -8,7 +8,7 @@ module.exports = {
 			whitelistPatternsChildren: [/^language-/, /^token/, /^pre/, /^code/],
 		},
 	},
-	darkMode: "media", // or 'media' or 'class'
+	darkMode: "class", // or 'media' or 'class'
 	theme: {
 		extend: {
 			colors: {

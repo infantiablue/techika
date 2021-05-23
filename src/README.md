@@ -28,6 +28,9 @@ pageClass: homepage
 </div>
 <div class="page mx-auto px-2">
   <div class="features">
+  <div class="feature">
+    <h2 class="text-2xl uppercase">The Latest</h2>
+  </div>
     <Headlines/>
   </div>
 </div>
