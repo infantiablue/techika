@@ -2,9 +2,9 @@
 	<div>
 		<div class="p-1 pl-2" v-for="page in pages" :key="page.frontmatter.date">
 			<hr class="my-2" />
-			<h4 class="text-left font-bold text-lg">
+			<h3 class="text-left font-bold text-lg">
 				<router-link :to="page.path">{{ page.title }}</router-link>
-			</h4>
+			</h3>
 		</div>
 	</div>
 </template>
