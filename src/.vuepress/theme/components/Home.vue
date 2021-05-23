@@ -37,6 +37,7 @@ import NavLink from "@parent-theme/components/NavLink.vue";
 export default {
 	name: "Home",
 	components: { NavLink },
+
 	computed: {
 		data() {
 			return this.$page.frontmatter;
