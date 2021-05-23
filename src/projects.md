@@ -19,7 +19,7 @@ The main idea of the project is to build a personal expense/income tracker. It's
 
 Built on Django, and [Vanilla Javascript Framework](http://vanilla-js.com/)
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/m-gytkEDR8g" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="100%" height="315" src="https://www.youtube.com/embed/m-gytkEDR8g" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <br/><br/>
 
 ---
