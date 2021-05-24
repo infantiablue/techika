@@ -8,6 +8,8 @@ actionLink: null
 footer: © 2021 Made with 🧡 by me.
 pageClass: homepage
 ---
+#
+
 <div class="features">
   <div class="feature">
     <h2>Developer 🧑‍💻</h2>
@@ -26,18 +28,20 @@ pageClass: homepage
     <p>When not coding, reading or writing, I usually run for short distance, my goal is to complete a full marathon race before 40. <a href="https://www.strava.com/athletes/20200906">Join me on Strava.</a></p>
   </div>
 </div>
-<div class="page mx-auto px-2">
-  <div class="features">
-  <div class="feature">
-    <h2 class="text-2xl uppercase">The Latest</h2>
-  </div>
-    <Headlines/>
+<div class="features">
+  <div>
+      <div class="feature">
+        <h2 class="text-2xl uppercase">The Latest</h2>
+      </div>
+      <Headlines/>
   </div>
 </div>
 <style scoped>
+
 .feature p{
   padding-right: 0.8rem !important;
 }
+
 .feature h2{
   text-transform: uppercase;
   font-size: 1.4rem !important;
