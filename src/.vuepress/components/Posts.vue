@@ -61,8 +61,8 @@ export default {
 	height 100%
 	padding-right 15px
 
-.description
-	width 100%
-	color dimgrey
-	justify-content center
+// .description
+// 	width 100%
+// 	color dimgrey
+// 	justify-content center
 </style>
