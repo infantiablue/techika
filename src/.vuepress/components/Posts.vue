@@ -19,7 +19,7 @@
 						</div>
 						<router-link :to="page.path" v-if="page.frontmatter.image"><img class="w-auto px-0 py-0" :src="page.frontmatter.image" alt=""/></router-link>
 					</div>
-					<div class="page-description text-gray-600 dark:text-white mt-2">{{ page.frontmatter.description }}</div>
+					<div class="page-description text-gray-600 dark:text-gray-50 mt-2">{{ page.frontmatter.description }}</div>
 				</div>
 			</div>
 		</div>
