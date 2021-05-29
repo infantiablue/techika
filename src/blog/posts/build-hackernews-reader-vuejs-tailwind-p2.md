@@ -7,7 +7,6 @@ image: /media/vhnews-tutorials-p2/banner.jpg
 date: 2021-01-16
 tags:
   - tutorial
-  - vuepress
   - vuejs
   - taildwind
   - vite
