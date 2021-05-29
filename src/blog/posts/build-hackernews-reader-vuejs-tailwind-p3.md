@@ -1,5 +1,5 @@
 ---
-title: Build the HackerNews Reader with VueJS 3 — Part 3, inifite loading with ES2018 syntax
+title: Build the HackerNews Reader with VueJS 3 — Part 3, infinite loading with ES2018 syntax
 description: Step by step, with detailed explanations, to build the HackerNews Reader using Vue 3, Vite 2, VueX 4 & Tailwind, with the implementation of infinite loading by using ES2018 syntax
 author: Truong Phan
 type: article
