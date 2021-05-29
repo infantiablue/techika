@@ -15,13 +15,13 @@ tags:
 ---
 ## Objectives
 
-Continue from previous parts [[1](https://techika.com/2021/01/09/build-hackernews-reader-vuejs-tailwind-p1/)][[2](https://techika.com/2021/01/16/build-hackernews-reader-vuejs-tailwind-p2/)] in this part, we will go through a few advanced techiques to implement inifinite loading feature to get more posts from HackerNews and skeleton gradient animation to deliver the best user experiennces. Although, there are Vue Plugins to support inifinite loading, in this tutorial, we will build from scratch so that we could learn deeply from through the progress. Finally, due to the limitation of HackerNews API, we have a chance to use the new feature of ES2018 `await for of`
+Continue from previous parts [[1](https://techika.com/2021/01/09/build-hackernews-reader-vuejs-tailwind-p1/)][[2](https://techika.com/2021/01/16/build-hackernews-reader-vuejs-tailwind-p2/)] in this part, we will go through a few advanced techniques to implement infinite loading feature to get more posts from HackerNews and skeleton gradient animation to deliver the best user experience. Although there are Vue Plugins to support infinite loading, in this tutorial, we will build from scratch so that we could learn deeply through the progress. Finally, due to the limitation of HackerNews API, we have a chance to use the new feature of ES2018 `await for of`
 
 ![https://storage.googleapis.com/techika-media/images/hnews-part3/screencast.gif](https://storage.googleapis.com/techika-media/images/hnews-part3/screencast.gif)
 
 ## API Analysis
 
-Firstly, we need to analysis the API from HackerNews to draft a basic design to implement infinite loading. From the official document, HackerNews API is built on top of Firebase, and we can only up to 500 recent items, and the result is a list of IDs below.
+Firstly, we need to analyze the API from HackerNews to draft a basic design to implement infinite loading. From the official document, HackerNews API is built on top of Firebase, and we can only up to 500 recent items, and the result is a list of IDs below.
 
 ```jsx
 // 20210529073748
@@ -51,7 +51,7 @@ let result = resp.data.slice(10, 20);
 
 ## Design
 
-Next step, we design the functions to handle data from API and then render it when user scorll to load. From the previous tutorials, we just load all of them at once, so this isn't gonna be a problem. However, when we gonna implement the infinite loading feature, this could cause an issue.
+Next step, we design the functions to handle data from API and then render it when the user scrolls to load. From the previous tutorials, we just load all of them at once, so this isn't gonna be a problem. However, when we gonna implement the infinite loading feature, this could cause an issue.
 Let's examine, firstly, how to load items infinitely. We will use the event `scroll` like this:
 
 ```javascript
@@ -60,7 +60,7 @@ window.onscroll = () => {
 };
 ```
 
-Basically, the chuk of code above will listen on the event `scroll` and whenever the user reach to the bottom of the page, the function `handleScroll` would be invoked to render new items. However, in production, we need to make a lot of queries due to the limitation of 3rd party API.
+Basically, the chuk of code above will listen on the event `scroll` and whenever the user reaches the bottom of the page, the function `handleScroll` would be invoked to render new items. However, in production, we need to make a lot of queries due to the limitation of 3rd party API.
 
 ```javascript
 [
@@ -77,18 +77,18 @@ Basically, the chuk of code above will listen on the event `scroll` and whenever
 ]
 ```
 
-All of these activities are asynchronous, handling by mechanism from `Promise` object. So, even all of these item are not resolved, the event `scroll` still being listened and keep invoking `handleScroll` function.
+All of these activities are asynchronous, handling by mechanism from `Promise` object. So, even all of these items are not resolved, the event `scroll` still being listened and keep invoking `handleScroll` function.
 
 To sum up, there are technical requirements to implement:  
 
 1. A flag to prevent `handleScroll` to be invoked when API result still not be resolved yet
-2. A flag to stop `scroll` event o be listened, when no more items to load from API
+2. A flag to stop `scroll` event to be listened,  when no more items loaded from API
 3. Handling pagination across topics
-4. A mechanisim to handle all mutiple asynchronous requests at once.
+4. A mechanism to handle all multiple asynchronous requests at once.
 
 ## Implementation
 
-To deal with the first task, a `boolean` variable `loading` would be created in global state, so that we could tracking when the request is initiazlied to turn it on and set it off when all data is settled. We also create another `boolean` variable `endPagination` to track if there is no more items to load for a particular topic. Finally, an `int` variable `page` to manipulate pagination. Then our globla state configuration would be like this.
+To deal with the first task, a `boolean` variable `loading` would be created in a global state, so that we could tracking when the request is initialized to turn it on and set it off when all data is settled. We also create another `boolean` variable `endPagination` to track if there are no more items to load for a particular topic. Finally, an `int` variable `page` to manipulate pagination. Then our global state configuration would be like this.
 
 ```jsx
 state: {
