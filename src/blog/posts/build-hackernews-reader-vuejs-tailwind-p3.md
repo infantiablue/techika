@@ -3,7 +3,7 @@ title: Build the HackerNews Reader with VueJS 3 — Part 3, infinite loading wit
 description: Step by step, with detailed explanations, to build the HackerNews Reader using Vue 3, Vite 2, VueX 4 & Tailwind, with the implementation of infinite loading by using ES2018 syntax
 author: Truong Phan
 type: article
-image: https://storage.googleapis.com/techika-media/images/hnews-part3/banner.jpg
+image: /media/vhnews-tutorials-p3/banner.jpg
 date: 2021-05-29
 tags:
   - tutorial
@@ -15,15 +15,15 @@ tags:
 ---
 ## Objectives
 
-Continue from previous parts [[1](https://techika.com/2021/01/09/build-hackernews-reader-vuejs-tailwind-p1/)][[2](https://techika.com/2021/01/16/build-hackernews-reader-vuejs-tailwind-p2/)] in this part, we will go through a few advanced techniques to implement infinite loading feature to get more posts from HackerNews and skeleton gradient animation to deliver the best user experience. Although there are Vue Plugins to support infinite loading, in this tutorial, we will build from scratch so that we could learn deeply through the progress. Finally, due to the limitation of HackerNews API, we have a chance to use the new feature of ES2018 `await for of`
+Continue from previous parts [[1](https://techika.com/2021/01/09/build-hackernews-reader-vuejs-tailwind-p1/)][[2](https://techika.com/2021/01/16/build-hackernews-reader-vuejs-tailwind-p2/)] in this part, we will go through a few advanced techniques to implement the infinite loading feature to get more posts from HackerNews and skeleton gradient animation to deliver the best user experience. Although there are Vue Plugins to support infinite loading, in this tutorial, we will build from scratch so that we could learn deeply through the progress. Finally, due to the limitation of HackerNews API, we have a chance to use the new feature of ES2018 `await for of` As usual, I will go through step by step with detailed explanations on why and how we code.
 
 ![https://storage.googleapis.com/techika-media/images/hnews-part3/screencast.gif](https://storage.googleapis.com/techika-media/images/hnews-part3/screencast.gif)
 
-## API Analysis
+## Analysis
 
 Firstly, we need to analyze the API from HackerNews to draft a basic design to implement infinite loading. From the official document, HackerNews API is built on top of Firebase, and we can only up to 500 recent items, and the result is a list of IDs below.
 
-```jsx
+```js
 // 20210529073748
 // https://hacker-news.firebaseio.com/v0/topstories.json?limitToFirst=10&orderBy=%22$key%22
 
@@ -43,7 +43,7 @@ Firstly, we need to analyze the API from HackerNews to draft a basic design to i
 
 Hence, in order to paginate items, we may `slice` as below:
 
-```jsx
+```js
 // Query next 10 items for page 2
 let resp = await api.get(`topstories.json?limitToFirst=20&orderBy="$key"`);
 let result = resp.data.slice(10, 20);
@@ -54,15 +54,15 @@ let result = resp.data.slice(10, 20);
 Next step, we design the functions to handle data from API and then render it when the user scrolls to load. From the previous tutorials, we just load all of them at once, so this isn't gonna be a problem. However, when we gonna implement the infinite loading feature, this could cause an issue.
 Let's examine, firstly, how to load items infinitely. We will use the event `scroll` like this:
 
-```javascript
+```js
 window.onscroll = () => {
  window.innerHeight + window.scrollY >= document.body.offsetHeight && this.handleScroll();
 };
 ```
 
-Basically, the chuk of code above will listen on the event `scroll` and whenever the user reaches the bottom of the page, the function `handleScroll` would be invoked to render new items. However, in production, we need to make a lot of queries due to the limitation of 3rd party API.
+Basically, the chunk of code above will listen on the event `scroll` and whenever the user reaches the bottom of the page, the function `handleScroll` would be invoked to render new items. However, in production, we need to make a lot of queries due to the limitation of 3rd party API.
 
-```javascript
+```js
 [
   27317655, // 1st request -> https://hacker-news.firebaseio.com/v0/item/27317655.json
   27321754, 
@@ -82,7 +82,7 @@ All of these activities are asynchronous, handling by mechanism from `Promise` o
 To sum up, there are technical requirements to implement:  
 
 1. A flag to prevent `handleScroll` to be invoked when API result still not be resolved yet
-2. A flag to stop `scroll` event to be listened,  when no more items loaded from API
+2. A flag to stop `scroll` event to listen, when no more items loaded from API
 3. Handling pagination across topics
 4. A mechanism to handle all multiple asynchronous requests at once.
 
@@ -90,7 +90,7 @@ To sum up, there are technical requirements to implement:
 
 To deal with the first task, a `boolean` variable `loading` would be created in a global state, so that we could tracking when the request is initialized to turn it on and set it off when all data is settled. We also create another `boolean` variable `endPagination` to track if there are no more items to load for a particular topic. Finally, an `int` variable `page` to manipulate pagination. Then our global state configuration would be like this.
 
-```jsx
+```js
 state: {
   topic: "top",
   loading: false,
@@ -144,7 +144,7 @@ Create new file `.babelrc`
 
 Then modify `vite.config.js`
 
-```jsx
+```js
 import vue from "@vitejs/plugin-vue";
 import { babel } from "@rollup/plugin-babel";
 /**
@@ -159,7 +159,7 @@ You can read more about the babel transform plugin [here](https://babeljs.io/doc
 
 In order to implement this feature, we gonna write an *async function generator.*
 
-```jsx
+```js
 async function* asyncGetter(data) {
  let i = 0;
  while (i < data.length) {
@@ -174,11 +174,11 @@ The above async function will generate values, which conform to the async iterab
 
 ## Skeleton Loading
 
-Skeleton loading is not new and is widely adopted, to enhance the user experience when loading more content. It's not difficult to apply it to our project. So that, I just briefly write up about how it works, the code is already in the Github repo.
+Skeleton loading pattern is not new and is widely adopted, to enhance the user experience when loading more content. It's not difficult to apply it to our project. So that, I just briefly write up about how it works, the code is already in the Github repo.
 
-All we need to do is to create another Vue Component with the required CSS to style and animate the background. The trick is we need to set how the number of skeleton posts, conformed with the pagination system. To achieve that goal, we write a concise functio to generate a list of number to be used with `v-for`
+All we need to do is to create another Vue Component with the required CSS to style and animate the background. The trick is we need to set how the number of skeleton posts, conformed with the pagination system. To achieve that goal, we write a concise function to generate a list of number to be used with `v-for`
 
-```jsx
+```js
 range(start, end) {
   return Array.apply(0, Array(end - 1)).map((element, index) => index + start);
 },
@@ -192,7 +192,7 @@ There is another new component `components\Modal.vue` to create modal effect for
 
 ## Conclusion
 
-In this part, I think the most important lesson is how we analysis, plan and implement desired features. By planning ahead, we gonna avoid many bugs and save a lot of time in implementation stage. More than that, we also have a chance to get familiar with ES2018 syntax `for await ... of` in a practical project.
+In this part, I think the most important lesson is how we analyze, plan and implement desired features. By planning ahead, we gonna avoid many bugs and save a lot of time in the coding implementation. More than that, we also have a chance to get familiar with ES2018 syntax `for await ... of` in a practical project.
 
 <sub>Photo by <a href="https://unsplash.com/@angelyviviana55?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Angely Acevedo</a> on <a href="https://unsplash.com/s/photos/infinite?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a></sub>
   

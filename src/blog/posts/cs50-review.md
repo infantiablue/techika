@@ -3,7 +3,7 @@ title: CS50 Course from Harvard review
 description: My personal review about the course CS50x - Introduction to Computer Science from Harvard
 author: Truong Phan
 type: article
-image: https://storage.googleapis.com/techika-media/images/CS50/CS50x_tn.jpg
+image: /media/cs50/banner.jpg
 date: 2021-05-24
 tags:
   - education
