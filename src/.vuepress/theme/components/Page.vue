@@ -18,7 +18,7 @@
 				></a>
 			</div>
 			<div class="my-2" v-if="$page.frontmatter.image"><img :src="$page.frontmatter.image" :alt="$page.title" width="100%" /></div>
-			<div class="my-4 p-6 bg-green-600 dark:bg-purple-600 flex justify-center rounded-md" v-if="$page.frontmatter.author">
+			<div class="my-4 p-6 bg-green-600 dark:bg-purple-600 flex justify-center border-l-8 border-fuchsia-600" v-if="$page.frontmatter.author">
 				<div>
 					<a class="twitter-follow-button" href="https://twitter.com/infantiablue" data-size="large" data-show-count="true">Follow Me</a>
 				</div>

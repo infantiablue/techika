@@ -7,6 +7,7 @@ module.exports = {
 	head: [
 		["meta", { name: "viewport", content: "width=device-width, maximum-scale=5" }],
 		["link", { rel: "icon", type: "image/png", sizes: "32x32", href: "/favicon.png" }],
+		["script", { src: "https://platform.twitter.com/widgets.js" }],
 	],
 	alias: {
 		styles: path.resolve(__dirname, "./styles"),
@@ -66,7 +67,8 @@ module.exports = {
 				twitterCard: (_) => "summary_large_image",
 				type: ($page) => (["articles", "posts", "blog"].some((folder) => $page.regularPath.startsWith("/" + folder)) ? "article" : "website"),
 				url: (_, $site, path) => ($site.themeConfig.domain || "") + path,
-				image: ($page, $site) => $site.themeConfig.domain + $page.frontmatter.image,
+				image: ($page, $site) =>
+					$page.frontmatter.image && $page.frontmatter.image.startsWith("http") ? $page.frontmatter.image : $site.themeConfig.domain + $page.frontmatter.image,
 				publishedAt: ($page) => $page.frontmatter.date && new Date($page.frontmatter.date),
 				modifiedAt: ($page) => $page.lastUpdated && new Date($page.lastUpdated),
 			},
