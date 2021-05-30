@@ -194,5 +194,8 @@ There is another new component `components\Modal.vue` to create modal effect for
 
 In this part, I think the most important lesson is how we analyze, plan and implement desired features. By planning ahead, we gonna avoid many bugs and save a lot of time in the coding implementation. More than that, we also have a chance to get familiar with ES2018 syntax `for await ... of` in a practical project.
 
+The final source code is on [Github repo](https://github.com/infantiablue/vhnews).
+[Live Demo](https://hnews.techika.com)
+
 <sub>Photo by <a href="https://unsplash.com/@angelyviviana55?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Angely Acevedo</a> on <a href="https://unsplash.com/s/photos/infinite?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a></sub>
   
