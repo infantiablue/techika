@@ -1,7 +1,5 @@
 <template>
 	<div class="page container mx-auto pt-14 pb-8 w-full md:w-10/12 lg:w-8/12 xl:w-6/12">
-		<script type="text/javascript" async src="https://platform.twitter.com/widgets.js"></script>
-
 		<slot name="top" />
 		<div class="w-full px-6">
 			<h1 class="text-left pb-6 font-medium" v-if="$page.title">{{ $page.title }}</h1>
@@ -18,9 +16,16 @@
 				></a>
 			</div>
 			<div class="my-2" v-if="$page.frontmatter.image"><img :src="$page.frontmatter.image" :alt="$page.title" width="100%" /></div>
-			<div class="my-4 p-6 bg-green-600 dark:bg-purple-600 flex justify-center border-l-8 border-fuchsia-600" v-if="$page.frontmatter.author">
+			<div class="my-4 p-6 bg-green-600 dark:bg-purple-600 flex justify-center border-l-8 border-fuchsia-600 gap-6" v-if="$page.frontmatter.author">
 				<div>
-					<a class="twitter-follow-button" href="https://twitter.com/infantiablue" data-size="large" data-show-count="true">Follow Me</a>
+					<a class="twitter-follow-button" href="https://twitter.com/infantiablue" data-size="large" data-show-count="false">Follow Me</a>
+					<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+				</div>
+				<div>
+					<!-- Place this tag where you want the button to render. -->
+					<a class="github-button" href="https://github.com/infantiablue" data-size="large" aria-label="Follow @infantiablue on GitHub">Follow @infantiablue</a>
+					<!-- Place this tag in your head or just before your close body tag. -->
+					<script async defer src="https://buttons.github.io/buttons.js"></script>
 				</div>
 			</div>
 			<Content class="text-justify break-words text-lg font-normal dark:text-gray-50" />
