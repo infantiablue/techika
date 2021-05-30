@@ -27,9 +27,9 @@ export default {
 			}
 		});
 	},
-	beforeDestroy() {
-		ga("send", "event", { eventCategory: "newsletter", eventAction: "submit", eventLabel: "subscribe", eventValue: 1 });
-	},
+	// beforeDestroy() {
+	// 	ga("send", "event", { eventCategory: "newsletter", eventAction: "submit", eventLabel: "subscribe", eventValue: 1 });
+	// },
 };
 </script>
 <style lang="stylus" scoped>

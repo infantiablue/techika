@@ -1,11 +1,14 @@
 <template>
 	<div class="page container mx-auto pt-14 pb-8 w-full md:w-10/12 lg:w-8/12 xl:w-6/12">
+		<script type="text/javascript" async src="https://platform.twitter.com/widgets.js"></script>
+
 		<slot name="top" />
 		<div class="w-full px-6">
 			<h1 class="text-left pb-6 font-medium" v-if="$page.title">{{ $page.title }}</h1>
 			<div class="flex dark:text-green-400">
 				<div class="text-sm mr-2" v-if="$page.frontmatter.date">📅 {{ new Date(Date.parse($page.frontmatter.date)).toDateString() }}</div>
 				<div class="text-sm mr-2" v-if="$page.frontmatter.author">✍️ {{ $page.frontmatter.author }}</div>
+
 				<a v-if="$page.frontmatter.author" class="twitter-share-button" :href="`https://twitter.com/intent/tweet?text=${$page.title}&url=https://techika.com${$page.path}`">
 					<span
 						><svg class="fill-current text-gray-900 dark:text-blue-500" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24">
@@ -14,12 +17,18 @@
 							/></svg></span
 				></a>
 			</div>
-			<div class="my-2" v-if="$page.frontmatter.image"><img :src="$page.frontmatter.image" :alt="$page.title" width="1024" height="195" /></div>
+			<div class="my-2" v-if="$page.frontmatter.image"><img :src="$page.frontmatter.image" :alt="$page.title" width="100%" /></div>
+			<div class="my-4 p-6 bg-green-600 dark:bg-purple-600 flex justify-center rounded-md" v-if="$page.frontmatter.author">
+				<div>
+					<a class="twitter-follow-button" href="https://twitter.com/infantiablue" data-size="large" data-show-count="true">Follow Me</a>
+				</div>
+			</div>
 			<Content class="text-justify break-words text-lg font-normal dark:text-gray-50" />
 		</div>
 		<PageEdit />
 		<PageNav v-bind="{ sidebarItems }" />
 		<slot name="bottom" />
+
 		<div id="revue-embed" class="p-4">
 			<form
 				action="https://www.getrevue.co/profile/techika/add_subscriber"
