@@ -12,7 +12,7 @@
   "devDependencies": {
     "@tailwindcss/postcss7-compat": "^2.0.2",
     "@vuepress/plugin-blog": "^1.9.3",
-    "@vuepress/plugin-google-analytics": "^1.8.0",
+    "@vuepress/plugin-google-analytics": "^2.0.0-beta.46",
     "@vuepress/plugin-search": "^1.8.0",
     "autoprefixer": "^9",
     "eslint": "^7.17.0",

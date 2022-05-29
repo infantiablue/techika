@@ -1,5 +1,5 @@
 const path = require("path");
-
+const { googleAnalyticsPlugin } = require("@vuepress/plugin-google-analytics");
 module.exports = {
 	evergreen: true,
 	title: "Truong Phan's Personal Blog",
@@ -34,7 +34,8 @@ module.exports = {
 	plugins: [
 		[require("./utils/lighthouse/index.js")],
 		// ["@vuepress/search", { searchMaxSuggestions: 10 }],
-		["@vuepress/google-analytics", { ga: "UA-545029-29" }],
+		// ["@vuepress/google-analytics", { ga: "UA-545029-29" }],
+		[googleAnalyticsPlugin({ id: "G-N5GN92FFNF" })],
 		[
 			"@vuepress/blog",
 			{
