@@ -29,6 +29,7 @@
 				</div>
 			</div>
 			<Content class="text-justify break-words text-lg font-normal dark:text-gray-50" />
+			<Content slot-key="footer" />
 		</div>
 		<PageEdit />
 		<PageNav v-bind="{ sidebarItems }" />
