@@ -34,8 +34,8 @@ module.exports = {
 	plugins: [
 		[require("./utils/lighthouse/index.js")],
 		// ["@vuepress/search", { searchMaxSuggestions: 10 }],
-		// ["@vuepress/google-analytics", { ga: "UA-545029-29" }],
-		[googleAnalyticsPlugin({ id: "G-N5GN92FFNF" })],
+		["@vuepress/google-analytics-plugin", { ga: "G-N5GN92FFNF" }],
+		// [googleAnalyticsPlugin({ id: "G-N5GN92FFNF" })],
 		[
 			"@vuepress/blog",
 			{
