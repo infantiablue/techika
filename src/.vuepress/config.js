@@ -8,6 +8,24 @@ module.exports = {
 		["meta", { name: "viewport", content: "width=device-width, maximum-scale=5" }],
 		["link", { rel: "icon", type: "image/png", sizes: "32x32", href: "/favicon.png" }],
 		// ["script", { src: "https://platform.twitter.com/widgets.js" }],
+		[
+			"script",
+			{
+				async: true,
+				src: "https://www.googletagmanager.com/gtag/js?id=G-N5GN92FFNF",
+			},
+		],
+		[
+			"script",
+			{},
+			`
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('js', new Date());
+		
+			gtag('config', 'G-N5GN92FFNF');
+			`,
+		],
 	],
 	alias: {
 		styles: path.resolve(__dirname, "./styles"),
@@ -32,7 +50,7 @@ module.exports = {
 		],
 	},
 	plugins: [
-		googleAnalyticsPlugin({ id: "G-N5GN92FFNF" }),
+		// googleAnalyticsPlugin({ id: "G-N5GN92FFNF" }),
 		[require("./utils/lighthouse/index.js")],
 		// ["@vuepress/search", { searchMaxSuggestions: 10 }],
 		// ["@vuepress/google-analytics-plugin", { id: "G-N5GN92FFNF" }],
