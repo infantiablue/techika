@@ -50,11 +50,8 @@ module.exports = {
 		],
 	},
 	plugins: [
-		// googleAnalyticsPlugin({ id: "G-N5GN92FFNF" }),
 		[require("./utils/lighthouse/index.js")],
 		// ["@vuepress/search", { searchMaxSuggestions: 10 }],
-		// ["@vuepress/google-analytics-plugin", { id: "G-N5GN92FFNF" }],
-		// [googleAnalyticsPlugin({ id: "G-N5GN92FFNF" })],
 		[
 			"@vuepress/blog",
 			{
