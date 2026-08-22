@@ -4,12 +4,12 @@
   gap: .65rem;
   margin: 1.5rem 0 2rem;
   padding: .85rem 0;
-  border-block: 1px solid #374151;
+  border-block: 1px solid var(--rule);
 }
 
 .follow span {
   margin-right: auto;
-  color: #9ca3af;
+  color: var(--muted);
   font-size: .78rem;
   letter-spacing: .08em;
   text-transform: uppercase;
@@ -21,16 +21,16 @@
   gap: .4rem;
   min-height: 2.5rem;
   padding: .35rem .7rem;
-  border: 1px solid #4b5563;
+  border: 1px solid var(--rule);
   border-radius: .25rem;
-  color: #f9fafb;
+  color: var(--text);
   font-size: .9rem;
 }
 
 .follow a:hover,
 .follow a:focus-visible {
-  border-color: #f472b6;
-  color: #f472b6;
+  border-color: var(--green);
+  color: var(--green);
   text-decoration: none;
 }
 

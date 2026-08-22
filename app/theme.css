@@ -3,43 +3,53 @@
 }
 
 :root[data-theme="light"] {
-  --bg: #f8fafc;
-  --text: #172033;
-  --green: #047857;
-  --pink: #be185d;
-  --yellow: #92400e;
-  --panel: #e0e7ff;
+  --bg: #f6f4ef;
+  --text: #171817;
+  --muted: #67665f;
+  --green: #215643;
+  --pink: #215643;
+  --yellow: #215643;
+  --panel: #e7ece6;
+  --rule: #d8d6ce;
+  --image-opacity: .22;
 }
 
 :root[data-theme="dark"] {
-  --bg: #111827;
-  --text: #f9fafb;
-  --green: #4ade80;
-  --pink: #f472b6;
-  --yellow: #fde047;
-  --panel: #4c1d95;
+  --bg: #121713;
+  --text: #f1f0e9;
+  --muted: #b8b9ae;
+  --green: #8db5a0;
+  --pink: #8db5a0;
+  --yellow: #8db5a0;
+  --panel: #202a23;
+  --rule: #394039;
+  --image-opacity: .12;
+  --mountain-image: url("/assets/img/header-dark.png");
 }
 
 @media (prefers-color-scheme: light) {
   :root:not([data-theme]) {
-    --bg: #f8fafc;
-    --text: #172033;
-    --green: #047857;
-    --pink: #be185d;
-    --yellow: #92400e;
-    --panel: #e0e7ff;
+    --bg: #f6f4ef;
+    --text: #171817;
+    --muted: #67665f;
+    --green: #215643;
+    --pink: #215643;
+    --yellow: #215643;
+    --panel: #e7ece6;
+    --rule: #d8d6ce;
+    --image-opacity: .22;
   }
 
   :root:not([data-theme]) .navbar { background: rgba(248, 250, 252, .92); }
   :root:not([data-theme]) .markdown blockquote,
-  :root:not([data-theme]) .markdown pre { background: #e5e7eb; }
-  :root:not([data-theme]) .markdown code { color: #172033; }
+  :root:not([data-theme]) .markdown pre { background: #e7ece6; }
+  :root:not([data-theme]) .markdown code { color: #171817; }
 }
 
 :root[data-theme="light"] .navbar { background: rgba(248, 250, 252, .92); }
 :root[data-theme="light"] .markdown blockquote,
-:root[data-theme="light"] .markdown pre { background: #e5e7eb; }
-:root[data-theme="light"] .markdown code { color: #172033; }
+:root[data-theme="light"] .markdown pre { background: #e7ece6; }
+:root[data-theme="light"] .markdown code { color: #171817; }
 
 .theme-select {
   width: 2rem;
@@ -72,8 +82,4 @@
 .theme-select:focus-visible {
   outline: 2px solid var(--pink);
   outline-offset: 2px;
-}
-
-@media (max-width: 720px) {
-  .theme-select { margin-left: auto; }
 }
