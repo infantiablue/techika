@@ -12,7 +12,7 @@
 | ✅ Complete | Preserve SEO and analytics | Page metadata, article metadata, sitemap, robots.txt, canonical URLs, and GA4 work on `truongphan.com` | Codex | Metadata, canonical URLs, sitemap, robots, and GA4 `G-N5GN92FFNF` verified in local production output |
 | ✅ Complete | Add compatibility redirects | Old `.html` paths and all `techika.com` paths permanently redirect to the matching `truongphan.com` route | Codex | Local 308 checks cover all legacy `.html` routes and representative `techika.com` paths |
 | ✅ Complete | Deploy preview to Vercel | GitHub-connected Vercel project builds successfully and preview passes visual and route checks | Codex | Preview: `techika-4ghcqtigt-infantiablues-projects.vercel.app`. Project framework is Next.js, Git-to-`main` was confirmed by the operator, and authenticated checks return 200 for every required route. |
-| ⬜ Not started | Attach new domain | `truongphan.com` and `www.truongphan.com` resolve over HTTPS; `truongphan.com` is canonical |  | DNS access required |
+| 🟡 In progress | Attach new domain | `truongphan.com` and `www.truongphan.com` resolve over HTTPS; `truongphan.com` is canonical | Codex | Both domains are assigned to Vercel `techika`; GoDaddy DNS must point `@` and `www` to `76.76.21.21` before verification can finish. |
 | ⬜ Not started | Production cutover | Production verification passes and `techika.com` redirects remain active |  | Retain old domain for at least 12 months |
 
 ## Verification checklist

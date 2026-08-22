@@ -1,0 +1,43 @@
+.follow {
+  display: flex;
+  align-items: center;
+  gap: .65rem;
+  margin: 1.5rem 0 2rem;
+  padding: .85rem 0;
+  border-block: 1px solid #374151;
+}
+
+.follow span {
+  margin-right: auto;
+  color: #9ca3af;
+  font-size: .78rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.follow a {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  min-height: 2.5rem;
+  padding: .35rem .7rem;
+  border: 1px solid #4b5563;
+  border-radius: .25rem;
+  color: #f9fafb;
+  font-size: .9rem;
+}
+
+.follow a:hover,
+.follow a:focus-visible {
+  border-color: #f472b6;
+  color: #f472b6;
+  text-decoration: none;
+}
+
+.follow b { font-size: .8rem; }
+
+@media (max-width: 480px) {
+  .follow { flex-wrap: wrap; }
+  .follow span { width: 100%; }
+  .follow a { flex: 1; justify-content: center; }
+}
