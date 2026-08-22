@@ -111,3 +111,8 @@ dist
 
 #yarn
 .yarn/
+.vercel
+.env*
+
+
+commit.log

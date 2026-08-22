@@ -1,7 +1,10 @@
 {
+  "private": true,
   "scripts": {
-    "dev": "vuepress dev src",
-    "build": "NODE_ENV=production vuepress build src"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "check:content": "node scripts/check-content.mjs"
   },
   "name": "techika",
   "version": "0.2.0",
@@ -9,26 +12,14 @@
   "repository": "https://github.com/infantiablue/techika",
   "author": "Truong Phan",
   "license": "MIT",
-  "devDependencies": {
-    "@tailwindcss/postcss7-compat": "^2.0.2",
-    "@vuepress/plugin-blog": "^1.9.3",
-    "@vuepress/plugin-google-analytics": "^1.9.7",
-    "@vuepress/plugin-search": "^1.8.0",
-    "autoprefixer": "^9",
-    "eslint": "^7.17.0",
-    "eslint-plugin-vue": "^7.4.1",
-    "postcss": "^7",
-    "postcss-color-function": "^4.1.0",
-    "postcss-import": "^12.0.1",
-    "postcss-nested": "^4.2.3",
-    "sass-loader": "^10.1.1",
-    "tailwindcss": "npm:@tailwindcss/postcss7-compat",
-    "timeago.js": "^4.0.2",
-    "vuepress": "^1.9.2",
-    "vuepress-plugin-seo": "^0.1.4",
-    "webpack-bundle-analyzer": "^4.3.0"
-  },
   "dependencies": {
-    "@tailwindcss/forms": "^0.3.2"
+    "@next/third-parties": "16.1.1",
+    "gray-matter": "4.0.3",
+    "next": "16.1.1",
+    "react": "19.2.0",
+    "react-dom": "19.2.0",
+    "react-markdown": "10.1.0",
+    "rehype-raw": "7.0.0",
+    "remark-gfm": "4.0.1"
   }
 }

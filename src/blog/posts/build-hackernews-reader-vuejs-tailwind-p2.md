@@ -24,7 +24,7 @@ After building a very basic Single Page Application (SPA) from [the first tutori
 
 We use the current [release](https://github.com/infantiablue/vhnews/releases/tag/0.1) from Github to continue development. Look at the HackerNews homepage, we can see it has other topics such as *new, jobs , asks ...* and go through the [official API](https://github.com/HackerNews/API), all of them are supported through REST APIs. Here are screenshots from the official site & URL endpoints:
 
-![The official HackerNews screenshot](../../.vuepress/public/media/vhnews-tutorials-p2/hnews_screenshot.png)
+![The official HackerNews screenshot](/media/vhnews-tutorials-p2/hnews_screenshot.png)
 
 ```html
 
@@ -67,7 +67,7 @@ With this design of data structure, we can customize such as icons, color ... fo
 
 The result is like the screenshot below.
 
-![Topic Navigation Bar](../../.vuepress/public/media/vhnews-tutorials-p2/nav_bar.png)
+![Topic Navigation Bar](/media/vhnews-tutorials-p2/nav_bar.png)
 
 The `$event` param would be used to manipulate css class later. And, I must say, the Tailwind CSS framework is so powerful, especially in this kind of scenario, I don't need to hard code other css class, just use built in class utilities to decorate the elements.
 
@@ -122,7 +122,7 @@ mounted() {
 
 The code is easy to understand, we load top stories by using the defined method `loadStories` when the component is `created` but at this stage of the Vue instance lifecycle, the DOM is not ready yet, so we need to put the next chunk of code to the `mounted` event, in order to highlight the top stories topic when the user load the page.
 
-![Active Topic](../../.vuepress/public/media/vhnews-tutorials-p2/topic-highlight.png)
+![Active Topic](/media/vhnews-tutorials-p2/topic-highlight.png)
 
 ## Implement Dark Mode & localStorage
 
@@ -188,7 +188,7 @@ We inject an icon (I just use of the emoji for the quick design) for user to swi
 
 And check it out.
 
-![Dark Mode Enabled](../../.vuepress/public/media/vhnews-tutorials-p2/darkmode.png)
+![Dark Mode Enabled](/media/vhnews-tutorials-p2/darkmode.png)
 
 Finally, we set up init variables when initializing the application, to load users' preferences.
 
