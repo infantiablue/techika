@@ -14,7 +14,7 @@ tags:
   - api
   - darkmode
 ---
-After building a very basic Single Page Application (SPA) from [the first tutorial with VueJS 3](https://techika.com/2021/01/09/build-hackernews-reader-vuejs-tailwind-p1/), today we gonna continue to enhance the application. In the tutorials, I would try to explain in details why I use this but not that, as well as some concepts behind the scenes. Our goals in this part are:
+After building a very basic Single Page Application (SPA) from [the first tutorial with VueJS 3](https://truongphan.com/2021/01/09/build-hackernews-reader-vuejs-tailwind-p1/), today we gonna continue to enhance the application. In the tutorials, I would try to explain in details why I use this but not that, as well as some concepts behind the scenes. Our goals in this part are:
 
 - *Fetch more kinds of items from HackerNews (previously, the site just received only ***top*** stories) with a proper mini navigation.*
 - *Nowadays, dark mode is a first-class feature for any application, so we will equip it for our application either.*
@@ -205,7 +205,7 @@ mounted() {
 },
 ```
 
-The application will load the last topic, browsed by the user or the selected theme for the next session. The completed working code is pushed on the [Github repo](https://github.com/infantiablue/vhnews) and the live demo of [the HackerNews reader with Dark mode enabled](https://hnews.techika.com/) is still updated to the latest version.
+The application will load the last topic, browsed by the user or the selected theme for the next session. The completed working code is pushed on the [Github repo](https://github.com/infantiablue/vhnews) and the live demo of [the HackerNews reader with Dark mode enabled](https://hnews.truongphan.com/) is still updated to the latest version.
 
 ## Conclusion
 

@@ -1,4 +1,4 @@
-const legacyHosts = /^(www\.)?(techika\.com|truongphan\.com)$/i;
+const legacyHosts = /^(www\.)?techika\.com$/i;
 
 /** @type {import('next').NextConfig} */
 module.exports = {

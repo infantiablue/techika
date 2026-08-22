@@ -41,7 +41,7 @@ isNaN(NaN); // true
 isNaN('NaN');   // true
 isNaN(undefined); // true
 isNaN({}); // true
-isNaN('Techika.com'); // true
+isNaN('Truongphan.com'); // true
 isNaN(''); // false
 isNaN('12abcd') // true
 ```
@@ -65,7 +65,7 @@ Number.isNaN(0 / 0);      // true
 Number.isNaN('NaN');      // false
 Number.isNaN(undefined);  // false
 Number.isNaN({});         // false
-Number.isNaN('Techika.com');   // false
+Number.isNaN('Truongphan.com');   // false
 Number.isNaN(''); // false
 Number.isNaN('12abcd') // false
 

@@ -46,7 +46,7 @@ Here are some tech tools have been used:
 
 ---
 
-# [HackerNews Reader](https://hnews.techika.com/) <Badge text="Open Source" vertical="middle"/> <Badge text="WIP" type="warning" vertical="middle"/>
+# [HackerNews Reader](https://hnews.truongphan.com/) <Badge text="Open Source" vertical="middle"/> <Badge text="WIP" type="warning" vertical="middle"/>
 
 ![Demo](assets/img/darkmode.ebc0d14f.png)
 
