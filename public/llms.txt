@@ -1,0 +1,22 @@
+# Truong Phan
+
+> Personal writing by Truong Phan about web development, JavaScript, Technology, Life and side projects.
+
+## Main pages
+
+- [Home](https://truongphan.com/): Personal site and featured writing.
+- [Writing](https://truongphan.com/blog/): Complete article index.
+- [Projects](https://truongphan.com/projects/): Open-source and personal web projects.
+- [Contact](https://truongphan.com/contact/): Contact details and social profiles.
+- [Credits](https://truongphan.com/credits/): Open-source and visual-resource credits.
+
+## Articles
+
+- [Basic Arithmetic Algorithms by Javascript](https://truongphan.com/2022/05/29/basic-arithmetic-algorithm/): JavaScript approaches to fundamental arithmetic problems.
+- [Build the HackerNews Reader with VueJS 3 — Part 3](https://truongphan.com/2021/05/29/build-hackernews-reader-vuejs-tailwind-p3/): Infinite loading with ES2018 syntax.
+- [CS50 Course from Harvard review](https://truongphan.com/2021/05/24/cs50-review/): Personal review of CS50x.
+- [Number.isNaN() and isNaN()](https://truongphan.com/2021/05/19/isNaN-vs-Number_isNaN/): Differences between JavaScript NaN checks.
+- [Cryptocurrency chart app](https://truongphan.com/2021/04/28/cryptocurrency-real-time-chart/): Near-real-time charting with Vite, React Hooks, and Plotly.
+- [Build the HackerNews Reader with VueJS 3 — Part 2](https://truongphan.com/2021/01/16/build-hackernews-reader-vuejs-tailwind-p2/): Dark-mode implementation.
+- [Simple notes about JavaScript](https://truongphan.com/2021/01/14/simple-notes-javascript/): JavaScript fundamentals from legacy to modern features.
+- [Build the HackerNews Reader with VueJS 3 — Part 1](https://truongphan.com/2021/01/09/build-hackernews-reader-vuejs-tailwind-p1/): Vue 3, Vite, VueX, and Tailwind tutorial.

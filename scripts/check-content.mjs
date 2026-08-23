@@ -14,7 +14,7 @@ for (const post of posts) {
 for (const page of ["projects", "contact", "credits"]) {
   assert.ok(fs.statSync(path.join(process.cwd(), "src", `${page}.md`)).size > 0, `${page} content is missing`);
 }
-for (const asset of ["assets/img/header.jpg", "favicon.ico", "favicon.png", "media/vhnews-tutorials/banner.jpg", "media/vhnews-tutorials-p2/darkmode.png", "media/simple-notes-javascript/js-object-cheatsheet.jpg"]) {
+for (const asset of ["assets/img/header.jpg", "favicon.ico", "favicon.png", "llms.txt", "media/vhnews-tutorials/banner.jpg", "media/vhnews-tutorials-p2/darkmode.png", "media/simple-notes-javascript/js-object-cheatsheet.jpg"]) {
   assert.ok(fs.existsSync(path.join(process.cwd(), "public", asset)), `${asset} is missing`);
 }
 console.log(`Verified ${posts.length} Markdown posts, three static pages, and public assets.`);

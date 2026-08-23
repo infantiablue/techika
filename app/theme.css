@@ -50,6 +50,7 @@
 :root[data-theme="light"] .markdown blockquote,
 :root[data-theme="light"] .markdown pre { background: #e7ece6; }
 :root[data-theme="light"] .markdown code { color: #171817; }
+:root[data-theme="dark"] .markdown .hljs-comment, :root[data-theme="dark"] .markdown .hljs-quote { color: #8b949e; }:root[data-theme="dark"] .markdown .hljs-keyword, :root[data-theme="dark"] .markdown .hljs-selector-tag, :root[data-theme="dark"] .markdown .hljs-literal, :root[data-theme="dark"] .markdown .hljs-name { color: #ff7b72; }:root[data-theme="dark"] .markdown .hljs-string, :root[data-theme="dark"] .markdown .hljs-doctag { color: #a5d6ff; }:root[data-theme="dark"] .markdown .hljs-title, :root[data-theme="dark"] .markdown .hljs-section, :root[data-theme="dark"] .markdown .hljs-selector-id { color: #d2a8ff; }:root[data-theme="dark"] .markdown .hljs-number, :root[data-theme="dark"] .markdown .hljs-attr, :root[data-theme="dark"] .markdown .hljs-attribute, :root[data-theme="dark"] .markdown .hljs-variable, :root[data-theme="dark"] .markdown .hljs-template-variable { color: #79c0ff; }:root[data-theme="dark"] .markdown .hljs-built_in, :root[data-theme="dark"] .markdown .hljs-type, :root[data-theme="dark"] .markdown .hljs-title.class_ { color: #ffa657; }:root[data-theme="dark"] .markdown .hljs-meta, :root[data-theme="dark"] .markdown .hljs-symbol, :root[data-theme="dark"] .markdown .hljs-bullet { color: #79c0ff; }
 
 .theme-select {
   width: 2rem;
