@@ -8,6 +8,7 @@ assert.equal(posts.length, 8, "all eight Markdown posts must be present");
 assert.equal(new Set(posts.map((post) => post.path)).size, posts.length, "post URLs must be unique");
 for (const post of posts) {
   assert.ok(post.title && post.date && post.author && post.content.trim(), `${post.slug} is missing required content`);
+  assert.ok(post.description, `${post.slug} is missing its search description`);
   assert.match(post.path, /^\/\d{4}\/\d{2}\/\d{2}\/.+\/$/, `${post.slug} has an invalid dated route`);
 }
 for (const page of ["projects", "contact", "credits"]) {

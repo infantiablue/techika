@@ -1,1 +1,2 @@
-export { metadata, default } from "../blog/page";
+import { permanentRedirect } from "next/navigation";
+export default function Posts() { permanentRedirect("/blog/"); }
