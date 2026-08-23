@@ -14,7 +14,8 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px soli
 .navbar nav a:hover { opacity: .7; text-decoration: none; }
 .theme-select { margin-left: 1.5rem; }
 .home { width: min(970px, calc(100% - 3rem)); margin: 0 auto; position: relative; isolation: isolate; padding-bottom: 17rem; }
-.home::before { content: ""; position: fixed; z-index: 0; right: 0; bottom: 0; left: 0; height: min(31vw, 25rem); background: var(--mountain-image) center bottom / cover no-repeat; opacity: var(--image-opacity); pointer-events: none; }
+.home::before { content: none; }
+.home-background { position: fixed; z-index: 0; right: 0; bottom: 0; left: 0; width: 100%; height: min(31vw, 25rem); object-fit: cover; object-position: center bottom; opacity: var(--image-opacity); pointer-events: none; }
 .home > * { position: relative; z-index: 1; }
 .home-intro { padding: clamp(4rem, 10vw, 7rem) 0 clamp(3.5rem, 7vw, 5rem); }
 .eyebrow { margin: 0 0 1.2rem; color: var(--green); font-size: .72rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }

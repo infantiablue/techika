@@ -3,7 +3,7 @@ title: Build the HackerNews Reader with VueJS 3 — Part 3, infinite loading wit
 description: Step by step, with detailed explanations, to build the HackerNews Reader using Vue 3, Vite 2, VueX 4 & Tailwind, with the implementation of infinite loading by using ES2018 syntax
 author: Truong Phan
 type: article
-image: https://storage.googleapis.com/techika-media/images/hnews-part3/screencast.gif
+image: /media/vhnews-tutorials-p3/banner.jpg
 date: 2021-05-29
 tags:
   - tutorial
@@ -198,4 +198,3 @@ The final source code is on [Github repo](https://github.com/infantiablue/vhnews
 [Live Demo](https://hnews.truongphan.com)
 
 <sub>Photo by <a href="https://unsplash.com/@angelyviviana55?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Angely Acevedo</a> on <a href="https://unsplash.com/s/photos/infinite?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a></sub>
-  
