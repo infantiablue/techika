@@ -1,8 +1,6 @@
 import Link from "next/link";
-import Image from "next/image";
 import { Header } from "../components/site";
 import { getPosts } from "../lib/posts";
-import headerImage from "../public/assets/img/header.jpg";
 
 function formatDate(date) {
 	return new Intl.DateTimeFormat("en-US", { month: "short", day: "numeric", year: "numeric", timeZone: "UTC" }).format(new Date(`${date}T00:00:00Z`));
@@ -14,7 +12,6 @@ export default function Home() {
 		<>
 			<Header />
 			<main className='home'>
-				<Image className='home-background' src={headerImage} alt='' priority fetchPriority='high' unoptimized sizes='100vw' />
 				<section className='home-intro'>
 					<p className='eyebrow'>Personal journal</p>
 					<h1>
