@@ -4,7 +4,7 @@ import path from "node:path";
 import { getPosts } from "../lib/posts.js";
 
 const posts = getPosts();
-assert.equal(posts.length, 8, "all eight Markdown posts must be present");
+assert.equal(posts.length, 9, "all nine Markdown posts must be present");
 assert.equal(new Set(posts.map((post) => post.path)).size, posts.length, "post URLs must be unique");
 for (const post of posts) {
   assert.ok(post.title && post.date && post.author && post.content.trim(), `${post.slug} is missing required content`);
