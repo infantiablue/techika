@@ -1,6 +1,6 @@
 ---
 title: The Luck We Receive and the Luck We Create
-description: Success is often told as a story of individual effort, someone works hard, makes good decisions, and earns the result. Effort matters, but this story is incomplete
+description: Success is often told as individual effort—work hard, make good decisions, earn the result. Effort matters, but this story is incomplete.
 author: Truong Phan
 type: article
 image: /media/the-luck/banner.jpg
@@ -65,3 +65,4 @@ We should therefore work seriously without pretending that work explains everyth
 - [Lakeside School’s history of computer science](https://tatler.lakesideschool.org/7088/science-technology/a-history-of-cs-at-lakeside/) — early computer access at Gates’s school.
 - [Bill Gates’s 2005 Lakeside School speech](https://www.gatesfoundation.org/Ideas/Speeches/2005/09/bill-gates-lakeside-school) — Gates’s account of Lakeside’s role in his early development.
 - [J. K. Rowling’s “My Story”](https://stories.jkrowling.com/my-story/) — Rowling’s account of the Harry Potter idea arriving during a train journey.
+- Photo by <a href="https://unsplash.com/@aloisk?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Alois Komenda</a> on <a href="https://unsplash.com/photos/3-white-dice-on-black-surface-hAdfTKFXmwM?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>

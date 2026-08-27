@@ -1,5 +1,5 @@
 ---
-title: Develop a basic cryptocurrency chart app with (near) real-time updating, by using Vite, React Hooks, and Plotly
+title: Build a Real-Time Cryptocurrency Chart with React and Plotly
 description: How to make a basic cryptocurrency chart app with (near) real-time updating, by using Vite, React Hooks, and Plotly
 author: Truong Phan
 type: article

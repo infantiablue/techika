@@ -1,6 +1,6 @@
 ---
-title: Pair of concepts may confuse you in Javascript - Number.isNaN() and isNaN()
-description: Expainations of concepts which are easy to be misunderstood in Javascript, Number.isNan() and is NaN() functions
+title: JavaScript isNaN vs. Number.isNaN Explained
+description: Learn the difference between JavaScript isNaN() and Number.isNaN(), including when each function is appropriate.
 author: Truong Phan
 type: article
 image: /media/isnan-number_isnan/banner.jpg
