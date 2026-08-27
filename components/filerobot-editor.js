@@ -2,7 +2,7 @@
 
 import dynamic from "next/dynamic";
 import isPropValid from "@emotion/is-prop-valid";
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { StyleSheetManager } from "styled-components";
 import { coverSize } from "../lib/media-rules";
 
@@ -44,9 +44,27 @@ async function savedFile(image, originalFile, cover) {
 
 export function FilerobotEditor({ file, cover = false, onSave, onClose }) {
   const source = useMemo(() => URL.createObjectURL(file), [file]);
+  const modalRef = useRef(null);
   const dark = useDarkTheme();
-  const close = () => { URL.revokeObjectURL(source); onClose(); };
+  const close = useCallback(() => { URL.revokeObjectURL(source); onClose(); }, [onClose, source]);
   const save = async (image) => { const nextFile = await savedFile(image, file, cover); URL.revokeObjectURL(source); onSave(nextFile); };
 
-  return <div className="media-editor-modal" data-editor-theme={dark ? "dark" : "light"} role="dialog" aria-modal="true" aria-label="Edit image"><StyleSheetManager shouldForwardProp={(prop, target) => typeof target !== "string" || isPropValid(prop)}><FilerobotImageEditor source={source} noCrossOrigin theme={dark ? darkEditorTheme : lightEditorTheme} previewBgColor={dark ? "#0d120e" : "#eef1ef"} Crop={cover ? { ratio: coverSize.width / coverSize.height, ratioTitleKey: "landscape" } : undefined} tabsIds={["Adjust", "Finetune", "Filters", "Annotate", "Watermark", "Resize"]} defaultTabId="Adjust" onSave={save} onClose={close} /></StyleSheetManager></div>;
+  useEffect(() => {
+    const previous = document.activeElement;
+    const modal = modalRef.current;
+    const focusable = () => [...modal.querySelectorAll('a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])')];
+    const keydown = (event) => {
+      if (event.key === "Escape") return close();
+      if (event.key !== "Tab") return;
+      const controls = focusable();
+      if (!controls.length) return event.preventDefault();
+      const first = controls[0]; const last = controls.at(-1);
+      if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+      else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
+    };
+    modal.focus(); modal.addEventListener("keydown", keydown);
+    return () => { modal.removeEventListener("keydown", keydown); previous?.focus?.(); };
+  }, [close]);
+
+  return <div ref={modalRef} className="media-editor-modal" data-editor-theme={dark ? "dark" : "light"} role="dialog" aria-modal="true" aria-label="Edit image" tabIndex="-1"><StyleSheetManager shouldForwardProp={(prop, target) => typeof target !== "string" || isPropValid(prop)}><FilerobotImageEditor source={source} noCrossOrigin theme={dark ? darkEditorTheme : lightEditorTheme} previewBgColor={dark ? "#0d120e" : "#eef1ef"} Crop={cover ? { ratio: coverSize.width / coverSize.height, ratioTitleKey: "landscape" } : undefined} tabsIds={["Adjust", "Finetune", "Filters", "Annotate", "Watermark", "Resize"]} defaultTabId="Adjust" onSave={save} onClose={close} /></StyleSheetManager></div>;
 }

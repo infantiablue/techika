@@ -4,6 +4,7 @@ description: Step by step to build the HackerNews Reader using Vue 3, Vite 2, Vu
 author: Truong Phan
 type: article
 image: /media/vhnews-tutorials/banner.jpg
+imageAlt: Hacker News reader built with Vue.js and Tailwind CSS
 date: 2021-01-09
 tags:
   - tutorial

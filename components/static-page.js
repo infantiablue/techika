@@ -11,5 +11,5 @@ export function getStaticPage(page) {
 
 export function StaticPage({ page }) {
   const content = getStaticPage(page);
-  return <><Header /><main className="page"><h1>{content.title}</h1><article className={`markdown ${page}`}><Markdown>{content.content}</Markdown></article></main><Footer /></>;
+  return <><Header /><main className="page" id="main-content"><h1>{content.title}</h1><article className={`markdown ${page}`}><Markdown>{content.content}</Markdown></article></main><Footer /></>;
 }

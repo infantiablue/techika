@@ -4,6 +4,7 @@ description: A practical overview of JavaScript history, standards, engines, run
 author: Truong Phan
 type: article
 image: /media/simple-notes-javascript/banner.jpg
+imageAlt: JavaScript notes and object cheat sheet
 date: 2021-01-14
 tags:
   - javascript

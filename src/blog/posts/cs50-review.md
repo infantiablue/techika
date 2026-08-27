@@ -4,6 +4,7 @@ description: My personal review about the course CS50x - Introduction to Compute
 author: Truong Phan
 type: article
 image: https://storage.googleapis.com/techika-media/images/CS50/CS50w_tn.jpg
+imageAlt: CS50 course from Harvard University
 date: 2021-05-24
 tags:
   - education

@@ -4,6 +4,7 @@ description: How to make a basic cryptocurrency chart app with (near) real-time 
 author: Truong Phan
 type: article
 image: /media/cryptocurrency-real-time-chart/banner.jpg
+imageAlt: Real-time cryptocurrency price chart interface
 date: 2021-04-28
 tags:
   - javascript

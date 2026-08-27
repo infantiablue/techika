@@ -4,6 +4,7 @@ description: Learn the difference between JavaScript isNaN() and Number.isNaN(),
 author: Truong Phan
 type: article
 image: /media/isnan-number_isnan/banner.jpg
+imageAlt: JavaScript comparison of isNaN and Number.isNaN
 date: 2021-05-19
 tags:
   - javascript

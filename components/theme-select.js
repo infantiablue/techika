@@ -25,6 +25,7 @@ export function ThemeSelect() {
     if (!ready) return;
     if (theme === "system") delete document.documentElement.dataset.theme;
     else document.documentElement.dataset.theme = theme;
+    document.querySelector('meta[name="theme-color"]')?.setAttribute("content", getComputedStyle(document.documentElement).getPropertyValue("--bg").trim());
     if (theme === "system") localStorage.removeItem(storageKey);
     else localStorage.setItem(storageKey, theme);
   }, [ready, theme]);

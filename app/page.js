@@ -13,7 +13,7 @@ export default function Home() {
 	return (
 		<>
 			<Header />
-			<main className='home'>
+			<main className='home' id='main-content'>
 				<section className='home-intro'>
 					<p className='eyebrow'>Personal journal</p>
 					<h1>
