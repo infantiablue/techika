@@ -20,7 +20,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px soli
 .mobile-nav { display: none; }
 .navbar nav { display: flex; gap: clamp(1.2rem, 3vw, 2.7rem); margin-left: auto; }
 .navbar nav a { color: var(--text); font-size: .92rem; transition: color 180ms ease, opacity 180ms ease; }
-.navbar nav a:first-child { color: var(--green); font-weight: 600; }
+.navbar nav a[aria-current="page"] { color: var(--green); font-weight: 600; }
 .navbar nav a:hover { opacity: .7; text-decoration: none; }
 .theme-select { margin-left: 1.5rem; }
 .home { width: min(970px, calc(100% - 3rem)); margin: 0 auto; position: relative; isolation: isolate; padding-bottom: 17rem; }
