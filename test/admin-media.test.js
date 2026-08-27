@@ -4,6 +4,7 @@ import { createSession, verifyPassword, verifySession } from "../lib/admin-auth.
 import { mediaRules, validateArticle, validateImage } from "../lib/github-media.js";
 import { readArticleDrafts, removeArticleDraft, saveArticleDraft } from "../lib/article-drafts.js";
 import { coverSize } from "../lib/media-rules.js";
+import { selectFeaturedPost } from "../lib/posts.js";
 
 test("admin sessions expire and reject tampering", () => {
   const session = createSession("secret", 0);
@@ -27,22 +28,33 @@ test("cover updates preserve frontmatter and require safe media paths", () => {
   assert.match(updated, /image: \/media\/hello\/cover\.png/);
   assert.match(updated, /imageAlt: A cover/);
   assert.equal(mediaRules.validateImagePath("/media/hello/cover.png"), "public/media/hello/cover.png");
+  assert.equal(mediaRules.validateImagePath("/media/hello/diagram.svg", { allowSvg: true }), "public/media/hello/diagram.svg");
+  assert.throws(() => mediaRules.validateImagePath("/media/hello/diagram.svg"));
   assert.throws(() => mediaRules.validateImagePath("https://example.com/cover.png"));
 });
 
 test("article metadata validates and preserves Markdown body", () => {
-  const article = validateArticle({ slug: "hello-world", title: "Hello", description: "A description", author: "Truong", date: "2026-08-27", tags: ["writing"], image: "/media/hello-world/cover.png", imageAlt: "A cover", content: "# Hello\n\nBody" }, { newArticle: true });
+  const article = validateArticle({ slug: "hello-world", title: "Hello", description: "A description", author: "Truong", date: "2026-08-27", tags: ["writing"], image: "/media/hello-world/cover.png", imageAlt: "A cover", featured: true, content: "# Hello\n\nBody" }, { newArticle: true });
   const source = mediaRules.articleSource(article);
   assert.match(source, /type: article/);
+  assert.equal(mediaRules.articleFromSource("hello-world", source).featured, true);
   assert.equal(mediaRules.articleFromSource("hello-world", source).content, "# Hello\n\nBody");
+  assert.doesNotMatch(mediaRules.clearFeatured(source), /featured:/);
   assert.throws(() => validateArticle({ ...article, slug: "Bad slug" }, { newArticle: true }));
   assert.throws(() => validateArticle({ ...article, imageAlt: "" }, { newArticle: true }));
+  assert.throws(() => validateArticle({ ...article, image: "", imageAlt: "" }, { newArticle: true }));
 });
 
 test("local-only articles are included without replacing published articles", () => {
   const published = [{ slug: "published", title: "Remote" }];
   const local = [{ slug: "published", title: "Local copy", localDraft: true }, { slug: "untracked", title: "Local draft", localDraft: true }];
   assert.deepEqual(mediaRules.mergeLocalArticles(published, local), [published[0], local[1]]);
+});
+
+test("homepage selects the marked article and falls back to the newest post", () => {
+  const posts = [{ slug: "newest", featured: false }, { slug: "chosen", featured: true }];
+  assert.equal(selectFeaturedPost(posts).slug, "chosen");
+  assert.equal(selectFeaturedPost(posts.map((post) => ({ ...post, featured: false }))).slug, "newest");
 });
 
 test("browser drafts save, load, and remove without publishing", () => {

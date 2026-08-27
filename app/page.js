@@ -1,13 +1,15 @@
 import Link from "next/link";
 import { Header } from "../components/site";
-import { getPosts } from "../lib/posts";
+import { getPosts, selectFeaturedPost } from "../lib/posts";
 
 function formatDate(date) {
 	return new Intl.DateTimeFormat("en-US", { month: "short", day: "numeric", year: "numeric", timeZone: "UTC" }).format(new Date(`${date}T00:00:00Z`));
 }
 
 export default function Home() {
-	const [featured, ...writing] = getPosts();
+	const posts = getPosts();
+	const featured = selectFeaturedPost(posts);
+	const writing = posts.filter((post) => post.slug !== featured.slug);
 	return (
 		<>
 			<Header />
@@ -22,6 +24,7 @@ export default function Home() {
 					</h1>
 				</section>
 				<section className='featured'>
+					{featured.image && <Link className='featured-cover' href={featured.path} aria-label={`Read ${featured.title}`}><img src={featured.image} alt='' width='1200' height='675' fetchPriority='high' /></Link>}
 					<div className='featured-meta'>
 						<strong>Featured</strong>
 						<time dateTime={featured.date}>{formatDate(featured.date)}</time>

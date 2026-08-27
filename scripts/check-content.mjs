@@ -6,9 +6,11 @@ import { getPosts } from "../lib/posts.js";
 const posts = getPosts();
 assert.equal(posts.length, 10, "all ten Markdown posts must be present");
 assert.equal(new Set(posts.map((post) => post.path)).size, posts.length, "post URLs must be unique");
+assert.ok(posts.filter((post) => post.featured).length <= 1, "only one post may be featured");
 for (const post of posts) {
   assert.ok(post.title && post.date && post.author && post.content.trim(), `${post.slug} is missing required content`);
   assert.ok(post.description, `${post.slug} is missing its search description`);
+  if (post.featured) assert.ok(post.image && post.imageAlt, `${post.slug} needs a cover image and description to be featured`);
   assert.match(post.path, /^\/\d{4}\/\d{2}\/\d{2}\/.+\/$/, `${post.slug} has an invalid dated route`);
 }
 for (const page of ["projects", "contact", "credits"]) {
