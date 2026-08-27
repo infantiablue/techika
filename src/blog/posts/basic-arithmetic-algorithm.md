@@ -12,7 +12,6 @@ tags:
   - arithmetic
   - math
 ---
-
 This is the place, where I keep snippets of Javascript algorithms to process mathematic problems with time complexity for reference later.
 
 ## Prime number
@@ -117,5 +116,3 @@ This is the place, where I keep snippets of Javascript algorithms to process mat
   }
   console.log(user)
   ```
-
-To be updated ...
