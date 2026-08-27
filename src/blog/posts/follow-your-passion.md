@@ -5,7 +5,7 @@ description: >-
   Sustainable work also needs skill, demand, resources, and room to change.
 author: Truong Phan
 type: article
-image: /media/follow-your-passion/career-sweet-spot.png
+image: /media/follow-your-passion/cover.png
 date: '2026-08-27'
 tags:
   - career
@@ -13,6 +13,7 @@ tags:
   - personal development
   - work
 imageAlt: Why “Follow Your Passion” Is Incomplete Advice
+featured: true
 ---
 “Follow your passion” is memorable advice because it contains something true. Work is easier to sustain when it connects to genuine interest. Curiosity can carry us through the repetitive early stage of learning, when we are not yet good enough to receive much reward.
 
