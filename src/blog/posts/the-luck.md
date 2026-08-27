@@ -1,14 +1,18 @@
 ---
 title: The Luck We Receive and the Luck We Create
-description: Success is often told as individual effort—work hard, make good decisions, earn the result. Effort matters, but this story is incomplete.
+description: >-
+  Success is often told as individual effort—work hard, make good decisions,
+  earn the result. Effort matters, but this story is incomplete.
 author: Truong Phan
 type: article
 image: /media/the-luck/banner.jpg
-date: 2026-08-24
+date: '2026-08-24'
 tags:
   - success
   - luck
   - personal development
+imageAlt: The Luck We Receive and the Luck We Create
+featured: true
 ---
 Success is often told as a story of individual effort: someone works hard, makes good decisions, and earns the result. Effort matters, but this story is incomplete. People do not choose every condition in which they learn, take risks, meet collaborators, or receive recognition. Luck shapes the starting point, the timing, and the openings. The better question is not whether luck matters, but how it matters.
 

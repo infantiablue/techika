@@ -13,7 +13,6 @@ tags:
   - personal development
   - work
 imageAlt: A person builds a path from a spark of interest toward useful work
-featured: true
 ---
 “Follow your passion” is memorable advice because it contains something true. Work is easier to sustain when it connects to genuine interest. Curiosity can carry us through the repetitive early stage of learning, when we are not yet good enough to receive much reward.
 
