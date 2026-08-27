@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import CodeEditor from "react-simple-code-editor";
@@ -89,10 +88,8 @@ export function AdminArticles({ initialState, initialArticle = null, draftKey })
   }
   async function remove(image) { if (window.confirm(`Delete ${image}? This cannot be undone.`)) await run(() => request("/api/admin/media", { method: "DELETE", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ image }) }), "Image deleted."); }
   async function copy(image) { await navigator.clipboard.writeText(image); setMessage("Image URL copied."); }
-  async function logout() { await request("/api/admin/session", { method: "DELETE" }); window.location.assign("/admin/"); }
-
   return <main className="admin-shell"><section className="article-studio">
-    <header className="media-studio-header"><div><p className="eyebrow">Publishing studio</p><h1>{localDraft && !persisted ? "Local draft" : persisted ? "Article editor" : "New article"}</h1><p>Write Markdown, set metadata, and manage images without leaving the article.</p></div><div className="media-header-actions"><Link className="admin-secondary" href="/admin/articles/">All articles</Link><button className="admin-secondary" onClick={logout}>Sign out</button></div></header>
+    <header className="media-studio-header"><div><p className="eyebrow">Publishing studio</p><h1>{localDraft && !persisted ? "Local draft" : persisted ? "Article editor" : "New article"}</h1><p>Write Markdown, set metadata, and manage images without leaving the article.</p></div></header>
     <div className="article-editor-status">{(persisted || localDraft) && <p className="media-muted">Editing src/blog/posts/{article.slug}.md</p>}{draftStatus && <p className="article-draft-status" role="status">{draftStatus}</p>}</div>
     <form className="article-form" onSubmit={save}>
       <section className="article-metadata"><label>Title<input value={article.title} onChange={(event) => change("title", event.target.value)} required /></label><label>Description<input value={article.description} onChange={(event) => change("description", event.target.value)} required /></label><label>Author<input value={article.author} onChange={(event) => change("author", event.target.value)} required /></label><label>Date<input type="date" value={article.date} onChange={(event) => change("date", event.target.value)} required /></label><label>URL slug<input value={article.slug} onChange={(event) => { setSlugTouched(true); change("slug", event.target.value); }} disabled={persisted} required /></label><label>Tags<input value={article.tags.join(", ")} onChange={(event) => change("tags", event.target.value.split(",").map((tag) => tag.trim()).filter(Boolean))} placeholder="career, writing" /></label><label>Cover image URL<input value={article.image} onChange={(event) => change("image", event.target.value)} /></label><label>Cover description<input value={article.imageAlt} onChange={(event) => change("imageAlt", event.target.value)} /></label><label className="media-cover-toggle"><input type="checkbox" checked={article.featured} onChange={(event) => change("featured", event.target.checked)} /><span><strong>Feature on homepage</strong><small>Requires a cover and replaces the current featured article when saved.</small></span></label></section>

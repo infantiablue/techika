@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import { createSession, verifyPassword, verifySession } from "../lib/admin-auth.js";
-import { mediaRules, validateArticle, validateImage } from "../lib/github-media.js";
+import { mediaRules, uploadImage, validateArticle, validateImage } from "../lib/github-media.js";
 import { readArticleDrafts, removeArticleDraft, saveArticleDraft } from "../lib/article-drafts.js";
 import { coverSize } from "../lib/media-rules.js";
 import { selectFeaturedPost } from "../lib/posts.js";
@@ -20,6 +20,12 @@ test("password comparison and image validation accept only supported uploads", (
   assert.equal(validateImage({ type: "image/png", size: 10 }), "png");
   assert.throws(() => validateImage({ type: "image/svg+xml", size: 10 }));
   assert.throws(() => validateImage({ type: "image/png", size: 11 * 1024 * 1024 }));
+});
+
+test("standalone uploads use the reusable library and cover uploads require context", async () => {
+  assert.equal(mediaRules.mediaUploadPath("", "Hero Image.png", "png", "asset-1"), "public/media/library/asset-1-hero-image.png");
+  assert.equal(mediaRules.mediaUploadPath("hello-world", "Hero Image.png", "png", "asset-1"), "public/media/hello-world/asset-1-hero-image.png");
+  await assert.rejects(() => uploadImage({ file: { type: "image/png", size: 1, name: "hero.png" }, setCover: true }), /Select an article/);
 });
 
 test("cover updates preserve frontmatter and require safe media paths", () => {

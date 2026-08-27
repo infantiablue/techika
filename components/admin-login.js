@@ -22,5 +22,5 @@ export function AdminLogin() {
     }
   }
 
-  return <main className="admin-shell"><form className="admin-card" onSubmit={submit}><h1>Admin</h1><p>Sign in to manage article images.</p><label>Password<input name="password" type="password" autoComplete="current-password" required autoFocus /></label>{error && <p className="admin-error" role="alert">{error}</p>}<button disabled={pending}>{pending ? "Signing in…" : "Sign in"}</button></form></main>;
+  return <main className="admin-shell"><form className="admin-card" onSubmit={submit}><h1>Admin</h1><p>Sign in to manage articles and media.</p><label>Password<input name="password" type="password" autoComplete="current-password" required autoFocus /></label>{error && <p className="admin-error" role="alert">{error}</p>}<button disabled={pending}>{pending ? "Signing in…" : "Sign in"}</button></form></main>;
 }

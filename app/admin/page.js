@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { AdminLogin } from "../../components/admin-login";
-import { AdminSignOut } from "../../components/admin-sign-out";
 import { hasAdminSession } from "../../lib/admin";
 import { getAdminState } from "../../lib/github-media";
 
@@ -15,7 +14,7 @@ export default async function AdminPage() {
   const featured = articles.find((article) => article.featured);
 
   return <main className="admin-shell"><section className="admin-dashboard">
-    <header className="media-studio-header"><div><p className="eyebrow">Techika publishing</p><h1>Dashboard</h1><p>Write, review, and publish from one quiet workspace.</p></div><div className="media-header-actions"><Link className="admin-secondary" href="/">View site</Link><AdminSignOut /></div></header>
+    <header className="media-studio-header"><div><p className="eyebrow">Techika publishing</p><h1>Dashboard</h1><p>Write, review, and publish from one quiet workspace.</p></div></header>
     <section className="admin-dashboard-lead">
       <div><p className="eyebrow">Currently featured</p><h2>{featured?.title || "No featured article"}</h2>{featured ? <Link className="arrow-link" href={`/admin/edit/${featured.slug}/`}>Edit featured article <span aria-hidden="true">→</span></Link> : <p className="media-muted">Choose an article and enable “Feature on homepage.”</p>}</div>
       <dl><div><dt>Published</dt><dd>{published.length}</dd></div><div><dt>Local drafts</dt><dd>{drafts}</dd></div><div><dt>Media assets</dt><dd>{media.length}</dd></div></dl>
