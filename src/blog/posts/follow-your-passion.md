@@ -1,10 +1,12 @@
 ---
 title: Why “Follow Your Passion” Is Incomplete Advice
-description: Passion can be a useful starting point, but it is not a complete career plan. Sustainable work also needs skill, demand, resources, and room to change.
+description: >-
+  Passion can be a useful starting point, but it is not a complete career plan.
+  Sustainable work also needs skill, demand, resources, and room to change.
 author: Truong Phan
 type: article
 image: /media/follow-your-passion/career-sweet-spot.png
-date: 2026-08-26
+date: '2026-08-27'
 tags:
   - career
   - passion
