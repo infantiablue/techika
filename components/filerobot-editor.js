@@ -4,6 +4,7 @@ import dynamic from "next/dynamic";
 import isPropValid from "@emotion/is-prop-valid";
 import { useEffect, useMemo, useState } from "react";
 import { StyleSheetManager } from "styled-components";
+import { coverSize } from "../lib/media-rules";
 
 const FilerobotImageEditor = dynamic(() => import("react-filerobot-image-editor"), { ssr: false, loading: () => <p className="media-editor-loading">Loading image editor…</p> });
 const lightEditorTheme = {};
@@ -22,21 +23,30 @@ function useDarkTheme() {
   return dark;
 }
 
-async function savedFile(image, originalFile) {
+async function savedFile(image, originalFile, cover) {
   const type = image.mimeType || originalFile.type || "image/png";
   let blob;
-  if (image.imageCanvas) blob = await new Promise((resolve, reject) => image.imageCanvas.toBlob((value) => value ? resolve(value) : reject(new Error("The editor could not export this image.")), type, image.quality));
+  if (image.imageCanvas) {
+    let canvas = image.imageCanvas;
+    if (cover && (canvas.width !== coverSize.width || canvas.height !== coverSize.height)) {
+      const resized = document.createElement("canvas");
+      resized.width = coverSize.width; resized.height = coverSize.height;
+      resized.getContext("2d").drawImage(canvas, 0, 0, coverSize.width, coverSize.height);
+      canvas = resized;
+    }
+    blob = await new Promise((resolve, reject) => canvas.toBlob((value) => value ? resolve(value) : reject(new Error("The editor could not export this image.")), type, image.quality));
+  }
   else if (image.imageBase64) blob = await fetch(image.imageBase64).then((response) => response.blob());
   else throw new Error("The editor did not return an image file.");
   const extension = image.extension || type.split("/")[1] || "png";
   return new File([blob], `${image.name || originalFile.name.replace(/\.[^.]+$/, "")}.${extension}`, { type: blob.type || type });
 }
 
-export function FilerobotEditor({ file, onSave, onClose }) {
+export function FilerobotEditor({ file, cover = false, onSave, onClose }) {
   const source = useMemo(() => URL.createObjectURL(file), [file]);
   const dark = useDarkTheme();
   const close = () => { URL.revokeObjectURL(source); onClose(); };
-  const save = async (image) => { const nextFile = await savedFile(image, file); URL.revokeObjectURL(source); onSave(nextFile); };
+  const save = async (image) => { const nextFile = await savedFile(image, file, cover); URL.revokeObjectURL(source); onSave(nextFile); };
 
-  return <div className="media-editor-modal" data-editor-theme={dark ? "dark" : "light"} role="dialog" aria-modal="true" aria-label="Edit image"><StyleSheetManager shouldForwardProp={(prop, target) => typeof target !== "string" || isPropValid(prop)}><FilerobotImageEditor source={source} noCrossOrigin theme={dark ? darkEditorTheme : lightEditorTheme} previewBgColor={dark ? "#0d120e" : "#eef1ef"} tabsIds={["Adjust", "Finetune", "Filters", "Annotate", "Watermark", "Resize"]} defaultTabId="Adjust" onSave={save} onClose={close} /></StyleSheetManager></div>;
+  return <div className="media-editor-modal" data-editor-theme={dark ? "dark" : "light"} role="dialog" aria-modal="true" aria-label="Edit image"><StyleSheetManager shouldForwardProp={(prop, target) => typeof target !== "string" || isPropValid(prop)}><FilerobotImageEditor source={source} noCrossOrigin theme={dark ? darkEditorTheme : lightEditorTheme} previewBgColor={dark ? "#0d120e" : "#eef1ef"} Crop={cover ? { ratio: coverSize.width / coverSize.height, ratioTitleKey: "landscape" } : undefined} tabsIds={["Adjust", "Finetune", "Filters", "Annotate", "Watermark", "Resize"]} defaultTabId="Adjust" onSave={save} onClose={close} /></StyleSheetManager></div>;
 }

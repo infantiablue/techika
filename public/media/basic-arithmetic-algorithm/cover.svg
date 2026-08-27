@@ -1,15 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
   <title id="title">JavaScript arithmetic algorithms</title>
   <desc id="desc">A dark blue illustration of code, numbers, and arithmetic symbols.</desc>
-  <rect width="1200" height="1200" fill="#111827"/>
-  <rect x="72" y="72" width="1056" height="1056" rx="28" fill="#172554" stroke="#38bdf8" stroke-width="3"/>
-  <text x="132" y="248" fill="#f8fafc" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="58" font-weight="700">JavaScript</text>
-  <text x="132" y="326" fill="#f8fafc" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="58" font-weight="700">Arithmetic</text>
-  <text x="132" y="430" fill="#7dd3fc" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="38">prime · fibonacci</text>
-  <text x="132" y="486" fill="#7dd3fc" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="38">gcd · lcm</text>
-  <text x="132" y="700" fill="#fbbf24" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="110">2 + 3 = 5</text>
-  <text x="132" y="832" fill="#cbd5e1" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="30">Algorithms with</text>
-  <text x="132" y="876" fill="#cbd5e1" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="30">complexity notes</text>
-  <circle cx="956" cy="926" r="72" fill="none" stroke="#38bdf8" stroke-width="10"/>
-  <path d="M956 854v144M884 926h144" stroke="#38bdf8" stroke-width="10" stroke-linecap="round"/>
+  <rect width="1200" height="675" fill="#172554"/>
+  <text x="104" y="168" fill="#f8fafc" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="56" font-weight="700">JavaScript</text>
+  <text x="104" y="238" fill="#f8fafc" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="56" font-weight="700">Arithmetic</text>
+  <text x="104" y="330" fill="#7dd3fc" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="34">prime · fibonacci</text>
+  <text x="104" y="378" fill="#7dd3fc" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="34">gcd · lcm</text>
+  <text x="650" y="320" fill="#fbbf24" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="92">2 + 3 = 5</text>
+  <text x="104" y="526" fill="#cbd5e1" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="28">Algorithms with complexity notes</text>
+  <circle cx="1010" cy="505" r="54" fill="none" stroke="#38bdf8" stroke-width="9"/>
+  <path d="M1010 451v108M956 505h108" stroke="#38bdf8" stroke-width="9" stroke-linecap="round"/>
 </svg>

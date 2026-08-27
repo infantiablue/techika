@@ -1,28 +1,28 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
   <title id="title">The career sweet spot</title>
   <desc id="desc">A three-circle Venn diagram showing the overlap of what you are good at, what you love to do, and what the world needs and would pay you for.</desc>
-  <rect width="1200" height="1200" fill="#fcfaf7"/>
-  <g fill-opacity=".12" stroke-width="8">
-    <circle cx="425" cy="370" r="290" fill="#ef6a62" stroke="#e85b54"/>
-    <circle cx="775" cy="370" r="290" fill="#f5bb4b" stroke="#efae30"/>
-    <circle cx="600" cy="680" r="290" fill="#56b985" stroke="#3ca66f"/>
+  <rect width="1200" height="675" fill="#fcfaf7"/>
+  <g fill-opacity=".12" stroke-width="7">
+    <circle cx="420" cy="245" r="210" fill="#ef6a62" stroke="#e85b54"/>
+    <circle cx="780" cy="245" r="210" fill="#f5bb4b" stroke="#efae30"/>
+    <circle cx="600" cy="430" r="210" fill="#56b985" stroke="#3ca66f"/>
   </g>
   <g fill="#2c2f35" font-family="Avenir Next, Avenir, Helvetica Neue, Arial, sans-serif" text-anchor="middle">
-    <text x="340" y="332" font-size="42" font-weight="600">
-      <tspan x="340" dy="0">What You’re</tspan>
-      <tspan x="340" dy="52">Good At</tspan>
+    <text x="320" y="190" font-size="32" font-weight="600">
+      <tspan x="320" dy="0">What You’re</tspan>
+      <tspan x="320" dy="40">Good At</tspan>
     </text>
-    <text x="860" y="332" font-size="42" font-weight="600">
-      <tspan x="860" dy="0">What You</tspan>
-      <tspan x="860" dy="52">Love to Do</tspan>
+    <text x="880" y="190" font-size="32" font-weight="600">
+      <tspan x="880" dy="0">What You</tspan>
+      <tspan x="880" dy="40">Love to Do</tspan>
     </text>
-    <text x="600" y="772" font-size="38" font-weight="600">
+    <text x="600" y="495" font-size="30" font-weight="600">
       <tspan x="600" dy="0">What the World Needs</tspan>
-      <tspan x="600" dy="50">(and Would Pay You For)</tspan>
+      <tspan x="600" dy="38">(and Would Pay You For)</tspan>
     </text>
-    <text x="600" y="514" font-size="34" font-weight="700" fill="#1e684b">
+    <text x="600" y="294" font-size="30" font-weight="700" fill="#1e684b">
       <tspan x="600" dy="0">Sweet</tspan>
-      <tspan x="600" dy="40">Spot</tspan>
+      <tspan x="600" dy="36">Spot</tspan>
     </text>
   </g>
 </svg>

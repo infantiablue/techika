@@ -3,6 +3,7 @@ import test from "node:test";
 import { createSession, verifyPassword, verifySession } from "../lib/admin-auth.js";
 import { mediaRules, validateArticle, validateImage } from "../lib/github-media.js";
 import { readArticleDrafts, removeArticleDraft, saveArticleDraft } from "../lib/article-drafts.js";
+import { coverSize } from "../lib/media-rules.js";
 
 test("admin sessions expire and reject tampering", () => {
   const session = createSession("secret", 0);
@@ -12,6 +13,7 @@ test("admin sessions expire and reject tampering", () => {
 });
 
 test("password comparison and image validation accept only supported uploads", () => {
+  assert.deepEqual(coverSize, { width: 1200, height: 675 });
   assert.equal(verifyPassword("correct", "correct"), true);
   assert.equal(verifyPassword("wrong", "correct"), false);
   assert.equal(validateImage({ type: "image/png", size: 10 }), "png");

@@ -6,7 +6,7 @@ Built on Next.js with Markdown posts in `src/blog/posts/`.
 
 ## Admin publishing
 
-`/admin/` edits Markdown articles and their metadata, and uses the client-only Filerobot image editor (crop, resize, rotate, filters, annotation, and watermarking). Unpublished text changes are saved as browser-local drafts; publishing and media actions commit to GitHub, then Vercel deploys the normal Git update. Browser drafts are available only on the device and browser where they were written. Filerobot is pinned to its React 19 beta release because the stable line does not document React 19 support. Configure these environment variables locally and in Vercel:
+`/admin/` edits Markdown articles and their metadata, and uses the client-only Filerobot image editor (crop, resize, rotate, filters, annotation, and watermarking). The default banner and cover size is **1200 × 675 pixels (16:9)**. Unpublished text changes are saved as browser-local drafts; publishing and media actions commit to GitHub, then Vercel deploys the normal Git update. Browser drafts are available only on the device and browser where they were written. Filerobot is pinned to its React 19 beta release because the stable line does not document React 19 support. Configure these environment variables locally and in Vercel:
 
 ```
 ADMIN_PASSWORD=use-a-long-unique-password
