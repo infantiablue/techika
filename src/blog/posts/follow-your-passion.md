@@ -11,7 +11,7 @@ tags:
   - career
   - passion
   - personal development
-  - work
+  - success
 imageAlt: A person builds a path from a spark of interest toward useful work
 featured: true
 ---
