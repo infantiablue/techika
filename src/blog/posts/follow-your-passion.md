@@ -1,5 +1,5 @@
 ---
-title: Why “Follow Your Passion” Is Incomplete Advice
+title: Why “Follow Your Passion” Is A Dangerous Advice
 description: >-
   Passion can be a useful starting point, but it is not a complete career plan.
   Sustainable work also needs skill, demand, resources, and room to change.
