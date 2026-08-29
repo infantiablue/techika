@@ -12,7 +12,9 @@ tags:
   - polling
   - server-sent-events
   - websocket
-image: ''
+image: >-
+  /media/polling-sse-websockets/8f00d5dd-3cc8-497b-b550-8eb1bc927297-ai-cover.png
+imageAlt: 'Polling, Server-Sent Events, or WebSockets? A live football scoreboard example'
 ---
 
 A live scoreboard does not need to act like the match official's control room.
