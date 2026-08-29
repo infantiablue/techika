@@ -611,6 +611,8 @@ You can verify the failure behavior without waiting for a provider outage:
 5. Confirm that the previous fixtures remain visible and the status shows a retry delay.
 6. Start the server again and return to the tab to trigger an immediate refresh.
 
+![The live scoreboard demo](/media/polling-sse-websockets/a60ab543-904e-4537-b668-fc163339e723-live-score-demo.jpg)
+
 Also switch to another tab for more than a minute. The Network panel should show no new score requests while the page is hidden. Returning to the page should start one request immediately.
 
 ## What does `updatedAt` really prove?
