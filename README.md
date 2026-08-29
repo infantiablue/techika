@@ -14,6 +14,7 @@ ADMIN_SESSION_SECRET=use-a-long-random-secret
 GITHUB_TOKEN=github-fine-grained-token-with-contents-read-write
 GITHUB_REPOSITORY=infantiablue/techika
 GITHUB_BRANCH=main
+OPENAI_API_KEY=server-only-openai-api-key
 ```
 
 Keep the token server-side. Add a Vercel Firewall rate rule for `POST /api/admin/session` before exposing the admin login.

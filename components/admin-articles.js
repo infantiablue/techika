@@ -20,6 +20,19 @@ async function request(url, options) {
   return result;
 }
 
+async function coverFile(blob) {
+  const source = URL.createObjectURL(blob);
+  try {
+    const image = new Image();
+    await new Promise((resolve, reject) => { image.onload = resolve; image.onerror = () => reject(new Error("The generated image could not be previewed.")); image.src = source; });
+    const canvas = document.createElement("canvas");
+    canvas.width = coverSize.width; canvas.height = coverSize.height;
+    canvas.getContext("2d").drawImage(image, 0, 0, canvas.width, canvas.height);
+    const normalized = await new Promise((resolve, reject) => canvas.toBlob((value) => value ? resolve(value) : reject(new Error("The generated image could not be prepared.")), "image/png"));
+    return new File([normalized], "ai-cover.png", { type: "image/png" });
+  } finally { URL.revokeObjectURL(source); }
+}
+
 export function AdminArticles({ initialState, initialArticle = null, draftKey }) {
   const router = useRouter();
   const localDraft = Boolean(initialArticle?.localDraft);
@@ -31,12 +44,17 @@ export function AdminArticles({ initialState, initialArticle = null, draftKey })
   const [file, setFile] = useState(null);
   const [editorFile, setEditorFile] = useState(null);
   const [setAsCover, setSetAsCover] = useState(true);
+  const [direction, setDirection] = useState("");
+  const [generatedCover, setGeneratedCover] = useState(null);
+  const [generating, setGenerating] = useState(false);
   const [pending, setPending] = useState(false);
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
   const [draftReady, setDraftReady] = useState(false);
   const [draftStatus, setDraftStatus] = useState("");
   const persisted = Boolean(existingSlug);
+
+  useEffect(() => () => { if (generatedCover) URL.revokeObjectURL(generatedCover.preview); }, [generatedCover]);
 
   useEffect(() => {
     const saved = readArticleDrafts(window.localStorage)[draftKey];
@@ -78,9 +96,28 @@ export function AdminArticles({ initialState, initialArticle = null, draftKey })
   async function upload(event) {
     event.preventDefault();
     if (!file || !article) return;
-    const result = await run(async () => { const form = new FormData(); form.set("file", file); form.set("slug", article.slug); form.set("setCover", String(setAsCover)); form.set("imageAlt", article.imageAlt); return request("/api/admin/media", { method: "POST", body: form }); }, "Image published.");
-    if (result && setAsCover) { setArticle((current) => ({ ...current, image: result.image })); setBaseline((current) => current ? ({ ...current, image: result.image, imageAlt: article.imageAlt }) : current); }
+    await publishImage(file, setAsCover);
+  }
+  async function publishImage(nextFile, cover) {
+    const result = await run(async () => { const form = new FormData(); form.set("file", nextFile); form.set("slug", article.slug); form.set("setCover", String(cover)); form.set("imageAlt", article.imageAlt); return request("/api/admin/media", { method: "POST", body: form }); }, "Image published.");
+    if (result && cover) { setArticle((current) => ({ ...current, image: result.image })); setBaseline((current) => current ? ({ ...current, image: result.image, imageAlt: article.imageAlt }) : current); }
     if (result) setFile(null);
+  }
+  async function generateCover() {
+    if (!article.title || !article.description) { setError("Add a title and description before generating a cover."); return; }
+    setGenerating(true); setError(""); setMessage("");
+    try {
+      const response = await fetch("/api/admin/cover-image", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ title: article.title, description: article.description, tags: article.tags, direction }) });
+      if (!response.ok) { const result = await response.json(); throw new Error(result.error || "Image generation failed."); }
+      const nextFile = await coverFile(await response.blob());
+      setGeneratedCover({ file: nextFile, preview: URL.createObjectURL(nextFile) });
+    } catch (reason) { setError(reason.message || "Image generation failed."); }
+    finally { setGenerating(false); }
+  }
+  async function useGeneratedCover() {
+    if (!persisted) { setMessage("Save the article before publishing this cover."); return; }
+    if (!article.imageAlt) { setError("Add a cover description before using this cover."); return; }
+    await publishImage(generatedCover.file, true);
   }
   async function useCover(image) {
     const result = await run(() => request("/api/admin/media", { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ slug: article.slug, image, imageAlt: article.imageAlt }) }), "Cover updated.");
@@ -97,7 +134,7 @@ export function AdminArticles({ initialState, initialArticle = null, draftKey })
       <button className="media-publish-button" disabled={pending}>{pending ? "Saving…" : "Save article"}</button>
     </form>
     {message && <p className="admin-success media-feedback" role="status">{message}</p>}{error && <p className="admin-error media-feedback" role="alert">{error}</p>}
-    <section className="media-library article-media"><header><div><p className="eyebrow">Article media</p><h2>Images</h2></div><p>{persisted ? `${state.media.length} published assets` : "Save the article to upload images"}</p></header>{persisted && <><form className="media-upload-panel" onSubmit={upload}><label className="media-file-picker"><input type="file" accept="image/jpeg,image/png,image/webp,image/gif" onChange={chooseFile} required /><strong>{file ? file.name : "Choose an image"}</strong><span>JPEG, PNG, WebP, or GIF · cover {coverSize.width} × {coverSize.height} · up to 10 MiB</span></label>{file && <button type="button" className="media-edit-button" onClick={() => setEditorFile(file)}>Edit image</button>}<label className="media-cover-toggle"><input type="checkbox" checked={setAsCover} onChange={(event) => setSetAsCover(event.target.checked)} /><span><strong>Make this the cover</strong><small>Uses the cover description above.</small></span></label><button className="media-publish-button" disabled={pending}>{pending ? "Publishing…" : "Publish image"}</button></form><div className="media-grid">{state.media.map((item) => <article className="media-card" key={item.path}><div className="media-thumbnail"><img src={item.path} alt="" />{article.image === item.path && <span>Current cover</span>}</div><div className="media-card-body"><p title={item.path}>{item.name}</p><small>{Math.ceil(item.size / 1024)} KB</small></div><div className="media-card-actions"><button type="button" className="admin-secondary" onClick={() => copy(item.path)}>Copy URL</button><button type="button" className="admin-secondary" onClick={() => useCover(item.path)} disabled={pending || !article.imageAlt}>Use as cover</button><button type="button" className="admin-danger" onClick={() => remove(item.path)} disabled={pending}>Delete</button></div></article>)}</div></>}</section>
+    <section className="media-library article-media"><header><div><p className="eyebrow">Article media</p><h2>Images</h2></div><p>{persisted ? `${state.media.length} published assets` : "Save the article to upload images"}</p></header><section className="ai-cover-panel"><div><p className="eyebrow">AI cover</p><h3>Make a visual starting point</h3><p>Uses the title, description, tags, and your direction. Covers are generated without text.</p></div><label>Visual direction <textarea value={direction} onChange={(event) => setDirection(event.target.value)} maxLength="600" placeholder="Optional: quiet editorial illustration, clear metaphor, forest-green details" /></label><div className="ai-cover-actions"><button type="button" className="media-publish-button" onClick={generateCover} disabled={pending || generating}>{generating ? "Generating…" : generatedCover ? "Regenerate cover" : "Generate cover"}</button>{generatedCover && <button type="button" className="admin-secondary" onClick={useGeneratedCover} disabled={pending || generating}>Use as cover</button>}</div>{generatedCover && <img className="ai-cover-preview" src={generatedCover.preview} alt="Generated cover preview" />}{!persisted && generatedCover && <p className="media-muted">This preview stays in this browser until the article is saved.</p>}</section>{persisted && <><form className="media-upload-panel" onSubmit={upload}><label className="media-file-picker"><input type="file" accept="image/jpeg,image/png,image/webp,image/gif" onChange={chooseFile} required /><strong>{file ? file.name : "Choose an image"}</strong><span>JPEG, PNG, WebP, or GIF · cover {coverSize.width} × {coverSize.height} · up to 10 MiB</span></label>{file && <button type="button" className="media-edit-button" onClick={() => setEditorFile(file)}>Edit image</button>}<label className="media-cover-toggle"><input type="checkbox" checked={setAsCover} onChange={(event) => setSetAsCover(event.target.checked)} /><span><strong>Make this the cover</strong><small>Uses the cover description above.</small></span></label><button className="media-publish-button" disabled={pending}>{pending ? "Publishing…" : "Publish image"}</button></form><div className="media-grid">{state.media.map((item) => <article className="media-card" key={item.path}><div className="media-thumbnail"><img src={item.path} alt="" />{article.image === item.path && <span>Current cover</span>}</div><div className="media-card-body"><p title={item.path}>{item.name}</p><small>{Math.ceil(item.size / 1024)} KB</small></div><div className="media-card-actions"><button type="button" className="admin-secondary" onClick={() => copy(item.path)}>Copy URL</button><button type="button" className="admin-secondary" onClick={() => useCover(item.path)} disabled={pending || !article.imageAlt}>Use as cover</button><button type="button" className="admin-danger" onClick={() => remove(item.path)} disabled={pending}>Delete</button></div></article>)}</div></>}</section>
     {editorFile && <FilerobotEditor file={editorFile} cover={setAsCover} onSave={(nextFile) => { setFile(nextFile); setEditorFile(null); setMessage("Image edits are ready to publish."); }} onClose={() => setEditorFile(null)} />}
   </section></main>;
 }

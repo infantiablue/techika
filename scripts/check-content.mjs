@@ -4,7 +4,7 @@ import path from "node:path";
 import { getPosts } from "../lib/posts.js";
 
 const posts = getPosts();
-assert.equal(posts.length, 10, "all ten Markdown posts must be present");
+assert.equal(posts.length, 12, "all twelve Markdown posts must be present");
 assert.equal(new Set(posts.map((post) => post.path)).size, posts.length, "post URLs must be unique");
 assert.ok(posts.filter((post) => post.featured).length <= 1, "only one post may be featured");
 for (const post of posts) {
