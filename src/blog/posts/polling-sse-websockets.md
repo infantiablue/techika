@@ -5,6 +5,8 @@ description: >-
   retry backoff, visibility handling, and honest stale-data labels.
 author: Truong Phan
 type: article
+image: >-
+  /media/polling-sse-websockets/8f00d5dd-3cc8-497b-b550-8eb1bc927297-ai-cover.png
 date: '2026-08-29'
 tags:
   - javascript
@@ -12,11 +14,8 @@ tags:
   - polling
   - server-sent-events
   - websocket
-image: >-
-  /media/polling-sse-websockets/8f00d5dd-3cc8-497b-b550-8eb1bc927297-ai-cover.png
 imageAlt: 'Polling, Server-Sent Events, or WebSockets? A live football scoreboard example'
 ---
-
 A live scoreboard does not need to act like the match official's control room.
 
 That distinction matters. A fan checking a result can normally tolerate a short delay. An operator correcting a score or managing a live broadcast cannot. Both screens may say “live,” but they make different promises. The transport should follow that promise.
@@ -784,7 +783,7 @@ Use **WebSockets** when:
 - the application needs live commands, acknowledgements, or subscriptions;
 - the team is prepared to restore authentication and authoritative state after reconnecting.
 
-## Conclusion
+## Bottom Line
 
 A persistent connection is not automatically better. It is an operational commitment.
 
@@ -793,6 +792,8 @@ For this public live-score page, one-minute polling matches the provider's guida
 Move to SSE when a central feed can push goals and status changes within seconds. Move to WebSockets only when the screen also needs frequent live commands and the application is ready to recover state after a broken connection.
 
 Choose the smallest transport that makes the cost of an old score acceptable.
+
+## [Github Repo](https://github.com/infantiablue/live-score-demo)
 
 ## Sources
 
