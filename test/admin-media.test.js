@@ -39,14 +39,19 @@ test("cover updates preserve frontmatter and require safe media paths", () => {
   assert.throws(() => mediaRules.validateImagePath("https://example.com/cover.png"));
 });
 
-test("article metadata validates and preserves Markdown body", () => {
-  const article = validateArticle({ slug: "hello-world", title: "Hello", description: "A description", author: "Truong", date: "2026-08-27", tags: ["writing"], image: "/media/hello-world/cover.png", imageAlt: "A cover", featured: true, content: "# Hello\n\nBody" }, { newArticle: true });
+test("article metadata validates status and preserves Markdown body", () => {
+  const article = validateArticle({ slug: "hello-world", title: "Hello", description: "A description", author: "Truong", date: "2026-08-27", status: "published", tags: ["writing"], image: "/media/hello-world/cover.png", imageAlt: "A cover", featured: true, content: "# Hello\n\nBody" }, { newArticle: true });
   const source = mediaRules.articleSource(article);
   assert.match(source, /type: article/);
+  assert.match(source, /status: published/);
+  assert.equal(mediaRules.articleFromSource("hello-world", source).status, "published");
+  assert.equal(mediaRules.articleFromSource("legacy", "---\ntitle: Legacy\n---\nBody").status, "published");
   assert.equal(mediaRules.articleFromSource("hello-world", source).featured, true);
   assert.equal(mediaRules.articleFromSource("hello-world", source).content, "# Hello\n\nBody");
   assert.doesNotMatch(mediaRules.clearFeatured(source), /featured:/);
   assert.throws(() => validateArticle({ ...article, slug: "Bad slug" }, { newArticle: true }));
+  assert.throws(() => validateArticle({ ...article, status: "private" }, { newArticle: true }), /Select Draft or Published/);
+  assert.throws(() => validateArticle({ ...article, status: "draft" }, { newArticle: true }), /Only published articles can be featured/);
   assert.throws(() => validateArticle({ ...article, imageAlt: "" }, { newArticle: true }));
   assert.throws(() => validateArticle({ ...article, image: "", imageAlt: "" }, { newArticle: true }));
 });
@@ -68,6 +73,7 @@ test("browser drafts save, load, and remove without publishing", () => {
   const storage = { getItem: (key) => values.get(key) || null, setItem: (key, value) => values.set(key, value) };
   saveArticleDraft(storage, "draft-1", { article: { title: "Draft" }, updatedAt: "2026-08-27T00:00:00.000Z" });
   assert.equal(readArticleDrafts(storage)["draft-1"].article.title, "Draft");
+  assert.equal(readArticleDrafts(storage)["draft-1"].article.status, "draft");
   removeArticleDraft(storage, "draft-1");
   assert.deepEqual(readArticleDrafts(storage), {});
 });

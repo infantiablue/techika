@@ -5,6 +5,7 @@ description: >-
   Sustainable work also needs skill, demand, resources, and room to change.
 author: Truong Phan
 type: article
+status: published
 image: /media/follow-your-passion/cover.png
 date: '2026-08-27'
 tags:

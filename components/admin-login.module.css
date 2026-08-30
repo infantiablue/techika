@@ -1,0 +1,180 @@
+.shell {
+  width: min(1120px, calc(100% - 2.5rem));
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  margin: 0 auto;
+  padding: 2rem 0;
+}
+
+.stage {
+  width: 100%;
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(19rem, .85fr);
+  border: 1px solid var(--rule);
+  background: color-mix(in srgb, var(--bg) 90%, transparent);
+  box-shadow: 0 1.5rem 4rem color-mix(in srgb, var(--text) 12%, transparent);
+}
+
+.intro,
+.card {
+  padding: clamp(2rem, 5vw, 4.25rem);
+}
+
+.intro {
+  display: grid;
+  align-content: center;
+  min-height: 31rem;
+  border-right: 1px solid var(--rule);
+}
+
+.eyebrow {
+  margin: 0;
+  color: var(--green);
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+.mark {
+  width: 3.3rem;
+  height: 3.3rem;
+  display: grid;
+  place-items: center;
+  margin: 2rem 0 1.5rem;
+  border: 1px solid var(--green);
+  border-radius: 50%;
+  color: var(--green);
+  font-family: Iowan Old Style, Palatino Linotype, Book Antiqua, Palatino, Georgia, serif;
+  font-size: 1.15rem;
+  letter-spacing: -.08em;
+}
+
+.intro h1,
+.card h2 {
+  margin: 0;
+  font-family: Iowan Old Style, Palatino Linotype, Book Antiqua, Palatino, Georgia, serif;
+  font-weight: 400;
+  letter-spacing: -.05em;
+  line-height: .98;
+}
+
+.intro h1 {
+  max-width: 9ch;
+  font-size: clamp(3.15rem, 6vw, 5.4rem);
+}
+
+.context {
+  max-width: 31rem;
+  margin: 1.5rem 0 0;
+  color: var(--muted);
+}
+
+.note {
+  margin: 2.8rem 0 0;
+  padding-top: .9rem;
+  border-top: 1px solid var(--rule);
+  color: var(--muted);
+  font-size: .78rem;
+  letter-spacing: .04em;
+}
+
+.card {
+  display: grid;
+  align-content: center;
+  gap: 1.35rem;
+  background: var(--panel);
+}
+
+.card header {
+  display: grid;
+  gap: .55rem;
+}
+
+.card h2 {
+  font-size: clamp(2.35rem, 4vw, 3.4rem);
+}
+
+.card header > p:last-child {
+  margin: 0;
+  color: var(--muted);
+  font-size: .92rem;
+}
+
+.field {
+  display: grid;
+  gap: .5rem;
+  font-weight: 650;
+  font-size: .88rem;
+}
+
+.field input {
+  width: 100%;
+  min-height: 3.1rem;
+  padding: .6rem .75rem;
+  border: 1px solid var(--rule);
+  border-radius: .2rem;
+  color: var(--text);
+  background: var(--bg);
+  font: inherit;
+}
+
+.field input:focus-visible,
+.submit:focus-visible {
+  outline: 2px solid var(--green);
+  outline-offset: 3px;
+}
+
+.error {
+  margin: -.25rem 0 0;
+  color: #a61b1b;
+  font-size: .88rem;
+}
+
+.submit {
+  min-height: 3.1rem;
+  border: 0;
+  border-radius: .2rem;
+  color: var(--bg);
+  background: var(--green);
+  cursor: pointer;
+  font: inherit;
+  font-weight: 700;
+}
+
+.submit:hover:not(:disabled) {
+  filter: brightness(.92);
+}
+
+.submit:disabled {
+  cursor: wait;
+  opacity: .65;
+}
+
+@media (max-width: 720px) {
+  .shell {
+    width: min(100% - 2rem, 34rem);
+    place-items: start center;
+    padding: 1.25rem 0;
+  }
+
+  .stage {
+    grid-template-columns: 1fr;
+  }
+
+  .intro {
+    min-height: auto;
+    border-right: 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .intro h1 {
+    max-width: 12ch;
+    font-size: clamp(2.8rem, 13vw, 4rem);
+  }
+
+  .note {
+    margin-top: 2rem;
+  }
+}

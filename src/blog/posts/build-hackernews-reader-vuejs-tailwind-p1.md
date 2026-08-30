@@ -3,6 +3,7 @@ title: Build the HackerNews Reader with VueJS 3 — Part 1
 description: Step by step to build the HackerNews Reader using Vue 3, Vite 2, VueX 4 & Tailwind CSS framework.
 author: Truong Phan
 type: article
+status: published
 image: /media/vhnews-tutorials/banner.jpg
 imageAlt: Hacker News reader built with Vue.js and Tailwind CSS
 date: 2021-01-09

@@ -5,6 +5,7 @@ description: >-
   earn the result. Effort matters, but this story is incomplete.
 author: Truong Phan
 type: article
+status: published
 image: /media/the-luck/banner.jpg
 date: '2026-08-24'
 tags:

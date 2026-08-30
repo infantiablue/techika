@@ -1,14 +1,15 @@
 import assert from "node:assert/strict";
 import fs from "node:fs";
 import path from "node:path";
-import { getPosts } from "../lib/posts.js";
+import { getAllPosts } from "../lib/posts.js";
 
-const posts = getPosts();
+const posts = getAllPosts();
 assert.equal(posts.length, 12, "all twelve Markdown posts must be present");
 assert.equal(new Set(posts.map((post) => post.path)).size, posts.length, "post URLs must be unique");
 assert.ok(posts.filter((post) => post.featured).length <= 1, "only one post may be featured");
 for (const post of posts) {
   assert.ok(post.title && post.date && post.author && post.content.trim(), `${post.slug} is missing required content`);
+  assert.ok(["draft", "published"].includes(post.status), `${post.slug} must have a valid publication status`);
   assert.ok(post.description, `${post.slug} is missing its search description`);
   if (post.featured) assert.ok(post.image && post.imageAlt, `${post.slug} needs a cover image and description to be featured`);
   assert.match(post.path, /^\/\d{4}\/\d{2}\/\d{2}\/.+\/$/, `${post.slug} has an invalid dated route`);

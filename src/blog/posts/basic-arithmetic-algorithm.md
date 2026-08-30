@@ -3,6 +3,7 @@ title: "JavaScript Arithmetic Algorithms: Prime, GCD, and Fibonacci"
 description: JavaScript examples for prime checks, Fibonacci, GCD, LCM, and random numbers, with time-complexity notes.
 author: Truong Phan
 type: article
+status: published
 image: /media/basic-arithmetic-algorithm/cover.png
 imageAlt: JavaScript arithmetic algorithms for prime checks, Fibonacci, and greatest common divisors
 date: 2022-05-29

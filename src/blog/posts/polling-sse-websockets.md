@@ -5,6 +5,7 @@ description: >-
   retry backoff, visibility handling, and honest stale-data labels.
 author: Truong Phan
 type: article
+status: published
 image: >-
   /media/polling-sse-websockets/8f00d5dd-3cc8-497b-b550-8eb1bc927297-ai-cover.png
 date: '2026-08-29'

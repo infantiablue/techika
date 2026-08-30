@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import styles from "./admin-login.module.css";
 
 export function AdminLogin() {
   const [error, setError] = useState("");
@@ -22,5 +23,5 @@ export function AdminLogin() {
     }
   }
 
-  return <main className="admin-shell"><form className="admin-card" onSubmit={submit}><h1>Admin</h1><p>Sign in to manage articles and media.</p><label>Password<input name="password" type="password" autoComplete="current-password" required autoFocus /></label>{error && <p className="admin-error" role="alert">{error}</p>}<button disabled={pending}>{pending ? "Signing in…" : "Sign in"}</button></form></main>;
+  return <main className={styles.shell}><section className={styles.stage} aria-label="Admin sign in"><div className={styles.intro}><p className={styles.eyebrow}>Techika / Publishing desk</p><div className={styles.mark} aria-hidden="true">TP</div><h1>Return to the writing desk.</h1><p className={styles.context}>Manage the articles and media behind your public site from one private workspace.</p><p className={styles.note}>Git-backed Markdown · Private access</p></div><form className={styles.card} onSubmit={submit}><header><p className={styles.eyebrow}>Secure access</p><h2>Sign in</h2><p>Enter your admin password to continue.</p></header><label className={styles.field}>Password<input name="password" type="password" autoComplete="current-password" aria-invalid={Boolean(error)} aria-describedby={error ? "admin-login-error" : undefined} required autoFocus /></label>{error && <p className={styles.error} id="admin-login-error" role="alert">{error}</p>}<button className={styles.submit} disabled={pending}>{pending ? "Signing in…" : "Open publishing desk"}</button></form></section></main>;
 }

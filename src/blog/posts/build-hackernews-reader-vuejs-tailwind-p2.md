@@ -3,6 +3,7 @@ title: "HackerNews Reader with Vue 3: Dark Mode"
 description: Add dark mode to a HackerNews Reader built with Vue 3, Vite 2, VueX 4, and Tailwind CSS.
 author: Truong Phan
 type: article
+status: published
 image: /media/vhnews-tutorials-p2/banner.jpg
 imageAlt: Hacker News reader with a dark mode interface
 date: 2021-01-16

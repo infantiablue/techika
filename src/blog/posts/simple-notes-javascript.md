@@ -3,6 +3,7 @@ title: "JavaScript Fundamentals: A Practical Overview"
 description: A practical overview of JavaScript history, standards, engines, runtimes, and core language concepts.
 author: Truong Phan
 type: article
+status: published
 image: /media/simple-notes-javascript/banner.jpg
 imageAlt: JavaScript notes and object cheat sheet
 date: 2021-01-14

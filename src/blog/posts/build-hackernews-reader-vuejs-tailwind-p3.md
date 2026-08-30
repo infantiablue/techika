@@ -3,6 +3,7 @@ title: "HackerNews Reader with Vue 3: Infinite Loading"
 description: Add infinite loading to a HackerNews Reader built with Vue 3, Vite 2, VueX 4, Tailwind CSS, and modern JavaScript.
 author: Truong Phan
 type: article
+status: published
 image: /media/vhnews-tutorials-p3/banner.jpg
 imageAlt: Hacker News reader showing article cards and navigation
 date: 2021-05-29
