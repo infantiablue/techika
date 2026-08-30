@@ -5,6 +5,8 @@ description: >-
   must be supported by demand, distribution, sound economics, and execution.
 author: Truong Phan
 type: article
+status: draft
+image: ''
 date: '2026-08-28'
 tags:
   - business
