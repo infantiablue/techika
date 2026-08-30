@@ -5,10 +5,10 @@ description: >-
   must be supported by demand, distribution, sound economics, and execution.
 author: Truong Phan
 type: article
-status: draft
+status: published
 image: >-
   /media/great-product-does-not-guarantee-business-success/9ef205da-e843-4f47-8ac8-0fdffdc5a0f1-ai-cover.png
-date: '2026-08-28'
+date: '2026-08-30'
 tags:
   - business
   - product
