@@ -1,16 +1,21 @@
 ---
-title: "Object.hasOwn() vs hasOwnProperty() vs in — The JS Property Check Showdown"
-description: "Understand the difference between Object.hasOwn(), hasOwnProperty(), and the in operator in JavaScript. Includes edge cases, performance notes, and a polyfill for older environments."
+title: Object.hasOwn() vs hasOwnProperty() vs in — The JS Property Check Showdown
+description: >-
+  Understand the difference between Object.hasOwn(), hasOwnProperty(), and the
+  in operator in JavaScript. Includes edge cases, performance notes, and a
+  polyfill for older environments.
 author: Truong Phan
 type: article
 status: published
-image: /media/object-hasown-vs-hasownproperty-vs-in/969138cc-17b3-4e19-a655-dba6f2e9a5f7-ai-cover.png
-imageAlt: JavaScript property check comparison showing Object.hasOwn, hasOwnProperty, and in operator
-date: 2026-08-31
+image: >-
+  /media/object-hasown-vs-hasownproperty-vs-in/969138cc-17b3-4e19-a655-dba6f2e9a5f7-ai-cover.png
+date: '2026-08-31'
 tags:
   - javascript
+imageAlt: >-
+  JavaScript property check comparison showing Object.hasOwn, hasOwnProperty,
+  and in operator
 ---
-
 With a long history of development (and chaos), JS has accumulated multiple ways to do the same thing — check if an object has a property. This leads to confusion, subtle bugs, and endless Reddit threads. This article breaks down the three main approaches so you can pick the right one and move on.
 
 ## The Three Contenders
@@ -341,9 +346,3 @@ If your `browserslist` targets "last 2 versions" or "defaults", you're covered. 
 - **Polyfill** — 3 lines, spec-compliant, drop it in and forget it.
 
 Pick one, be consistent, and stop bikeshedding in PR reviews.
-
----
-
-## P/S
-
-As with the [isNaN article](/posts/isNaN-vs-Number_isNaN), this one will probably attract a [Reddit thread](https://www.reddit.com/r/javascript/comments/) debating the polyfill's `Object(object)` coercion vs. strict `null` checks. The spec says throw on `null`/`undefined` — the polyfill matches that. If your codebase passes `null` to property checks, fix the call sites, not the polyfill.
