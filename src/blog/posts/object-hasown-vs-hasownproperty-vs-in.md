@@ -6,7 +6,7 @@ description: >-
   polyfill for older environments.
 author: Truong Phan
 type: article
-status: draft
+status: published
 image: >-
   /media/object-hasown-vs-hasownproperty-vs-in/969138cc-17b3-4e19-a655-dba6f2e9a5f7-ai-cover.png
 date: '2026-08-31'
