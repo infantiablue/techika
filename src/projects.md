@@ -1,67 +1,50 @@
 ---
-title: My Projects
+title: Projects
 ---
 
-# [Expensify](https://github.com/infantiablue/expensify) <Badge text="Open Source" vertical="middle"/>
+<section class="projects-hero">
+  <p class="eyebrow">Independent products</p>
+  <p>I build small, useful tools for people who like to collect ideas, make better decisions, and create things worth sharing.</p>
+</section>
 
-The main idea of the project is to build a personal expense/income tracker. It's pretty straight forward with some core functions:
+<section class="projects-current" aria-labelledby="current-projects">
+  <div class="projects-section-heading">
+    <p class="eyebrow">Now shipping</p>
+    <h2 id="current-projects">Products made to be used</h2>
+  </div>
+  <div class="projects-grid">
+    <article class="project-card project-wordcy">
+      <p class="project-label">Words</p>
+      <h3>Wordcy</h3>
+      <p>Turn book quotes into beautifully typeset images, ready to share wherever your reading life lives.</p>
+      <ul class="project-meta"><li>Quote curation</li><li>Share-ready images</li></ul>
+      <a class="project-link" href="https://wordcy.com" target="_blank" rel="noopener noreferrer">Visit Wordcy <span aria-hidden="true">↗</span></a>
+    </article>
+    <article class="project-card project-dcavalue">
+      <p class="project-label">Capital</p>
+      <h3>DCA Value</h3>
+      <p>Test dollar-cost averaging with historical data, compare strategies, and see the trade-offs before you invest.</p>
+      <ul class="project-meta"><li>Historical simulations</li><li>Investment tools</li></ul>
+      <a class="project-link" href="https://dcavalue.com" target="_blank" rel="noopener noreferrer">Visit DCA Value <span aria-hidden="true">↗</span></a>
+    </article>
+    <article class="project-card project-wowavatars">
+      <p class="project-label">Character</p>
+      <h3>WOW Avatars</h3>
+      <p>Transform a photo into an AI-stylized avatar—from anime and watercolor to 3D-rendered worlds.</p>
+      <ul class="project-meta"><li>AI image creation</li><li>50+ visual styles</li></ul>
+      <a class="project-link" href="https://wowavatars.com" target="_blank" rel="noopener noreferrer">Visit WOW Avatars <span aria-hidden="true">↗</span></a>
+    </article>
+  </div>
+</section>
 
-- Add expense/income transaction
-- Remove transaction (AJAX)
-- Create category for transactions
-- Remove category (AJAX)
-- The user can see transactions per category
-- The user can check balance, total income, total expense at a glance
-- The user can view all transactions with infinite loading implementation
-- The user can update personal information and change avatar
-- There are pretty charts to review past transactions
-- Mobile friendly
-
-Built on Django, and [Vanilla Javascript Framework](http://vanilla-js.com/)
-
-<iframe width="100%" height="315" src="https://www.youtube.com/embed/m-gytkEDR8g" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-<br/><br/>
-
----
-
-# [Convertca](https://convertca.com) <Badge text="Open Source" vertical="middle"/>
-
-I was learning Web Dev and believe the best way is to practice. Then I made this project with some technology which could be over-engineered for such a simple site, but I can learn a lot from that. The site basically let you convert any youtube video less than 10 mins to MP3/ACC files, save it to DropBox, basic profile with history. It has been published on [Reddit](https://www.reddit.com/r/Python/comments/k003t6/a_complete_web_app_to_convert_youtube_videos_to/) community.
-
-Here are some tech tools have been used:
-
-- Flask, SQLAlchemy, Flask-Dance
-- Google Cloud Logging
-- Custom Web Socket Server for progess bar
-- VueJS, WebPack, Bootstrap for front end
-- PostgreSQL
-- PyTest
-- Social Authentication
-- Experiment with Google Cloud Firestore, which you can find in web/gdata folder
-- Supervisor, gunicorn with Nginx for production
-  
-<br/><br/>
-🎁 [Github Repo](https://github.com/infantiablue/converter)
-<br/><br/>
-
----
-
-# [HackerNews Reader](https://hnews.truongphan.com/) <Badge text="Open Source" vertical="middle"/> <Badge text="WIP" type="warning" vertical="middle"/>
-
-![Demo](assets/img/darkmode.ebc0d14f.png)
-
-The project has been developed to experiment with Vue 3 and Vite. To make it simple for the learning purpose, the goal is just to receive the top articles from Hacker News and load it from the client side. It has been published on [Medium](https://infantiablue.medium.com/hackernews-reader-with-vue-3-vite-2-and-vuex-4-part-1-247315ceb06a) as tutorials.
-<br/><br/>
-🎁 [Github Repo](https://github.com/infantiablue/vhnews)
-
-<style scoped>
-h2{
-  border-bottom:none;
-}
-li{
-  list-style-type: none;
-}
-li::before {
-  content: "✅ ";
-}
-</style>
+<section class="projects-archive" aria-labelledby="project-archive">
+  <div class="projects-section-heading">
+    <p class="eyebrow">Earlier experiments</p>
+    <h2 id="project-archive">The archive</h2>
+  </div>
+  <div class="archive-grid">
+    <article><h3>Expensify</h3><p>A personal finance tracker built with Django and vanilla JavaScript.</p><a href="https://github.com/infantiablue/expensify" target="_blank" rel="noopener noreferrer">View repository <span aria-hidden="true">↗</span></a></article>
+    <article><h3>Convertca</h3><p>A YouTube-to-audio converter built as an early full-stack web experiment.</p><a href="https://github.com/infantiablue/converter" target="_blank" rel="noopener noreferrer">View repository <span aria-hidden="true">↗</span></a></article>
+    <article><h3>HackerNews Reader</h3><p>A Vue and Vite reader for the day’s top Hacker News stories.</p><a href="https://github.com/infantiablue/vhnews" target="_blank" rel="noopener noreferrer">View repository <span aria-hidden="true">↗</span></a></article>
+  </div>
+</section>
