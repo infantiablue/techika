@@ -217,35 +217,6 @@ if (!Object.hasOwn) {
 }
 ```
 
-## Discussion Bait
-
-This topic reliably spawns threads on Reddit/HN. Common flashpoints:
-
-1. **"Just use `hasOwnProperty.call()` — it's been fine for 20 years"**
-   - Valid for maintenance work. New code should use the standard API.
-
-2. **"The `in` operator is faster because it's an operator, not a function call"**
-   - False in modern engines. All three are intrinsic/optimized.
-
-3. **"`Object.hasOwn()` is just syntactic sugar for `hasOwnProperty.call()`"**
-   - It's not sugar — it has different semantics on `null`/`undefined` and primitives.
-
-4. **"Why not a `hasOwn` property on every object?"**
-   - Would break `Object.create(null)` dictionaries. Static method avoids this.
-
-5. **"TypeScript narrows types with `in` but not `Object.hasOwn()`"**
-   - True as of TS 5.x. `if ("x" in obj)` narrows; `Object.hasOwn(obj, "x")` doesn't. Workaround: user-defined type guards.
-
-```typescript
-function hasOwn<T, K extends PropertyKey>(obj: T, key: K): obj is T & Record<K, unknown> {
-  return Object.hasOwn(obj, key);
-}
-
-if (hasOwn(user, "email")) {
-  // user.email is now typed
-  user.email; // string
-}
-```
 
 ## Bonus: `Reflect.has()` — The Fourth Option
 
