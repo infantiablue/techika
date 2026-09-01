@@ -6,7 +6,7 @@ description: >-
   helps.
 author: Truong Phan
 type: article
-status: draft
+status: published
 image: >-
   /media/what-import-defer-actually-changes-about-module-loading/d3afe748-7f0f-4432-8712-82e2696bb4fd-ai-cover.png
 date: '2026-09-01'
@@ -16,7 +16,7 @@ imageAlt: What "import defer" Actually Changes About Module Loading
 ---
 ## The proposal, in short
 
-**Deferring Module Evaluation** (a.k.a. `import defer`) is a TC39 Stage 3 proposal championed by Nicolò Ribaudo. The motivation is straightforward: ES modules made loading sane but kept one CommonJS luxury out of reach — paying CPU only for what you actually use.
+**Deferring Module Evaluation** (a.k.a. `import defer`) is a [TC39 Stage 3 proposal](https://github.com/tc39/proposal-defer-import-eval) championed by Nicolò Ribaudo. The motivation is straightforward: ES modules made loading sane but kept one CommonJS luxury out of reach — paying CPU only for what you actually use.
 
 The syntax is namespace-only:
 
