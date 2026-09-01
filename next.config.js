@@ -3,6 +3,9 @@ const legacyHosts = /^(www\.)?techika\.com$/i;
 /** @type {import('next').NextConfig} */
 module.exports = {
   trailingSlash: true,
+  images: {
+    remotePatterns: [{ protocol: "https", hostname: "storage.googleapis.com", pathname: "/techika-media/**" }],
+  },
   async redirects() {
     return [
       { source: "/index.html", has: [{ type: "header", key: "host", value: legacyHosts.source }], destination: "https://truongphan.com/", permanent: true },

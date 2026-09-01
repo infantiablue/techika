@@ -52,6 +52,8 @@ test("article metadata validates status and preserves Markdown body", () => {
   assert.throws(() => validateArticle({ ...article, slug: "Bad slug" }, { newArticle: true }));
   assert.throws(() => validateArticle({ ...article, status: "private" }, { newArticle: true }), /Select Draft or Published/);
   assert.throws(() => validateArticle({ ...article, status: "draft" }, { newArticle: true }), /Only published articles can be featured/);
+  assert.doesNotThrow(() => validateArticle({ ...article, image: "https://storage.googleapis.com/techika-media/images/cover.png" }, { newArticle: true }));
+  assert.throws(() => validateArticle({ ...article, image: "https://example.com/cover.png" }, { newArticle: true }), /allowed Google Cloud URL/);
   assert.throws(() => validateArticle({ ...article, imageAlt: "" }, { newArticle: true }));
   assert.throws(() => validateArticle({ ...article, image: "", imageAlt: "" }, { newArticle: true }));
 });

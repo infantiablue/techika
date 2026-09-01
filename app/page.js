@@ -1,6 +1,8 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Header } from "../components/site";
 import { getPosts, selectFeaturedPost } from "../lib/posts";
+import { coverSize } from "../lib/media-rules";
 
 function formatDate(date) {
 	return new Intl.DateTimeFormat("en-US", { month: "short", day: "numeric", year: "numeric", timeZone: "UTC" }).format(new Date(`${date}T00:00:00Z`));
@@ -24,7 +26,7 @@ export default function Home() {
 					</h1>
 				</section>
 				<section className='featured'>
-					{featured.image && <Link className='featured-cover' href={featured.path} aria-label={`Read ${featured.title}`}><img src={featured.image} alt='' width='1200' height='675' fetchPriority='high' /></Link>}
+					{featured.image && <Link className='featured-cover' href={featured.path} aria-label={`Read ${featured.title}`}><Image src={featured.image} alt='' {...coverSize} sizes="(max-width: 1018px) calc(100vw - 3rem), 970px" priority /></Link>}
 					<div className='featured-meta'>
 						<strong>Featured</strong>
 						<time dateTime={featured.date}>{formatDate(featured.date)}</time>
