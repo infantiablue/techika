@@ -7,7 +7,8 @@ description: >-
 author: Truong Phan
 type: article
 status: draft
-image: ''
+image: >-
+  /media/what-import-defer-actually-changes-about-module-loading/d3afe748-7f0f-4432-8712-82e2696bb4fd-ai-cover.png
 date: '2026-09-01'
 tags:
   - javascript
