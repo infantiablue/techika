@@ -7,7 +7,7 @@ author: Truong Phan
 type: article
 status: published
 image: >-
-  /media/great-product-does-not-guarantee-business-success/9ef205da-e843-4f47-8ac8-0fdffdc5a0f1-ai-cover.png
+  /media/great-product-does-not-guarantee-business-success/acfc2a5f-875a-43d9-b292-5fe83656bad1-9ef205da-e843-4f47-8ac8-0fdffdc5a0f1-ai-cover.jpg
 date: '2026-08-30'
 tags:
   - business
