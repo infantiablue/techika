@@ -11,6 +11,7 @@ image: >-
 date: '2026-09-02'
 tags:
   - leadership
+  - simplicity
 imageAlt: >-
   The people we call geniuses — especially the ones who run things — rarely
   succeed by wading deeper into complexity

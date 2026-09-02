@@ -1,5 +1,5 @@
 ---
-title: The Luck We Receive and the Luck We Create
+title: The Luck You Inherit vs. The Luck You Can Engineer
 description: >-
   Success is often told as individual effort—work hard, make good decisions,
   earn the result. Effort matters, but this story is incomplete.

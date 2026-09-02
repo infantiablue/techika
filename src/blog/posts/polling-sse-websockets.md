@@ -7,7 +7,7 @@ author: Truong Phan
 type: article
 status: published
 image: >-
-  /media/polling-sse-websockets/8f00d5dd-3cc8-497b-b550-8eb1bc927297-ai-cover.png
+  /media/polling-sse-websockets/02baecb0-df9c-4eec-9c00-9175e606e04f-8f00d5dd-3cc8-497b-b550-8eb1bc927297-ai-cover.webp
 date: '2026-08-29'
 tags:
   - javascript
