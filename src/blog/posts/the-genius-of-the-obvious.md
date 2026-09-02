@@ -6,7 +6,8 @@ description: >-
 author: Truong Phan
 type: article
 status: draft
-image: ''
+image: >-
+  /media/the-genius-of-the-obvious/151fb0ed-9e8a-4480-b2e5-076f873ead52-ai-cover.png
 date: '2026-09-02'
 tags:
   - leadership
