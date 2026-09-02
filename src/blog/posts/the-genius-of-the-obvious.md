@@ -14,6 +14,7 @@ tags:
 imageAlt: >-
   The people we call geniuses — especially the ones who run things — rarely
   succeed by wading deeper into complexity
+featured: true
 ---
 The popular picture of genius is a person in a cluttered study, holding a dozen tangled threads in their head at once, seeing a problem so completely that they can hold all of its gritty detail simultaneously. That image has it backwards, and the proof is in the people who actually end up in charge of things.
 
