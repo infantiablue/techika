@@ -48,6 +48,7 @@ test("article metadata validates status and preserves Markdown body", () => {
   assert.equal(mediaRules.articleFromSource("legacy", "---\ntitle: Legacy\n---\nBody").status, "published");
   assert.equal(mediaRules.articleFromSource("hello-world", source).featured, true);
   assert.equal(mediaRules.articleFromSource("hello-world", source).content, "# Hello\n\nBody");
+  assert.deepEqual(validateArticle({ ...article, tags: ["writing", ""] }, { newArticle: true }).tags, ["writing"]);
   assert.doesNotMatch(mediaRules.clearFeatured(source), /featured:/);
   assert.throws(() => validateArticle({ ...article, slug: "Bad slug" }, { newArticle: true }));
   assert.throws(() => validateArticle({ ...article, status: "private" }, { newArticle: true }), /Select Draft or Published/);
@@ -73,9 +74,10 @@ test("homepage selects the marked article and falls back to the newest post", ()
 test("browser drafts save, load, and remove without publishing", () => {
   const values = new Map();
   const storage = { getItem: (key) => values.get(key) || null, setItem: (key, value) => values.set(key, value) };
-  saveArticleDraft(storage, "draft-1", { article: { title: "Draft" }, updatedAt: "2026-08-27T00:00:00.000Z" });
+  saveArticleDraft(storage, "draft-1", { article: { title: "Draft", tags: ["writing", ""] }, updatedAt: "2026-08-27T00:00:00.000Z" });
   assert.equal(readArticleDrafts(storage)["draft-1"].article.title, "Draft");
   assert.equal(readArticleDrafts(storage)["draft-1"].article.status, "draft");
+  assert.deepEqual(readArticleDrafts(storage)["draft-1"].article.tags, ["writing", ""]);
   removeArticleDraft(storage, "draft-1");
   assert.deepEqual(readArticleDrafts(storage), {});
 });
