@@ -24,6 +24,8 @@ When Steve Jobs returned to Apple in 1997, the company was bleeding money and se
 
 He drew a grid. Two columns — consumer and professional. Two rows — desktop and portable. Four boxes. Fill each box with one great product, and cut everything else.
 
+![Steve Jobs and his 2x2 grid](/media/the-genius-of-the-obvious/18f61a5d-8923-417d-8f4c-339cbd28f3ac-aaf5d1b3-8b0c-steve4e3e-a39e-9279dc089d96.jpg)
+
 The Newton, all the servers and printers, the confusing variants — gone. "Deciding what *not* to do is as important as deciding what to do," he would later say. He didn't deconstruct Apple's complexity. He refused to participate in it. Four boxes was the unrecognized simplicity, and that single clean frame is the skeleton on which the modern Apple was rebuilt.
 
 Notice what he didn't do. He didn't build the perfect company-wide SKU optimizer. He drew a picture a child could understand, and made the entire strategy hang off it. That's the move, every time: find the small clean shape underneath, and let the whole organization fall into it.
