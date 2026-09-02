@@ -5,7 +5,7 @@ import { mediaRules, uploadImage, validateArticle, validateImage } from "../lib/
 import { readArticleDrafts, removeArticleDraft, saveArticleDraft } from "../lib/article-drafts.js";
 import { coverSize } from "../lib/media-rules.js";
 import { filterMedia } from "../lib/media-rules.js";
-import { imageOptimizationRules, optimizedDimensions, shouldUseOptimized } from "../lib/image-optimize.js";
+import { imageOptimizationRules, optimizedDimensions, optimizedOutputType, shouldUseOptimized } from "../lib/image-optimize.js";
 import { selectFeaturedPost } from "../lib/posts.js";
 
 test("admin sessions expire and reject tampering", () => {
@@ -31,7 +31,10 @@ test("standalone uploads use the reusable library and cover uploads require cont
 });
 
 test("image optimization bounds dimensions and only keeps meaningful savings", () => {
-  assert.deepEqual(imageOptimizationRules, { bodyBounds: { width: 1920, height: 2560 }, maxImageBytes: 10 * 1024 * 1024, minimumSaving: 0.1, quality: 0.88, outputType: "image/jpeg" });
+  assert.deepEqual(imageOptimizationRules, { bodyBounds: { width: 1920, height: 2560 }, maxImageBytes: 10 * 1024 * 1024, minimumSaving: 0.1, quality: 0.88 });
+  assert.equal(optimizedOutputType("image/png"), "image/png");
+  assert.equal(optimizedOutputType("image/jpeg"), "image/jpeg");
+  assert.equal(optimizedOutputType("image/webp"), "image/jpeg");
   assert.deepEqual(optimizedDimensions(4000, 2000), { width: 1920, height: 960 });
   assert.deepEqual(optimizedDimensions(600, 400), { width: 600, height: 400 });
   assert.deepEqual(optimizedDimensions(2400, 1350, true), { width: 1200, height: 675 });
