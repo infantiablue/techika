@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { assertSameOrigin, hasAdminSession } from "../../../../lib/admin";
-import { ConflictError, deleteImage, setCover, uploadImage } from "../../../../lib/github-media";
+import { ConflictError, deleteImage, replaceImage, setCover, uploadImage } from "../../../../lib/github-media";
 
 function errorResponse(error) {
   const status = error instanceof ConflictError ? 409 : 400;
@@ -26,6 +26,16 @@ export async function PATCH(request) {
   try {
     await authorized(request);
     return NextResponse.json(await setCover(await request.json()));
+  } catch (error) {
+    return errorResponse(error);
+  }
+}
+
+export async function PUT(request) {
+  try {
+    await authorized(request);
+    const form = await request.formData();
+    return NextResponse.json(await replaceImage({ image: form.get("image"), file: form.get("file") }));
   } catch (error) {
     return errorResponse(error);
   }

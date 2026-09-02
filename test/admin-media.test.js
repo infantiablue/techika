@@ -4,6 +4,8 @@ import { createSession, verifyPassword, verifySession } from "../lib/admin-auth.
 import { mediaRules, uploadImage, validateArticle, validateImage } from "../lib/github-media.js";
 import { readArticleDrafts, removeArticleDraft, saveArticleDraft } from "../lib/article-drafts.js";
 import { coverSize } from "../lib/media-rules.js";
+import { filterMedia } from "../lib/media-rules.js";
+import { imageOptimizationRules, optimizedDimensions, shouldUseOptimized } from "../lib/image-optimize.js";
 import { selectFeaturedPost } from "../lib/posts.js";
 
 test("admin sessions expire and reject tampering", () => {
@@ -26,6 +28,41 @@ test("standalone uploads use the reusable library and cover uploads require cont
   assert.equal(mediaRules.mediaUploadPath("", "Hero Image.png", "png", "asset-1"), "public/media/library/asset-1-hero-image.png");
   assert.equal(mediaRules.mediaUploadPath("hello-world", "Hero Image.png", "png", "asset-1"), "public/media/hello-world/asset-1-hero-image.png");
   await assert.rejects(() => uploadImage({ file: { type: "image/png", size: 1, name: "hero.png" }, setCover: true }), /Select an article/);
+});
+
+test("image optimization bounds dimensions and only keeps meaningful savings", () => {
+  assert.deepEqual(imageOptimizationRules, { bodyBounds: { width: 1920, height: 2560 }, maxImageBytes: 10 * 1024 * 1024, minimumSaving: 0.1, quality: 0.88, outputType: "image/jpeg" });
+  assert.deepEqual(optimizedDimensions(4000, 2000), { width: 1920, height: 960 });
+  assert.deepEqual(optimizedDimensions(600, 400), { width: 600, height: 400 });
+  assert.deepEqual(optimizedDimensions(2400, 1350, true), { width: 1200, height: 675 });
+  assert.equal(shouldUseOptimized(1000, 900), true);
+  assert.equal(shouldUseOptimized(1000, 901), false);
+});
+
+test("media catalog derives readable names, usage, eligibility, and filters", () => {
+  const path = "public/media/hello-world/123e4567-e89b-12d3-a456-426614174000-hero.png";
+  const posts = [{ article: { slug: "hello-world", title: "Hello", image: "/media/hello-world/123e4567-e89b-12d3-a456-426614174000-hero.png" }, content: "Body" }];
+  const [item] = mediaRules.mediaFromTree([{ type: "blob", path, size: 2 * 1024 * 1024 }], posts);
+  assert.equal(item.displayName, "hero.png");
+  assert.equal(item.status, "cover");
+  assert.equal(item.coverEligible, true);
+  assert.equal(item.optimizable, true);
+  assert.deepEqual(item.article, { slug: "hello-world", title: "Hello" });
+  assert.equal(filterMedia([item], { filter: "article", query: "hero", articleSlug: "hello-world" }).length, 1);
+  assert.equal(filterMedia([item], { filter: "unused", query: "", articleSlug: "" }).length, 0);
+});
+
+test("media added time sorts newest assets first with a stable fallback", () => {
+  const media = mediaRules.sortMediaByAddedAt([{ path: "/media/old.png", addedAt: "2026-08-01T00:00:00Z" }, { path: "/media/new.png", addedAt: "2026-09-01T00:00:00Z" }, { path: "/media/unknown-b.png", addedAt: "" }, { path: "/media/unknown-a.png", addedAt: "" }]);
+  assert.deepEqual(media.map((item) => item.path), ["/media/new.png", "/media/old.png", "/media/unknown-a.png", "/media/unknown-b.png"]);
+});
+
+test("media replacement updates relative and absolute references", () => {
+  const oldImage = "/media/hello/old.png";
+  const source = `---\nimage: ${oldImage}\n---\n![Body](${oldImage})\nhttps://truongphan.com${oldImage}`;
+  const updated = mediaRules.replaceMediaReferences(source, oldImage, "/media/hello/new.webp");
+  assert.doesNotMatch(updated, /old\.png/);
+  assert.equal(updated.match(/new\.webp/g).length, 3);
 });
 
 test("cover updates preserve frontmatter and require safe media paths", () => {
