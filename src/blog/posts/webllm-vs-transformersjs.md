@@ -8,7 +8,8 @@ description: >-
 author: Truong Phan
 type: article
 status: draft
-image: ''
+image: >-
+  /media/webllm-vs-transformersjs/d195c86d-e033-4c3f-8f6d-d0c1cafd25e2-ai-cover.png
 date: '2026-09-02'
 tags:
   - javascript
