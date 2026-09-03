@@ -88,6 +88,10 @@ test("article metadata validates status and preserves Markdown body", () => {
   assert.equal(mediaRules.articleFromSource("legacy", "---\ntitle: Legacy\n---\nBody").status, "published");
   assert.equal(mediaRules.articleFromSource("hello-world", source).featured, true);
   assert.equal(mediaRules.articleFromSource("hello-world", source).content, "# Hello\n\nBody");
+  assert.equal(mediaRules.articleFromSource("hello-world", mediaRules.articleSource({ ...article, publishedAt: "2026-09-03T00:00:00.000Z" })).publishedAt, "2026-09-03T00:00:00.000Z");
+  assert.equal(mediaRules.publicationTimestamp(null, article, "2026-09-03T00:00:00.000Z"), "2026-09-03T00:00:00.000Z");
+  assert.equal(mediaRules.publicationTimestamp({ status: "draft" }, article, "2026-09-03T00:00:00.000Z"), "2026-09-03T00:00:00.000Z");
+  assert.equal(mediaRules.publicationTimestamp({ status: "published" }, article, "2026-09-03T00:00:00.000Z"), null);
   assert.deepEqual(validateArticle({ ...article, tags: ["writing", ""] }, { newArticle: true }).tags, ["writing"]);
   assert.doesNotMatch(mediaRules.clearFeatured(source), /featured:/);
   assert.throws(() => validateArticle({ ...article, slug: "Bad slug" }, { newArticle: true }));

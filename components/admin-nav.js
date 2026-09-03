@@ -9,12 +9,15 @@ const sections = [
 	{ id: "dashboard", href: "/admin/", label: "Dashboard" },
 	{ id: "articles", href: "/admin/articles/", label: "Articles" },
 	{ id: "media", href: "/admin/media/", label: "Media" },
+	{ id: "newsletter", href: "/admin/newsletter/", label: "Newsletter" },
 ];
 
 export function AdminNav() {
 	const pathname = usePathname();
 	const active = pathname.startsWith("/admin/media")
 		? "media"
+		: pathname.startsWith("/admin/newsletter")
+			? "newsletter"
 		: pathname.startsWith("/admin/articles") || pathname.startsWith("/admin/edit")
 			? "articles"
 			: "dashboard";
