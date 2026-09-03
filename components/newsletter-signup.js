@@ -11,7 +11,8 @@ export function NewsletterSignup() {
     const form = new FormData(event.currentTarget);
     try {
       const response = await fetch("/api/newsletter/subscribe", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ email: form.get("email"), website: form.get("website") }) });
-      setStatus(response.ok ? "Check your inbox to confirm your subscription." : "Unable to subscribe right now. Please try again.");
+      const result = await response.json();
+      setStatus(response.ok ? "Check your inbox to confirm your subscription." : result.error || "Unable to subscribe right now. Please try again.");
       if (response.ok) event.currentTarget.reset();
     } catch { setStatus("Unable to subscribe right now. Please try again."); }
     finally { setPending(false); }
