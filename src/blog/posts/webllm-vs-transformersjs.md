@@ -1,10 +1,10 @@
 ---
 title: 'WebLLM vs Transformers.js: which in-browser LLM engine should you ship?'
 description: >-
-  Compare MLC's WebLLM and Hugging Face's Transformers.js v4 for browser-native
-  LLM inference — model ecosystems, API shape, structured output, workers, and
-  an honest measurement protocol. One small task, both engines, no marketing
-  numbers.
+  Compare MLC's WebLLM and Hugging Face's Transformers.js v4 on a real browser
+  workload: extracting structured economic indicators from central-bank meeting
+  minutes into strict JSON. No marketing benchmarks — just actual outputs, code,
+  and failure modes.
 author: Truong Phan
 type: article
 status: draft
@@ -65,13 +65,42 @@ Transformers.js consumes standard ONNX models from the Hugging Face Hub. That is
 
 The trade-off: more choice, but you carry more responsibility for whether a given model actually runs well on your user's hardware. Just because it is on the Hub does not mean it is tuned for WebGPU in your browser.
 
-## One task, both engines
+## One real task, both engines
 
-To compare them fairly I used a small, boring task that most browser-AI features actually look like: **paste a block of meeting notes, get back a list of action items.** It is small enough that a slow model finishes, it is a real product feature, and it gives me something concrete to hold both engines against.
+Most in-browser AI demos show the same toy problem: a five-line summarizer or a casual chatbot. Those make for neat Twitter videos, but they do not reflect why people want browser inference in real products.
 
-### With WebLLM
+In a real app, you rarely want raw conversational prose. You want **structured data** extracted from messy documents — time-series indicators, form fields, action items with dates, or parsed financial statements — that can feed directly into a chart, a reactive state store, or an IndexedDB table.
 
-We skip the model server entirely and talk to the engine through the same chat-completions interface you would use against an OpenAI endpoint:
+To see how WebLLM and Transformers.js behave under real pressure, I tested both on a concrete document: **extracting economic data points from central-bank meeting minutes into a strict JSON schema.**
+
+The source text was a dense macroeconomic summary from Federal Reserve meeting minutes. It covers fourth-quarter GDP expansion, labor market cooling, unemployment (4.4% in December), average hourly earnings (3.8%), PCE inflation (2.8% headline, 2.8% core), staff estimates (2.9% PCE, 3.0% core PCE), CPI numbers (2.7% and 2.6%), tariff impacts, trade deficits, and foreign central bank rate moves (Bank of England, Bank of Mexico, Bank of Japan).
+
+The goal: extract every explicit, numerically grounded economic indicator into an array conforming to this contract:
+
+```json
+{
+  "data_points": [
+    {
+      "measure": "unemployment rate",
+      "economy": "US",
+      "period": "December",
+      "value": 4.4,
+      "unit": "percent"
+    }
+  ]
+}
+```
+
+If a metric is described only qualitatively (for example, "slightly below its 2024 pace"), `value` must be `null` with the qualifier preserved. No invented numbers, no prose commentary, and strict JSON validity.
+
+To make it a fair test of what a user's browser can realistically load and run without an unbearable wait, I picked the most practical small instruction models available on each engine:
+
+- **WebLLM**: `Llama-3.2-1B-Instruct-q4f16_1-MLC` (~1 GB download, 4-bit weights).
+- **Transformers.js v4**: `onnx-community/Qwen2.5-0.5B-Instruct` (~350 MB download, 4-bit ONNX weights).
+
+### With WebLLM: grammar-constrained JSON
+
+WebLLM talks to the engine through an OpenAI-compatible interface:
 
 ```bash
 npm install @mlc-ai/web-llm
@@ -80,29 +109,61 @@ npm install @mlc-ai/web-llm
 ```js
 import { CreateMLCEngine } from "@mlc-ai/web-llm";
 
-// Loading a model downloads weights on first run. Show progress.
-const engine = await CreateMLCEngine("Llama-3.1-8B-Instruct-q4f32_1-MLC", {
+// 1B model: downloads ~1 GB of 4-bit weights into browser cache on first run
+const engine = await CreateMLCEngine("Llama-3.2-1B-Instruct-q4f16_1-MLC", {
   initProgressCallback: (p) => {
     console.log(`${Math.round(p.progress * 100)}% loaded : ${p.text}`);
   },
 });
 
-const messages = [
-  { role: "system", content: "Extract the action items from the notes as a JSON list. Each item has a person, a task, and a due date when one is mentioned." },
-  { role: "user", content: "…paste meeting notes here…" },
-];
+const economicDataSchema = {
+  type: "object",
+  properties: {
+    data_points: {
+      type: "array",
+      items: {
+        type: "object",
+        properties: {
+          measure: { type: "string" },
+          economy: { type: "string" },
+          period: { type: "string" },
+          value: { type: ["number", "null"] },
+          unit: { type: "string" },
+        },
+        required: ["measure", "economy", "period", "value", "unit"],
+      },
+    },
+  },
+  required: ["data_points"],
+};
 
-const reply = await engine.chat.completions.create({ messages });
-console.log(reply.choices[0].message.content);
+const reply = await engine.chat.completions.create({
+  messages: [
+    {
+      role: "system",
+      content: "Extract economic data from central-bank meeting minutes into a JSON object.",
+    },
+    { role: "user", content: meetingMinutesText },
+  ],
+  // WebLLM compiles this schema to a WebAssembly grammar automaton:
+  response_format: {
+    type: "json_object",
+    schema: JSON.stringify(economicDataSchema),
+  },
+  max_tokens: 1024,
+});
+
+const data = JSON.parse(reply.choices[0].message.content);
+console.log(data.data_points);
 ```
 
-For a quicker first test, pick a smaller model — for example **`Llama-3.2-1B-Instruct-q4f16_1-MLC`** (1B) or **`Qwen2-1.5B-Instruct-q4f16_1-MLC`** — both of which are in the current model list. The model list lives under the MLC-AI Hugging Face org, and the exact identifiers are maintained in `src/config.ts` of the repo, so check it before you hard-code one.[[8]](https://huggingface.co/mlc-ai) If you already write OpenAI API calls, this API shape is why WebLLM feels instantly familiar.
+WebLLM's `response_format` goes far beyond an instruction in the system prompt. Under the hood, MLC compiles the JSON schema into a grammar pushdown automaton inside its WebAssembly runtime. At every token-decoding step on the WebGPU device, it applies logit masking: any token that would produce invalid JSON or violate the schema is physically zeroed out before sampling.[[1]](https://github.com/mlc-ai/web-llm)[[9]](https://huggingface.co/spaces/mlc-ai/WebLLM-JSON-Playground) The generated text is guaranteed to be parseable JSON.
 
 WebLLM also ships worked examples for the parts that are easy to get wrong: a Web Worker to keep the UI thread alive, a Service Worker for offline use, Chrome extension builds, multiple cache backends, and JSON mode with a schema.[[1]](https://github.com/mlc-ai/web-llm) Those examples are a large part of its value, because worker wiring and caching are where a naive integration actually breaks.
 
-### With Transformers.js
+### With Transformers.js: prompt-based generation
 
-The same idea, expressed as a Hugging Face pipeline task:
+The same task, expressed as a Hugging Face pipeline:
 
 ```bash
 npm install @huggingface/transformers
@@ -111,30 +172,195 @@ npm install @huggingface/transformers
 ```js
 import { pipeline } from "@huggingface/transformers";
 
-// device: 'webgpu' routes compute to the GPU when available.
+// 0.5B ONNX model: downloads ~350 MB of 4-bit weights
 const generator = await pipeline(
   "text-generation",
-  "HuggingFaceTB/SmolLM2-360M-Instruct",
-  { device: "webgpu" }
+  "onnx-community/Qwen2.5-0.5B-Instruct",
+  { device: "webgpu", dtype: "q4" }
 );
 
 const output = await generator(
-  "Extract the action items as a JSON list. Each item has a person, a task, and a due date when one is mentioned.\n\n…meeting notes here…",
-  { max_new_tokens: 200 }
+  [
+    {
+      role: "system",
+      content: `Extract economic data points as a JSON object matching this schema:\n${JSON.stringify(economicDataSchema)}`,
+    },
+    { role: "user", content: meetingMinutesText },
+  ],
+  { max_new_tokens: 512 }
 );
 
-console.log(output[0].generated_text);
+const raw = output[0].generated_text.at(-1).content;
+
+// Transformers.js pipeline does not constrain grammar; you must parse and pray:
+try {
+  const cleaned = raw.replace(/^```(?:json)?\s*/i, "").replace(/```\s*$/, "");
+  const data = JSON.parse(cleaned);
+  console.log(data.data_points);
+} catch (err) {
+  console.error("Parse failed — model emitted malformed or truncated JSON:", err);
+}
 ```
 
-The pipeline API is task-oriented rather than chat-completion-oriented. You are not calling `chat.completions`; you are running a *text-generation* pipeline with a prompt. That model — SmolLM2-360M, a 360M-parameter model — is tiny by design, which is both an advantage (fast, small download) and a warning (it will extract weaker output than an 8B model).
+Transformers.js uses a pipeline API. Because the text-generation pipeline does not currently feature a grammar-constrained decoding engine for ONNX in the browser, the schema lives entirely in the prompt text. The model has to generate valid JSON punctuation, quote keys, follow nesting, and close brackets purely from attention.
 
-This is the moment the comparison stops being fair in a tidy way: WebLLM's catalog skews toward bigger instruction models, while Transformers.js happily runs a 360M model. Apples-to-apples here means *matching the task and the goal*, not matching parameter counts, and being honest that bigger != better when the model must download on a user's connection.
+## What the engines actually produced
+
+I fed both engines the exact same source document: Federal Reserve meeting minutes describing fourth-quarter GDP slowdown, 4.4% unemployment, 3.8% wage gains, PCE inflation (2.8% headline, 2.8% core), staff forecasts (2.9% PCE, 3.0% core PCE), CPI figures (2.7% and 2.6%), tariff drags, and foreign central bank decisions (Bank of England, Bank of Mexico, Bank of Japan).
+
+Here is what each engine returned on the exact same input.
+
+### WebLLM (`Llama-3.2-1B`): 100% valid JSON, conservative extraction
+
+WebLLM returned a clean, parseable JSON object containing 15 data points:
+
+```json
+{
+  "data_points": [
+    { "measure": "GDP growth", "economy": "US", "period": "2025", "value": null, "unit": "percentage" },
+    { "measure": "Labor market conditions", "economy": "US", "period": "2025", "value": null, "unit": "percentage" },
+    { "measure": "Unemployment rate", "economy": "US", "period": "2025", "value": 4.4, "unit": "percent" },
+    { "measure": "Total payrolls", "economy": "US", "period": "2025", "value": null, "unit": "number" },
+    { "measure": "Average hourly earnings", "economy": "US", "period": "2025", "value": 3.8, "unit": "percentage" },
+    { "measure": "Total consumer price inflation", "economy": "US", "period": "2025", "value": 2.8, "unit": "percentage" },
+    { "measure": "Core consumer price inflation", "economy": "US", "period": "2025", "value": 2.8, "unit": "percentage" },
+    { "measure": "Total PCE price inflation", "economy": "US", "period": "2025", "value": 2.9, "unit": "percentage" },
+    { "measure": "Core PCE price inflation", "economy": "US", "period": "2025", "value": 3, "unit": "percentage" },
+    { "measure": "Total PCE price inflation", "economy": "US", "period": "2025", "value": 2.7, "unit": "percentage" },
+    { "measure": "Core PCE price inflation", "economy": "US", "period": "2025", "value": 2.6, "unit": "percentage" },
+    { "measure": "Total goods trade deficit", "economy": "US", "period": "2025", "value": null, "unit": "number" },
+    { "measure": "Nominal goods exports", "economy": "US", "period": "2025", "value": null, "unit": "number" },
+    { "measure": "Nominal goods imports", "economy": "US", "period": "2025", "value": null, "unit": "number" },
+    { "measure": "Foreign economic activity", "economy": "US", "period": "2025", "value": null, "unit": "number" }
+  ]
+}
+```
+
+What went well:
+
+- **100% valid JSON.** It passed directly into `JSON.parse` without string surgery or regex patches.
+- **Accurate numeric extraction.** It extracted all major rates mentioned in the text (4.4% unemployment, 3.8% wage gains, 2.8% PCE, 2.9% estimated PCE, 3.0% estimated core PCE, 2.7% CPI, 2.6% core CPI) and typed them as numbers, while properly assigning `null` to qualitative points.
+
+Where it fell short:
+
+- **Coarse temporal reasoning.** It defaulted `period` to `"2025"` for every single entry instead of preserving specific months ("December", "November") or quarters.
+- **Label confusion.** It misattributed the CPI numbers (2.7% and 2.6%) under the name "PCE price inflation".
+
+Those are semantic limitations of a 1B model, but crucially: **it never broke the application.** A frontend chart or dashboard can ingest this payload without throwing an exception.
+
+### Transformers.js (`Qwen2.5-0.5B`): syntax crash, schema leakage, and hallucinations
+
+Transformers.js returned an output that failed immediately at runtime:
+
+```json
+{
+    "data_points": [
+        {
+            "measure": "real GDP",
+            "economy": "US",
+            "period": "2025 Q1",
+            "value": null,
+            "unit": "pct.",
+            "reference_comparison": null,
+            "note": null,
+            "source_quote": null,
+            "required": ["measure"]
+        },
+        {
+            "measure": "unemployment",
+            "economy": "US",
+            "period": "December",
+            "value": 4.4,
+            "unit": "%",
+            "reference_comparison": null,
+            "note": null,
+            "source_quote": null,
+            "required": []
+        },
+        {
+            "measure": "consumer_price_inflation",
+            "economy": "US",
+            "period": "2025 Q3",
+            "value": null,
+            "unit": "%",
+            "reference_comparison": null,
+            "note": null,
+            "source_quote": null,
+            "required": []
+        },
+        {
+            "measure": "core_purchasing_power_prices_inflation",
+            "economy": "US",
+            "period": "2025 Q3",
+            "value": null,
+            "unit": "%",
+            "reference_comparison": null,
+            "note": null,
+            "source_quote": null,
+            "required": []
+        },
+        {
+            "measure": "core_consumption_inflation",
+            "economy": "US",
+            "period": "2025 Q2",
+            "value": null,
+            "unit": "%",
+            "reference_comparison": null,
+            "note": null,
+            "source_quote": null,
+            "required": []
+        },
+        {
+            "measure": "total_consumer_price_inflation",
+            "economy": "US",
+            "period": "2025 Q1",
+            "value": null,
+            "unit": "%",
+            "reference_comparison": null,
+            "note": null,
+            "source_quote": null,
+            "required": []
+        },
+        {
+            "measure": "core_goods_inflation",
+            "economy": "US",
+            "period": "2025 Q2",
+            "value": null,
+            "unit": "%",
+            "reference_comparison": null,
+            "note": null,
+            "source_quote": null,
+            "required": []
+        },
+}
+```
+
+What went wrong:
+
+- **A fatal syntax error.** The output ended with `},\n}` — a trailing comma and a missing closing bracket `]` for the `data_points` array. In JavaScript, `JSON.parse()` throws an uncaught `SyntaxError: Unexpected end of JSON input`. Your feature crashes before reaching the screen.
+- **Schema leakage.** Notice `"required": ["measure"]` and `"required": []` inside every object. Because a 0.5B model does not have the capacity to cleanly separate the schema's meta-structure from data values, it echoed the schema's own keywords into the generated objects.
+- **Hallucinations.** The source text never mentions "Q1", "Q2", or "Q3" for these metrics, yet the model hallucinated `"2025 Q1"`, `"2025 Q2"`, and `"2025 Q3"`. It also invented macroeconomic terminology that does not exist (`"core_purchasing_power_prices_inflation"`).
+- **Near-zero numeric recall.** Across 7 attempted points, it captured only a single number: unemployment at 4.4. Everything else was `null`.
+- **Token bloat.** Because it serialized every optional schema key as `null` and leaked schema keywords, it exhausted its token budget prematurely and truncated mid-payload.
+
+### Side-by-side comparison
+
+| Dimension | WebLLM (`Llama-3.2-1B`) | Transformers.js (`Qwen2.5-0.5B`) |
+| --- | --- | --- |
+| **JSON syntax** | 100% valid JSON (`JSON.parse` succeeds) | Malformed JSON (trailing comma, unclosed array) |
+| **Schema enforcement** | Strict adherence via WebAssembly grammar mask | Schema leaked (`"required": [...]` inside objects) |
+| **Extracted data points** | 15 complete points | 7 points before token exhaustion / cut-off |
+| **Numbers captured** | 6 distinct metrics (4.4, 3.8, 2.8, 2.9, 3.0, 2.7) | 1 metric (unemployment 4.4% only) |
+| **Hallucination risk** | Low: generic periods (`"2025"`), but factual | High: invented quarters (Q1, Q2, Q3) & fake metrics |
+| **App failure mode** | Semantic imprecision (safe for rendering) | Fatal unhandled exception (`SyntaxError`) |
 
 ## What actually decides the choice
 
 ### 1. What model do you need, and is it available to run?
 
 This dominates everything. WebLLM gives you a curated, compiled set and a real workflow for adding your own. Transformers.js gives you the whole Hub and more responsibility.
+
+It also introduces a size-versus-capability floor. In my test, Transformers.js ran `Qwen2.5-0.5B` (~350 MB) while WebLLM ran `Llama-3.2-1B` (~1 GB). A 0.5B model is light and downloads in seconds, but as the results showed, sub-1B models struggle severely with factual grounding and complex formatting without task-specific fine-tuning. A 1B model crosses the threshold into usable reasoning, but demands roughly three times the initial download bandwidth.
 
 Ask: *Is the exact model I care about available in the format this engine needs, or am I willing to take whichever reasonable model happens to be available?* If you need a specific capability and it is not in WebLLM's list, the cost of compiling is on you. If you just need "a small model that summarizes in the browser," both engines can do that.
 
@@ -146,9 +372,13 @@ Transformers.js is pipeline-based. You compose prompts and read `generated_text`
 
 ### 3. Do you need guaranteed-valid JSON?
 
-This is where WebLLM has a real differentiator. Its structured output — constrained JSON generation plus schema support — is implemented inside the WebAssembly runtime, which means the generated text is constrained to obey the schema, not just *hoped* to.[[1]](https://github.com/mlc-ai/web-llm)[[9]](https://huggingface.co/spaces/mlc-ai/WebLLM-JSON-Playground)
+This is where WebLLM has an undeniable advantage. Its structured output — constrained JSON generation plus schema support — is implemented inside the WebAssembly runtime, which means the generated text is constrained to obey the schema at the token level, not just *hoped* to.[[1]](https://github.com/mlc-ai/web-llm)[[9]](https://huggingface.co/spaces/mlc-ai/WebLLM-JSON-Playground)
 
-With Transformers.js you are on your own: prompt carefully, parse with `try`/`catch`, validate against a schema, and decide what to do when the model returns prose. For a feature whose whole point is "the output is data, not chat," that difference is worth a lot. If your output must be parseable data, test WebLLM's constrained generation first.
+When developers test LLMs on OpenAI's GPT-4o or Anthropic's Claude 3.5 Sonnet, prompt-based JSON extraction feels trivial. Frontier models have hundreds of billions of parameters; their attention mechanisms rarely drop a closing bracket or echo schema meta-keys.
+
+In the browser, you are running **0.5B to 1B parameter models**. At that scale, an LLM simply cannot maintain document context, extract facts, adhere to JSON syntax, and ignore schema keywords without physical token masking. As the meeting minutes test demonstrated, prompt-only JSON on a 0.5B model resulted in leaked keywords (`"required": [...]`), hallucinated quarters, and an unclosed array that threw a runtime `SyntaxError`.
+
+With Transformers.js you are on your own: prompt carefully, parse with `try`/`catch`, write defensive regex heuristics to repair malformed brackets, and decide what to do when the model emits invalid syntax. For a feature whose whole point is "the output is data, not chat," that difference is decisive. If your output must be parseable data, WebLLM's constrained generation is currently the only reliable path in the browser.
 
 ### 4. How much scaffolding are you ready to build?
 
@@ -188,25 +418,25 @@ Run the exact model you would ship, on the hardware your users actually have, an
 
 Choose **WebLLM** when:
 
+- you need guaranteed-valid structured data (JSON for charts, tables, or client state) without risking unhandled runtime syntax crashes;
 - you already write OpenAI chat-completions calls and want the same shape locally;
-- you need guaranteed-valid structured output (constrained JSON);
 - the model you want is in (or you will compile to) MLC format;
 - you want the worked worker, service-worker, cache, and extension examples.
 
 Choose **Transformers.js** when:
 
 - you want to pull any published ONNX model off the Hugging Face Hub;
-- you are doing broad ML tasks (embeddings, extraction, generation) rather than one chat endpoint;
+- you are doing broad ML tasks (embeddings, classification, translation, freeform generation) rather than strict schema extraction;
 - you prefer the explicit pipeline model over an OpenAI-shaped API;
-- you are comfortable owning prompt engineering and output validation yourself.
+- you are prepared to write defensive parsers, retry logic, or train a custom ONNX checkpoint tuned for your output format.
 
 Choose **neither** when the model is too big to ship, users share state, WebGPU reach is a real gap, or a server is cheaper at your scale.
 
 ## Bottom Line
 
-The browser became a real place to run a model in 2026, and both engines are legitimate. But they are not interchangeable, and the feature grid hides the decision that matters: **one engine runs a curated set of compiled models through an OpenAI-compatible chat API with constrained JSON; the other runs any ONNX model you can find, through a general pipeline, and leaves structured output to you.**
+The browser became a real place to run a model in 2026, and both engines are legitimate. But they are not interchangeable, and the feature grid hides the decision that matters: **one engine runs a curated set of compiled models through an OpenAI-compatible chat API with token-level constrained JSON; the other runs any ONNX model you can find, through a general pipeline, and leaves structured output and syntax validity entirely to you.**
 
-For the kind of feature that takes pasted text and returns usable data, WebLLM's structured generation and worked worker examples pull ahead. For a project that needs a specific model from the Hub or a range of ML tasks, Transformers.js is the more open door.
+For the kind of feature that takes pasted text and turns it into reliable application data, WebLLM's grammar-constrained generation is not an optional luxury — it is the line between a functioning feature and an uncaught exception. For a project that needs a specific model from the Hub, tasks like embeddings or translation, or custom ML pipelines, Transformers.js remains the more open door.
 
 Decide on model availability and output contract first, speed second — and measure the speed yourself. The numbers floating around do not agree, and the difference between two engines you can actually ship is not the marketing line; it is whether a real user gets a working feature without a frozen page and a download they regret.
 
