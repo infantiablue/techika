@@ -8,10 +8,10 @@ description: >-
 author: Truong Phan
 type: article
 status: draft
+image: ''
 date: '2026-09-02'
 tags:
   - javascript
-  - browser
   - webgpu
   - llm
   - web-llm
