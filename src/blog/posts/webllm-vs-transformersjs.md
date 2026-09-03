@@ -442,6 +442,8 @@ For the kind of feature that takes pasted text and turns it into reliable applic
 
 Decide on model availability and output contract first, speed second — and measure the speed yourself. The numbers floating around do not agree, and the difference between two engines you can actually ship is not the marketing line; it is whether a real user gets a working feature without a frozen page and a download they regret.
 
+[The demo repo here](https://github.com/infantiablue/webllm)
+
 ## Sources
 
 1. [MLC-AI WebLLM, GitHub README](https://github.com/mlc-ai/web-llm)
