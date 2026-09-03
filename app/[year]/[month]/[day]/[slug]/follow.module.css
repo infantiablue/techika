@@ -36,6 +36,58 @@
 
 .follow b { font-size: .8rem; }
 
+.share {
+  margin: 3.5rem 0 3rem;
+  padding-block: 1.25rem 0;
+  border-block: 1px solid var(--rule);
+}
+
+.share h2 {
+  margin: 0 0 1rem;
+  font-family: Iowan Old Style, Palatino Linotype, Book Antiqua, Palatino, Georgia, serif;
+  font-size: 1.8rem;
+  font-weight: 400;
+}
+
+.shareActions {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(8.5rem, 1fr));
+  gap: 1px;
+  border: 1px solid var(--rule);
+  background: var(--rule);
+}
+
+.shareActions :is(a, button) {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 3rem;
+  padding: .65rem .8rem;
+  border: 0;
+  color: var(--text);
+  background: var(--bg);
+  cursor: pointer;
+  font: inherit;
+  font-size: .86rem;
+  text-align: left;
+}
+
+.shareActions :is(a, button):hover,
+.shareActions :is(a, button):focus-visible {
+  color: var(--green);
+  background: var(--panel);
+  text-decoration: none;
+}
+
+.shareActions b { font-size: .8rem; }
+
+.shareStatus {
+  min-height: 1.5rem;
+  margin: .65rem 0 0;
+  color: var(--muted);
+  font-size: .8rem;
+}
+
 @media (max-width: 480px) {
   .follow { flex-wrap: wrap; }
   .follow span { width: 100%; }

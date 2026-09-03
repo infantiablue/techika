@@ -24,6 +24,10 @@ export default function Home() {
 						<br />
 						lifelong learner.
 					</h1>
+					<nav className='home-socials' aria-label='Find Truong Phan online'>
+						<a href='https://x.com/infantiablue'><span>X</span><strong>@infantiablue</strong><b aria-hidden='true'>↗</b></a>
+						<a href='https://github.com/infantiablue'><span>GitHub</span><strong>infantiablue</strong><b aria-hidden='true'>↗</b></a>
+					</nav>
 				</section>
 				<section className='featured'>
 					{featured.image && <Link className='featured-cover' href={featured.path} aria-label={`Read ${featured.title}`}><Image src={featured.image} alt='' {...coverSize} sizes="(max-width: 1018px) calc(100vw - 3rem), 970px" priority /></Link>}
@@ -53,7 +57,6 @@ export default function Home() {
 					</div>
 				</section>
 				<footer className='home-footer'>
-					<a href='https://github.com/infantiablue'>GitHub</a>
 					<Link href='/contact'>Contact</Link>
 				</footer>
 			</main>
