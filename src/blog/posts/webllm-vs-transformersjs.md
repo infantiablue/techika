@@ -7,7 +7,7 @@ description: >-
   and failure modes.
 author: Truong Phan
 type: article
-status: draft
+status: published
 image: >-
   /media/webllm-vs-transformersjs/d195c86d-e033-4c3f-8f6d-d0c1cafd25e2-ai-cover.png
 date: '2026-09-02'
@@ -17,6 +17,7 @@ tags:
   - llm
   - web-llm
   - transformers.js
+publishedAt: '2026-09-03T09:23:26.007Z'
 imageAlt: 'WebLLM vs Transformers.js: which in-browser LLM engine should you ship?'
 ---
 Somebody asked me recently whether they could add a small LLM to a web app without standing up a model server. The honest answer in 2026 is yes, but the harder question comes immediately after: *which way?*
