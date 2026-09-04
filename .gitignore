@@ -116,3 +116,9 @@ dist
 
 
 commit.log
+
+# AI
+.agents/
+.claude/
+.hermes/
+skills-lock.json

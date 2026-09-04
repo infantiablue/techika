@@ -16,7 +16,7 @@ imageAlt: What "import defer" Actually Changes About Module Loading
 ---
 ## The proposal, in short
 
-**Deferring Module Evaluation** (a.k.a. `import defer`) is a [TC39 Stage 3 proposal](https://github.com/tc39/proposal-defer-import-eval) championed by Nicolò Ribaudo. The motivation is straightforward: ES modules made loading sane but kept one CommonJS luxury out of reach — paying CPU only for what you actually use.
+**Deferring Module Evaluation** (a.k.a. `import defer`) is a [TC39 Stage 3 proposal](https://github.com/tc39/proposal-defer-import-eval) championed by Nicolò Ribaudo. It restores a CommonJS convenience that ES modules took away: `require()` only ran a module's code when you actually called it, so a module you never touched cost you nothing at runtime. Static `import` evaluates the whole graph up front, on startup, whether you use it or not. `import defer` runs the module body only when you first read a property off it, synchronously, with no `await`.
 
 The syntax is namespace-only:
 
@@ -182,4 +182,4 @@ Reach for `import()` when the module is *large and conditionally needed* (code-s
 
 Reach for `import defer` when the module *must load upfront* (shared dependencies, CSP constraints, no network hop allowed) but its *execution cost* is the problem — and you need synchronous access without `await`.
 
-The feature is real, the semantics are sharp, and Safari shipped it first. The rest of the ecosystem will catch up — but the mental model is worth learning now.
+Safari's Technology Preview is the only engine that ships it today. The rest will land it on their own schedule, and the semantics above are what you'll be working with when they do. Until a second engine lands, `import()` is the reliable way to keep a heavy module off the startup path, by deferring loading if not execution.
