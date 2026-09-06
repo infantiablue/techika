@@ -1,12 +1,13 @@
 ---
-title: 'How to Migrate Agent Memory from Honcho to Hindsight Safely'
+title: How to Migrate Agent Memory from Honcho to Hindsight Safely
 description: >-
   A practical, reversible guide to moving durable agent knowledge, isolated
   profiles, and optional conversation history from Honcho or another memory
   provider into Hindsight.
 author: Truong Phan
 type: article
-status: published
+status: draft
+image: ''
 date: '2026-09-05'
 tags:
   - ai-agents
