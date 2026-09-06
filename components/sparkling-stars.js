@@ -3,5 +3,10 @@ const stars = [
 ];
 
 export function SparklingStars() {
-  return <div className="dark-sparkles" aria-hidden="true">{stars.map(([left, top, size, delay]) => <i className="sparkle-star" key={`${left}-${top}`} style={{ left: `${left}%`, top: `${top}%`, width: `${size}px`, height: `${size}px`, animationDelay: `${delay}s` }} />)}</div>;
+  return <div className="ambient-particles" aria-hidden="true">
+    <i className="morning-mist morning-mist-back" />
+    <i className="morning-mist morning-mist-middle" />
+    <i className="morning-mist morning-mist-front" />
+    {stars.map(([left, top, size, delay]) => <i className="ambient-particle" key={`${left}-${top}`} style={{ left: `${left}%`, top: `${top}%`, "--star-size": `${size}px`, "--mote-delay": `${delay}s` }} />)}
+  </div>;
 }

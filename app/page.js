@@ -3,6 +3,7 @@ import Image from "next/image";
 import { Header } from "../components/site";
 import { getPosts, selectFeaturedPost } from "../lib/posts";
 import { coverSize } from "../lib/media-rules";
+import { MountainLandscape } from "../components/mountain-landscape";
 
 function formatDate(date) {
 	return new Intl.DateTimeFormat("en-US", { month: "short", day: "numeric", year: "numeric", timeZone: "UTC" }).format(new Date(`${date}T00:00:00Z`));
@@ -16,6 +17,7 @@ export default function Home() {
 		<>
 			<Header />
 			<main className='home' id='main-content'>
+				<MountainLandscape />
 				<section className='home-intro'>
 					<p className='eyebrow'>Personal journal</p>
 					<h1>
