@@ -1,0 +1,11 @@
+Model Information:
+* title:	DAE Villages | Ancient Greek Bakery
+* source:	https://sketchfab.com/3d-models/dae-villages-ancient-greek-bakery-364b1b220b1943999d69180b5f322ca5
+* author:	Bram Verheyen (https://sketchfab.com/BramVerheyen)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "DAE Villages | Ancient Greek Bakery" (https://sketchfab.com/3d-models/dae-villages-ancient-greek-bakery-364b1b220b1943999d69180b5f322ca5) by Bram Verheyen (https://sketchfab.com/BramVerheyen) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

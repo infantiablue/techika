@@ -121,4 +121,5 @@ commit.log
 .agents/
 .claude/
 .hermes/
+.codex/
 skills-lock.json
