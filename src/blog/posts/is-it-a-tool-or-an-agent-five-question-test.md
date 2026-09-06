@@ -1,12 +1,13 @@
 ---
 title: Is It a Tool or an Agent? A Five-Question Test
 description: >-
-  "Agent" is a marketing label, not an engineering category. Here's a five-question
-  test you can run against any system to figure out what it actually is, and how
-  much guarding it deserves.
+  "Agent" is a marketing label, not an engineering category. Here's a
+  five-question test you can run against any system to figure out what it
+  actually is, and how much guarding it deserves.
 author: Truong Phan
 type: article
 status: draft
+image: ''
 date: '2026-09-06'
 tags:
   - ai
@@ -14,7 +15,6 @@ tags:
   - architecture
 imageAlt: Is It a Tool or an Agent? A Five-Question Test
 ---
-
 Every product brief I read these days calls something an agent. A code autocomplete is an agent. An assistant that rewrites your subject line is an agent. A bot that files your Jira tickets is, apparently, an agent.
 
 I don't think this is a vocabulary quibble. It changes how much monitoring you owe a system, and it changes how much ceremony you're allowed to skip. But the label is doing bad work.
