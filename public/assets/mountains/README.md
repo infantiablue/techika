@@ -12,6 +12,6 @@ Production transparent landscape texture, very wide panorama 4:1. Continuous gen
 
 ## Morning mist prompt
 
-Generated with the built-in OpenAI image-generation tool on 2026-09-06. Original alpha retained; compressed to WebP using cwebp (quality 88, alpha quality 95). Asset size is 2172×724.
+Generated with the built-in OpenAI image-generation tool on 2026-09-06. Optimized to 1086×362 using cwebp (quality 65, alpha quality 70, method 6), retaining transparency. Download size reduced from 449,046 to 36,774 bytes (91.8% smaller).
 
 Use case: photorealistic-natural. Asset type: transparent atmospheric texture for a refined cream and forest-green literary website. Create an ultra-wide morning mist texture made of three long, irregular wisps of natural mountain fog on a genuinely transparent background with generous empty transparent space; no landscape and no sky. Use soft horizontal bands of pale warm-gray and translucent white vapor with feathered organic edges and subtle internal density variation. Keep the result understated, editorial, and suitable for slow drift over a monochrome mountain panorama. Avoid dots, circles, sparkles, stars, text, people, buildings, borders, checkerboard patterns, fantasy clouds, and obvious repetition.

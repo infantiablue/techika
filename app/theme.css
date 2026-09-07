@@ -73,9 +73,9 @@
 .page, .home, .footer, .admin-shell { position: relative; z-index: 1; }
 .morning-mist { position: absolute; left: -20%; width: 140%; height: clamp(15rem, 34vw, 28rem); filter: brightness(.86) contrast(.88) sepia(.08); mix-blend-mode: multiply; opacity: .46; animation: mist-drift var(--mist-duration) ease-in-out var(--mist-delay, 0s) infinite alternate; will-change: transform; }
 @media (prefers-reduced-motion: no-preference) { .morning-mist { background: url("/assets/mountains/morning-mist.webp") center / 100% 100% no-repeat; } }
-.morning-mist-back { --mist-duration: 29.1s; top: -8%; opacity: .3; }
-.morning-mist-middle { --mist-duration: 23.6s; --mist-delay: -11s; top: 36%; left: -28%; width: 155%; opacity: .4; }
-.morning-mist-front { --mist-duration: 19.1s; --mist-delay: -19s; top: 70%; left: -13%; width: 132%; opacity: .5; }
+.morning-mist-back { --mist-duration: 24.7s; top: -8%; opacity: .3; }
+.morning-mist-middle { --mist-duration: 20.1s; --mist-delay: -11s; top: 36%; left: -28%; width: 155%; opacity: .4; }
+.morning-mist-front { --mist-duration: 16.2s; --mist-delay: -19s; top: 70%; left: -13%; width: 132%; opacity: .5; }
 .ambient-particle { display: none; position: absolute; border-radius: 50%; }
 @keyframes mist-drift { from { transform: translate3d(-6%, 0, 0); } to { transform: translate3d(6%, 0, 0); } }
 @keyframes sparkle { 0%, 100% { opacity: .2; transform: scale(.8); box-shadow: 0 0 2px 0 rgb(255 255 255 / .3); } 50% { opacity: 1; transform: scale(1); box-shadow: 0 0 8px 2px rgb(255 255 255 / .6), 0 0 12px 4px rgb(255 255 255 / .3); } }
