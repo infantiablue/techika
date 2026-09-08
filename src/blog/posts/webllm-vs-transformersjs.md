@@ -9,7 +9,7 @@ author: Truong Phan
 type: article
 status: published
 image: >-
-  /media/webllm-vs-transformersjs/ea8cf157-5e5d-4805-a548-59baf45303d8-48c26cf5-cc40-433f-9981-cab24dee8a36.png
+  /media/webllm-vs-transformersjs/01fad0c1-12ac-4308-a118-3fea7518c755-webllm-vs-transformersjs.png
 date: '2026-09-02'
 tags:
   - javascript
