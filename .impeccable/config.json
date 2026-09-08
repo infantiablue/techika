@@ -1,0 +1,17 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "side-tab",
+        "value": "*",
+        "files": [
+          "app/globals.css"
+        ],
+        "createdAt": "2026-09-08T14:43:26.167Z",
+        "reason": "User confirmed all four existing side accents should be softened to 1px"
+      }
+    ]
+  }
+}
