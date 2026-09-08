@@ -63,7 +63,7 @@ The trade-off: you choose from the models the project maintains, or you compile 
 
 ### Transformers.js runs ONNX models from the Hub
 
-Transformers.js consumes standard ONNX models from the Hugging Face Hub. That is a huge existing catalog, plus any model you export to ONNX yourself. The underlying runtime for WebGPU is ONNX Runtime Web, and the v4 rewrite moved the heavy lifting into a C++/WebGPU backend.[[2]](https://github.com/huggingface/transformers.js)[[7]](https://huggingface.co/docs/transformers.js)
+Transformers.js consumes standard [ONNX models](https://huggingface.co/onnx-community) from the Hugging Face Hub. That is a huge existing catalog, plus any model you export to ONNX yourself. The underlying runtime for WebGPU is ONNX Runtime Web, and the v4 rewrite moved the heavy lifting into a C++/WebGPU backend.[[2]](https://github.com/huggingface/transformers.js)[[7]](https://huggingface.co/docs/transformers.js)
 
 The trade-off: more choice, but you carry more responsibility for whether a given model actually runs well on your user's hardware. Just because it is on the Hub does not mean it is tuned for WebGPU in your browser.
 
