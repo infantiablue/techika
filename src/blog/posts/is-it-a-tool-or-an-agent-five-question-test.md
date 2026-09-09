@@ -6,7 +6,7 @@ description: >-
   actually is, and how much guarding it deserves.
 author: Truong Phan
 type: article
-status: draft
+status: published
 image: >-
   /media/is-it-a-tool-or-an-agent-five-question-test/4856904a-51b2-42b2-8a79-37b815451aed-agent-five-question-test.png
 date: '2026-09-06'
@@ -14,6 +14,7 @@ tags:
   - ai
   - agents
   - architecture
+publishedAt: '2026-09-09T03:57:28.237Z'
 imageAlt: Is It a Tool or an Agent? A Five-Question Test
 ---
 When reading the book Nexus: [A Brief History of Information Networks from the Stone Age to AI](https://www.penguinrandomhouse.com/books/762444/nexus-by-yuval-noah-harari/) by Yuval Noah Harari, the author stated: 
@@ -52,9 +53,9 @@ This is the one that should drive the design. Text in a diff you review is effec
 
 The five questions collapse into three things that actually matter: how much autonomy it has, how much of the world it can touch, and how reversible the damage is. That's the real axis. Everything else is decoration.
 
-## Scoring five real systems
+## Evaluating five real systems
 
-Let me run the test on a few things you've seen around, from lowest to highest blast radius.
+Now, we run the framework on a few things you've seen around, from lowest to highest blast radius.
 
 | System | Goals | Mutates state | Perceives | Loops | Reversible |
 | --- | --- | --- | --- | --- | --- |
