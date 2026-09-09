@@ -7,7 +7,8 @@ description: >-
 author: Truong Phan
 type: article
 status: draft
-image: ''
+image: >-
+  /media/is-it-a-tool-or-an-agent-five-question-test/4856904a-51b2-42b2-8a79-37b815451aed-agent-five-question-test.png
 date: '2026-09-06'
 tags:
   - ai
