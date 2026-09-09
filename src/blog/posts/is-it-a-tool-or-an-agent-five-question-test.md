@@ -15,17 +15,20 @@ tags:
   - architecture
 imageAlt: Is It a Tool or an Agent? A Five-Question Test
 ---
-Every product brief I read these days calls something an agent. A code autocomplete is an agent. An assistant that rewrites your subject line is an agent. A bot that files your Jira tickets is, apparently, an agent.
+When reading the book Nexus: [A Brief History of Information Networks from the Stone Age to AI](https://www.penguinrandomhouse.com/books/762444/nexus-by-yuval-noah-harari/) by Yuval Noah Harari, the author stated: 
+AI differs from previous inventions because it processes information independently to make decisions and generate ideas, functioning as an agent rather than a passive tool.
 
-I don't think this is a vocabulary quibble. It changes how much monitoring you owe a system, and it changes how much ceremony you're allowed to skip. But the label is doing bad work.
+Recently, almost everything I read these days calls something an agent. A code autocomplete is an agent. An assistant that rewrites your subject line is an agent. A bot that files your Jira tickets is, apparently, an agent ....
 
-Here's the part nobody says out loud: **agent is not a property of the model. It's a property of the system you wrapped around the model.** The same model can sit inside a tool on Monday and an agent on Tuesday. What changes is not intelligence. It's how much the system can do on its own and how hard it is to take back.
+I don't think this is a vocabulary quibble, yet it changes how much monitoring you owe a system, and it changes how much ceremony you're allowed to skip. But the label is doing bad work.
+
+Here's the part nobody says out loud: **agent is not a property of the model. It's a property of the system you wrapped around the model.** The same model can sit inside a tool on Monday and an agent on Tuesday. What changes is not the intelligence, but it's about how much the system can do on its own and how hard it is to take back your control.
 
 ## Why the label is useless
 
 The strongest version of the "it's an agent" argument comes from Yuval Noah Harari in *Nexus*. He writes that a knife doesn't decide what to cut, but AI can process information and make decisions by itself. His conclusion is blunt: "AI isn't a tool, it's an agent."
 
-On capability, he's right. The model does make decisions. But the jump from "can decide" to "is an agent" is where the market does its favorite trick: it collapses a whole spectrum into one word. In practice that same model powers suggestions in your editor, a command palette in your terminal, and a system that moves real money at 3am. Calling all three "agents" tells you nothing about how to build or govern them. The behavior tells you.
+On capability, he's right. The model does make decisions. But the jump from "can decide" to "is an agent" is where the market does its favorite trick: it collapses a whole spectrum into one word. In real world, that same model powers suggestions in your editor, run custom scripts behind the screen, and a system that moves real money at 3am. Calling all three "agents" tells you nothing about how to build or govern them. The behavior tells you.
 
 ## The five questions
 
@@ -86,7 +89,7 @@ The useful realization is that reversibility, not autonomy, should set your pati
 
 The label isn't worth arguing over. If someone hands you a deck that calls something an agent, run the five questions, give it a score, and put your effort into the frame around it based on two things: how much it can do on its own, and what it costs to take back.
 
-That's the part worth spending money on. Review gates and sandboxing are cheap to add and hard to justify for a tool. For a system that moves money or ships to customers while nobody's watching, they're not ceremony. They're the difference between catching a mistake and explaining one.
+That's the part worth investing efforts and monney. Review gates and sandboxing are cheap to add and hard to justify for a tool. However, for a system, workflow that moves money or ships to customers while nobody's watching, they're not redundant. When something bad happened, at least, you will understand why. 
 
 ## Sources
 
