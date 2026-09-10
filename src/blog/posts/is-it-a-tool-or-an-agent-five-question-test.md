@@ -16,6 +16,7 @@ tags:
   - architecture
 publishedAt: '2026-09-09T03:57:28.237Z'
 imageAlt: Is It a Tool or an Agent? A Five-Question Test
+featured: true
 ---
 When reading the book Nexus: [A Brief History of Information Networks from the Stone Age to AI](https://www.penguinrandomhouse.com/books/762444/nexus-by-yuval-noah-harari/) by Yuval Noah Harari, the author stated: 
 AI differs from previous inventions because it processes information independently to make decisions and generate ideas, functioning as an agent rather than a passive tool.
