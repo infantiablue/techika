@@ -20,7 +20,7 @@ imageAlt: Is It a Tool or an Agent? A Five-Question Test
 When reading the book Nexus: [A Brief History of Information Networks from the Stone Age to AI](https://www.penguinrandomhouse.com/books/762444/nexus-by-yuval-noah-harari/) by Yuval Noah Harari, the author stated: 
 AI differs from previous inventions because it processes information independently to make decisions and generate ideas, functioning as an agent rather than a passive tool.
 
-Recently, almost everything I read these days calls something an agent. A code autocomplete is an agent. An assistant that rewrites your subject line is an agent. A bot that files your Jira tickets is, apparently, an agent ....
+Within the last few months, almost everything I read these days calls something an agent. A code autocomplete is an agent. An assistant that rewrites your subject line is an agent. A bot that files your Jira tickets is, apparently, an agent ....
 
 I don't think this is a vocabulary quibble, yet it changes how much monitoring you owe a system, and it changes how much ceremony you're allowed to skip. But the label is doing bad work.
 
