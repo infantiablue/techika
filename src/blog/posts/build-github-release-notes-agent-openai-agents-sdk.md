@@ -6,7 +6,7 @@ description: >-
   database, multi-agent routing, or GitHub write token.
 author: Truong Phan
 type: article
-status: draft
+status: published
 image: >-
   /media/build-github-release-notes-agent-openai-agents-sdk/81c03b68-55cf-4694-92b9-b12680f1138e-github-release-agent.png
 date: '2026-09-15'
@@ -16,6 +16,7 @@ tags:
   - openai
   - typescript
   - github
+publishedAt: '2026-09-23T15:29:33.495Z'
 imageAlt: Build a GitHub Release-Notes Agent with the OpenAI Agents SDK
 ---
 When studying about OpenAI Agents API, I had a bad idea for a demo to see how it works in practice. It was a refund-support agent. The agent would inspect an order, decide whether a customer was eligible, then wait for a human to approve the actual refund. The safety lesson was good, however it was not practical in this situation.
